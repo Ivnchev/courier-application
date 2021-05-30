@@ -1,0 +1,94 @@
+
+/* a.logo-container:hover{
+    content: "courier";
+    margin: 10px;
+} */
+/* 
+a.logo-container {
+    margin: 0px;
+    padding: 10px 10px 0px;
+    width: 5vh;
+    height: 5vh;
+    background-color: aliceblue;
+    display: inline-block;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+}
+
+div.logo{
+    width: 6vh;
+    height: 6vh;
+    background-color: #000000;
+    border-radius: 50vh;
+    transform: rotate(45deg);
+}
+
+div.line {
+    background-color: aliceblue;
+}
+
+div.line.lineLong {
+    top: -2vh;
+    left: 4.2vh;
+    height: 10vh;
+    width: 13%;
+    position: relative;
+    transform: rotate(90deg);
+    border-radius: 5px;
+}
+
+div.line.lineShort {
+    top: -8vh;
+    left: 6.5vh;
+    height: 9vh;
+    width: 13%;
+    position: relative;
+    transform: rotate(30deg);
+    border-radius: 5px;
+}
+
+div.circle {
+    background-color: aliceblue;
+    height: 2.5vh;
+    width: 2.5vh;
+    border-radius: 5vh;
+}
+
+div.circle.firstCircle {
+    top: -17.2vh;
+    left: 2vh;
+    position: relative;
+}
+
+div.circle.secondCircle {
+    top: -15vh;
+    left: 5.2vh;
+    position: relative;
+}
+
+div.circle.thirdCircle {
+    height: 4vh;
+    width: 4vh;
+    top: -22.5vh;
+    left: 6vh;
+    position: relative;
+} */
+
+a{
+    text-decoration: none;
+    color: white;
+}
+a:hover, a:active{
+    color: lightgray;
+}
+.navigation{
+    margin: auto;
+    padding: 0;
+    list-style-type: none;
+}
+
+a.menu-items{
+    color: gray;
+}

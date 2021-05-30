@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="frame">
+        <mat-card>
+            <mat-card-content>
+                <form>
+                    <div class="edit-label">
+                        <mat-label class="edit-label">EDIT PROFILE</mat-label>
+                    </div>
+                    <div>
+                        <mat-hint>You can change your username</mat-hint>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Enter username</mat-label>
+                            <input matInput placeholder="Gosho" required>
+                        </mat-form-field>
+
+                    </div>
+                    <div>
+                        <mat-hint>You can change your email</mat-hint>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Enter Email</mat-label>
+                            <input matInput placeholder="example@example.com" required>
+                        </mat-form-field>
+                    </div>
+                    <div class="gender">
+                        <mat-label>Gender: </mat-label>
+                        <br>
+                        <mat-radio-group fxLayoutGap="20px">
+                            <mat-radio-button value="male">Male</mat-radio-button>
+                            <mat-radio-button value="female">Female</mat-radio-button>
+                        </mat-radio-group>
+
+                    </div>
+                    <div class="btn-submit">
+                        <button mat-raised-button type="submit">EDIT</button>
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+<div class="layout" fxFlex>
+    <div class="profile-header" fxFlex>
+
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>Welcome, {{user.username}}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="user-content">
+                    <img mat-card-image [src]="user.image">
+                    <mat-card-subtitle>You have {{user.shipments}} shipments in transit.</mat-card-subtitle>
+                </div>
+
+            </mat-card-content>
+            <mat-card-actions>
+                <ul>
+                    <li>
+                        <button class="edit btn" mat-button (click)="toggleView(controlView)">Edit profile</button>
+                    </li>
+                    <li>
+                        <button class="create shipment btn" mat-button>Create shipment</button>
+                    </li>
+                    <li>
+                        <button class="my-shipments btn" mat-button>My shipments</button>
+                    </li>
+                    <li>
+                        <button class="register claim btn" mat-button (click)="toggleView(controlViewClaim)">Register Claim</button>
+                    </li>
+                </ul>
+            </mat-card-actions>
+        </mat-card>
+
+    </div>
+
+    <div class="container">
+
+            <app-edit id="editMode" #controlView="appIsVisible" [appIsVisible]="controls.editMode"></app-edit>
+
+            <app-register-claim id="claimMode" #controlViewClaim="appIsVisible" [appIsVisible]="controls.claimMode"></app-register-claim>
+
+        
+        
+    </div>
+
+</div>

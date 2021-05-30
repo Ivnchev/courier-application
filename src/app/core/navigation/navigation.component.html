@@ -1,0 +1,70 @@
+<mat-toolbar color="primary">
+    <!-- <a class="logo-container">
+        <div class="logo">
+            <div class="line lineLong"></div>
+            <div class="line lineShort"></div>
+            <div class="circle firstCircle"></div>
+            <div class="circle secondCircle"></div>
+            <div class="circle thirdCircle"></div>
+        </div>
+    </a> -->
+    <div fxHide.gt-xs>
+        <button mat-icon-button (click)="toggle()">
+            <mat-icon>menu</mat-icon>
+        </button>
+    </div>
+
+    <div fxFlex fxLayout fxLayoutAlign="start">
+        <a routerLink="/home">Courier EXPRESS</a>
+    </div>
+    <div fxFlex >
+        <div fxFlex fxLayoutAlign="end" fxHide.xs>
+            <div fxFlex="1">
+                <ul fxFlex="1" fxLayout fxLayoutGap="20px" class="navigation">
+                    <ng-container *ngIf="isLogged;then isLoggedIn else isNotLoggedIn "></ng-container>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
+
+    </div>
+</mat-toolbar>
+
+
+<ng-template #isLoggedIn>
+    <li>
+        <mat-list-item [matMenuTriggerFor]="clientMenu">
+            <a mat-list-item>Client Center</a>
+        </mat-list-item>
+        <mat-menu #clientMenu="matMenu">
+            <a class="menu-items" mat-menu-item routerLink="/client-center/claims">Claims</a>
+            <a class="menu-items" mat-menu-item routerLink="/client-center/q&a">Q&A</a>
+            <a class="menu-items" mat-menu-item routerLink="/client-center/services">Services</a>
+        </mat-menu>
+    </li>
+    <li>
+        
+        <mat-list-item [matMenuTriggerFor]="userMenu">
+            <a mat-list-item>Profile</a>
+        </mat-list-item>
+        <mat-menu #userMenu="matMenu">
+            <a class="menu-items" mat-menu-item routerLink="/user/profile">Profile</a>
+            <a class="menu-items" mat-menu-item routerLink="/shipments/create">Create Shipment</a>
+            <a class="menu-items" mat-menu-item routerLink="/shipments/my-shipments">My shipments</a>
+        </mat-menu>
+    </li>
+    <li>
+        <a routerLink="/user/logout">Logout</a>
+    </li>
+</ng-template>
+
+<ng-template #isNotLoggedIn>
+    <li>
+        <a routerLink="/user/login">Login</a>
+    </li>
+    <li>
+        <a routerLink="/user/register">Register</a>
+    </li>
+</ng-template>

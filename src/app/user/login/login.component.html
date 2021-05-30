@@ -1,0 +1,35 @@
+<div class="card" fxLayout="column center" fxFlex.xs="70%">
+    <mat-card fxFlex fxLayout="column" class="mat-elevation-z22">
+        <mat-card-content fxFlexAlign="center">
+            <form>
+                <div class="login-label">
+                    <mat-label class="login-label">LOGIN</mat-label>
+                </div>
+                <div>
+                    <mat-form-field apperance="fill">
+                        <mat-label>Enter your username</mat-label>
+                        <input matInput placeholder="Gosho" required>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field apperance="fill">
+                        <mat-label>Enter your password</mat-label>
+                        <input matInput [type]="hide ? 'password' : 'text'" placeholder="password" required>
+                        <button mat-icon-button matSuffix (click)="hide = !hide">
+                            <mat-icon>{{!hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                        </button>
+                    </mat-form-field>
+                </div>
+                <br>
+                    <div>
+                        <span> Don't have account? <a routerLink="/user/register">Click here!</a> </span>
+                    </div>
+                <br>
+                <div class="btn-submit">
+                    <button mat-raised-button type="submit">Sign in</button>
+                </div>
+            </form>
+        </mat-card-content>
+
+    </mat-card>
+</div>

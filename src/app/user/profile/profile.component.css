@@ -1,0 +1,72 @@
+
+.layout {
+    height: 100%;
+    width: 100%;
+    margin: auto;
+    padding: 0px;
+    background-color: white;
+}
+
+
+.profile-header {
+
+    height: 100%;
+    width: 100%;
+    max-width: 400px;
+    max-height: 2040px;
+    margin: 0;
+    padding: 0;
+}
+
+.user-content{
+    
+    position: relative;
+    text-align: center;
+}
+
+img {
+    padding: 20px;
+    height: 150px;
+    width: 150px;
+
+}
+
+mat-label {
+    text-align: center;
+    display: block;
+}
+
+mat-card-header {
+    text-align: center;
+    display: block;
+    padding: 20%;
+}
+
+mat-card-actions {
+    position: relative;
+    display: block;
+    padding: 20% 0 20% 0;
+}
+
+ul {
+    margin: auto;
+    padding: 20% 0 20% 0;
+}
+
+li {
+    margin: 5%;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+}
+
+
+
+
+.container {
+    padding: 0;
+    margin: auto;
+}
+
+

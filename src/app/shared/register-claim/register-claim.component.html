@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="frame">
+        <mat-card>
+            <mat-card-content>
+                <form>
+                    <div class="claim-label">
+                        <mat-label class="edit-label">Register Claim</mat-label>
+                    </div>
+                    <div>
+                        <mat-hint>Enter your username</mat-hint>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Enter your username</mat-label>
+                            <input matInput placeholder="Pesho" required>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-hint>Tracking number</mat-hint>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Enter Tacking number</mat-label>
+                            <input matInput placeholder="15sv34gfs5489" required>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-hint>Describe your problem</mat-hint>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Describe</mat-label>
+                            <textarea matInput placeholder="The package does not arrive." required></textarea>
+                        </mat-form-field>
+                    </div>
+              
+                    <div class="btn-submit">
+                        <button mat-raised-button type="submit">Submit Claim</button>
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

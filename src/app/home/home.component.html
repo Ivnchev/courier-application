@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="caroucel">
+        <app-carousel [banners]="slides"></app-carousel>
+    </div>
+    <div class="row">
+        <ul>
+            <li>
+                <a routerLink="/offices">
+                    <mat-icon>room</mat-icon>
+                    Find Office
+                </a>
+            </li>
+            <li>
+                <a routerLink="/shipments">
+                    <mat-icon>pageview</mat-icon> Find Shipment
+                </a>
+            </li>
+            <li>
+                <a routerLink="/shipments/create">
+                    <mat-icon>local_shipping</mat-icon> Create Shipment
+                </a>
+            </li>
+            <li>
+                <a routerLink="/client-center/claims">
+                    <mat-icon>content_paste</mat-icon> Report shipment
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="news-title">
+        <h1>NEWS</h1>
+    </div>
+
+    <div class="main-container">
+        <mat-tab-group [selectedIndex]="selectedIndex" >
+            <ng-container *ngFor="let news of slides">
+                <mat-tab [label]="news.name">{{news.description}}</mat-tab>
+            </ng-container>
+        </mat-tab-group>
+
+    </div>
+
+</div>

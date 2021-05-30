@@ -1,0 +1,59 @@
+<div class="card" fxLayout="column center" fxFlex.xs="70%">
+    <mat-card fxFlex  fxLayout="column" class="mat-elevation-z22">
+        <mat-card-content fxFlexAlign="center">
+            <form>
+                <div class="register-label">
+                    <mat-label class="register-label">REGISTER</mat-label>
+                </div>
+                <div>
+                    <mat-form-field apperance="fill">
+                        <mat-label>Enter username</mat-label>
+                        <input matInput placeholder="Gosho" required>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field apperance="fill">
+                        <mat-label>Enter Email</mat-label>
+                        <input matInput placeholder="example@example.com" required>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field apperance="fill">
+                        <mat-label>Enter password</mat-label>
+                        <input matInput [type]="hide ? 'password' : 'text'" placeholder="password" required>
+                        <button mat-icon-button matSuffix (click)="hide = !hide">
+                            <mat-icon>{{!hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                        </button>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field apperance="fill">
+                        <mat-label>Repeat password</mat-label>
+                        <input matInput [type]="hideRepeat ? 'password' : 'text'" placeholder="Repeat password" required>
+                        <button mat-icon-button matSuffix (click)="hideRepeat = !hideRepeat">
+                            <mat-icon>{{!hideRepeat ? 'visibility' : 'visibility_off'}}</mat-icon>
+                        </button>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-label>Gender: </mat-label>
+                    <br>
+                    <mat-radio-group fxLayoutGap="20px">
+                        <mat-radio-button value="male">Male</mat-radio-button>
+                        <mat-radio-button value="female">Female</mat-radio-button>
+                    </mat-radio-group>
+
+                </div>
+                <br>
+                <div>
+                    <span> You have an accont? <a routerLink="/user/login">Click here!</a> </span>
+                </div>
+                <br>
+                <div class="btn-submit">
+                    <button mat-raised-button type="submit">Sign in</button>
+                </div>
+            </form>
+        </mat-card-content>
+
+    </mat-card>
+</div>

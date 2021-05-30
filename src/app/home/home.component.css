@@ -1,0 +1,45 @@
+
+div.container {
+    max-height: 3000px;
+    max-width: 4098px;
+    padding: 0;
+}
+
+.caroucel {
+    height: 500px;
+}
+
+div.row {
+    margin: auto;
+    width: 100%;
+    display: inline-block;
+    background-color: lightgray;
+}
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    display:inline-block;
+    margin: 0 8%;    
+}
+
+a {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+}
+
+li:hover {
+    background-color: rgb(185, 185, 185);
+}
+
+.news-title {
+    position: relative;
+}
+
+h1 {
+    text-align: center;
+}
