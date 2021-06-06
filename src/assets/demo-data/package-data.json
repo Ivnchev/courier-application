@@ -1,0 +1,27 @@
+[
+    {
+      "address": "Krasna Polyana",
+      "packageSize": "120/80/40",
+      "kilograms": "40"
+    },
+    {
+        "address": "Samuilovsko shose",
+        "packageSize": "120/80/40",
+        "kilograms": "30"
+    },
+    {
+        "address": "Dimitur Blagoev",
+        "packageSize": "110/70/40",
+        "kilograms": "20"
+    },
+    {
+        "address": "Rakovska",
+        "packageSize": "100/60/40",
+        "kilograms": "40"
+    },
+    {
+        "address": "Turgovska",
+        "packageSize": "150/80/30",
+        "kilograms": "40"
+    }
+  ]

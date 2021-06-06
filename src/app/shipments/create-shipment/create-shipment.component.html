@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="frame">
+        <mat-card>
+            <mat-card-content>
+                <form>
+                    <div class="claim-label">
+                        <mat-label class="edit-label">Create Shipment</mat-label>
+                    </div>
+                    <div>
+                        <mat-hint>Delivery address</mat-hint>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Enter delivery address</mat-label>
+                            <input matInput placeholder="Sofia, Krasna Polyana, 47" required>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-hint>Package size</mat-hint>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Enter package size</mat-label>
+                            <input matInput placeholder="120/80/45" required>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-hint>Package size</mat-hint>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Enter package weight</mat-label>
+                            <input matInput placeholder="45kg" required>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-hint>Describe your problem</mat-hint>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Describe</mat-label>
+                            <textarea matInput placeholder="The package does not arrive." required></textarea>
+                        </mat-form-field>
+                    </div>
+              
+                    <div class="btn-submit">
+                        <button mat-raised-button type="submit">Submit Claim</button>
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

@@ -1,22 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RegisterClaimComponent } from './register-claim/register-claim.component';
 import { MaterialModule } from '../material/material.module';
-import { CreateShipmentComponent } from './create-shipment/create-shipment.component';
 
 
 
 @NgModule({
-  declarations: [
-    RegisterClaimComponent,
-    CreateShipmentComponent
-  ],
+  declarations: [  ],
   imports: [
     CommonModule,
     MaterialModule
   ],
-  exports: [
-    RegisterClaimComponent
-  ]
+  exports: [  ]
 })
 export class SharedModule { }

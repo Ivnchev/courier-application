@@ -17,18 +17,11 @@
     <div fxFlex fxLayout fxLayoutAlign="start">
         <a routerLink="/home">Courier EXPRESS</a>
     </div>
-    <div fxFlex >
-        <div fxFlex fxLayoutAlign="end" fxHide.xs>
-            <div fxFlex="1">
-                <ul fxFlex="1" fxLayout fxLayoutGap="20px" class="navigation">
-                    <ng-container *ngIf="isLogged;then isLoggedIn else isNotLoggedIn "></ng-container>
-                </ul>
-            </div>
-        </div>
-    </div>
 
-    <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
-
+    <div fxLayoutAlign="end" fxHide.xs>
+        <ul fxLayout fxLayoutGap="25px" class="navigation">
+            <ng-container *ngIf="isLogged;then isLoggedIn else isNotLoggedIn "></ng-container>
+        </ul>
     </div>
 </mat-toolbar>
 
@@ -45,15 +38,18 @@
         </mat-menu>
     </li>
     <li>
-        
-        <mat-list-item [matMenuTriggerFor]="userMenu">
-            <a mat-list-item>Profile</a>
+        <mat-list-item [matMenuTriggerFor]="shipments">
+            <a mat-list-item>Shipments</a>
         </mat-list-item>
-        <mat-menu #userMenu="matMenu">
-            <a class="menu-items" mat-menu-item routerLink="/user/profile">Profile</a>
+        <mat-menu #shipments="matMenu">
             <a class="menu-items" mat-menu-item routerLink="/shipments/create">Create Shipment</a>
             <a class="menu-items" mat-menu-item routerLink="/shipments/my-shipments">My shipments</a>
         </mat-menu>
+    </li>
+    <li>
+        <mat-list-item>
+            <a mat-list-item routerLink="/user/profile">Profile</a>
+        </mat-list-item>
     </li>
     <li>
         <a routerLink="/user/logout">Logout</a>

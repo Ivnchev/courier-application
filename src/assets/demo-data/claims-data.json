@@ -1,0 +1,23 @@
+[
+    {
+        "id": "1",
+        "username": "Pesho",
+        "dateOfCreation": "25.06.2021",
+        "address": "Krasna polyana",
+        "package": "120/80/20, 50kg"
+    },
+    {
+        "id": "2",
+        "username": "Gosho",
+        "dateOfCreation": "10.08.2021",
+        "address": "Gorska Polyana",
+        "package": "120/80/20, 40kg"
+    },
+    {
+        "id": "3",
+        "username": "Stamat",
+        "dateOfCreation": "05.03.2021",
+        "address": "Rakovska",
+        "package": "120/80/20, 20kg"
+    }
+]

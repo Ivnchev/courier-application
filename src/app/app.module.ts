@@ -10,7 +10,8 @@ import { HomeComponent } from './home/home.component';
 import { MaterialModule } from './material/material.module';
 import { UserModule } from './user/user.module';
 import { SharedModule } from './shared/shared.module';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ShipmentsModule } from './shipments/shipments.module';
 
 
 
@@ -26,8 +27,11 @@ import { SharedModule } from './shared/shared.module';
     CoreModule,
     SharedModule,
     UserModule,
+    ShipmentsModule,
     HttpClientModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

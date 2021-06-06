@@ -1,7 +1,7 @@
 <div class="carousel">
     <div class="carousel-container">
         <ng-container *ngFor="let slide of banners; let i = index">
-            <a [routerLink]="slide.link">
+            <a class="image-link">
                 <img *ngIf="i === current" [src]="slide.src" [alt]="slide.name" class="slide" (click)="routSlides()">
             </a>
             <div class="container" *ngIf="i === current" fxLayout="column" fxLayoutAlign="end start">

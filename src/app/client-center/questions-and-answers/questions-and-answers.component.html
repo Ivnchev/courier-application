@@ -1,1 +1,37 @@
-<p>questions-and-answers works!</p>
+<div>
+    <h1>Qusetions & Answers</h1>
+    <div fxLayout fxLayoutAlign="center center">
+        <mat-form-field fxFlex="40%">
+            <input matInput type="text" [(ngModel)]="searchValue" placeholder="Filter">
+        </mat-form-field>
+    </div>
+    <div fxLayout fxLayoutAlign="center center">
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>View More</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let question of questions | searchQuestion: searchValue">
+                <tr>
+                    <td>{{question.title}}</td>
+                    <td>
+                        <button mat-icon-button color="accent" (click)="toogleInfo(question)">
+                            <span>View more</span>
+                            <mat-icon class="mat-18">info</mat-icon>
+                        </button>
+                    </td>
+                </tr>
+                <tr *ngIf="question.showDetails">
+                    <td colspan="2">
+                        <span>
+                            {{question.description}}
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+</div>

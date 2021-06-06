@@ -70,11 +70,15 @@ p.content-text {
 
 a.content-link {
     text-decoration: none;
-    background-color:  mediumpurple;
+    background-color:  rgb(131, 160, 184);
     color: white;
     padding: 0.2em;
     border-radius: 0.5rem;
     box-shadow:0 0 20px rgba(0,0,0,0.5);
+}
+
+a.image-link {
+    cursor: pointer;
 }
 
 

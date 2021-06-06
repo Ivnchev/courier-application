@@ -8,6 +8,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { SharedModule } from '../shared/shared.module';
 import { EditComponent } from './edit/edit.component';
 import { ControlViewDirective } from './control-view.directive';
+import { ClientCenterModule } from '../client-center/client-center.module';
 
 
 
@@ -23,7 +24,8 @@ import { ControlViewDirective } from './control-view.directive';
     CommonModule,
     SharedModule,
     UserRoutingModule,
-    MaterialModule
+    MaterialModule,
+    ClientCenterModule
   ],
   exports: [
     ControlViewDirective,

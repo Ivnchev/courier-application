@@ -1,1 +1,36 @@
-<p>shipments works!</p>
+    <h1>Shipments</h1>
+
+    <div fxLayout fxLayoutAlign="center center">
+        <mat-form-field fxFlex="40%">
+            <input matInput type="text" [(ngModel)]="searchValue" placeholder="Filter" >
+        </mat-form-field>
+    </div>
+    <div fxLayout fxLayoutAlign="center center">
+        <table>
+            <thead>
+                <tr>
+                    <th>Adress</th>
+                    <th>Package size</th>
+                    <th>Package Weight</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let shipment of packages | searchFiler: searchValue">
+                <tr>
+                    <td>{{shipment.address}}</td>
+                    <td>{{shipment.packageSize}}</td>
+                    <td>{{shipment.kilograms}}</td>
+                    <button mat-icon-button color="accent">
+                        <mat-icon class="mat-18">system_update</mat-icon>
+                    </button>
+                    <td>
+                        <button mat-icon-button color="warn">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>

@@ -1,0 +1,38 @@
+<div fxLayout fxLayoutAlign="center center">
+    <mat-form-field fxFlex="40%">
+        <input matInput type="text" [(ngModel)]="searchValue" placeholder="Filter" >
+    </mat-form-field>
+</div>
+<div fxLayout fxLayoutAlign="center center">
+    <table>
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Date of Creation</th>
+                <th>Address</th>
+                <th>Package size</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let claim of claims | searchClaim: searchValue">
+            <tr>
+                <td>{{claim.username}}</td>
+                <td>{{claim.dateOfCreation}}</td>
+                <td>{{claim.address}}</td>
+                <td>{{claim.package}}</td>
+                <td>
+                    <button mat-icon-button color="accent">
+                        <mat-icon class="mat-18">system_update</mat-icon>
+                    </button>
+                </td>
+                <td>
+                    <button mat-icon-button color="warn">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+</div>

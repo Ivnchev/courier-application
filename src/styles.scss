@@ -1,0 +1,119 @@
+/* Add application styles & imports to this file! */
+@import '~@angular/material/theming';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+
+/* For use in src/lib/core/theming/_palette.scss */
+$md-courierprimary: (
+    50 : #e9e9e9,
+    100 : #c7c7c7,
+    200 : #a2a2a2,
+    300 : #7d7d7d,
+    400 : #616161,
+    500 : #454545,
+    600 : #3e3e3e,
+    700 : #363636,
+    800 : #2e2e2e,
+    900 : #1f1f1f,
+    A100 : #f07a7a,
+    A200 : #eb4c4c,
+    A400 : #ff0505,
+    A700 : #eb0000,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #ffffff,
+        A200 : #ffffff,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+
+$md-courieraccent: (
+    50 : #eff2ee,
+    100 : #d7ded4,
+    200 : #bcc9b7,
+    300 : #a1b39a,
+    400 : #8da284,
+    500 : #79926e,
+    600 : #718a66,
+    700 : #667f5b,
+    800 : #5c7551,
+    900 : #49633f,
+    A100 : #ceffbb,
+    A200 : #a9ff88,
+    A400 : #84ff55,
+    A700 : #72ff3b,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$md-courierwarn: (
+    50 : #fdf8e6,
+    100 : #fbedc2,
+    200 : #f8e199,
+    300 : #f5d470,
+    400 : #f3cb51,
+    500 : #f1c232,
+    600 : #efbc2d,
+    700 : #edb426,
+    800 : #ebac1f,
+    900 : #e79f13,
+    A100 : #ffffff,
+    A200 : #fff4e2,
+    A400 : #ffe2af,
+    A700 : #ffd896,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+$primary: mat-palette($md-courierprimary);
+$accent: mat-palette($md-courieraccent);
+$warn: mat-palette($md-courierwarn);
+$theme: mat-light-theme($primary, $accent);
+
+@include angular-material-theme($theme);
+
+mat-card {
+    padding: 0px !important;
+
+    mat-card-title, mat-card-content {
+        padding: 0.5em;
+    }
+}
