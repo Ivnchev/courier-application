@@ -2,7 +2,7 @@
 import { RouterModule, Routes } from '@angular/router';
 import { ClaimsComponent } from './claims/claims.component';
 import { QuestionsAndAnswersComponent } from './questions-and-answers/questions-and-answers.component';
-import { UserServicesComponent } from './user-services/user-services.component';
+import { ClientServicesComponent } from './client-services/client-services.component';
 
 
 
@@ -18,7 +18,7 @@ const routes: Routes = [
     },
     {
         path: 'services',
-        component: UserServicesComponent
+        component: ClientServicesComponent
     }
 ];
 
