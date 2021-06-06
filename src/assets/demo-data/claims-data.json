@@ -11,13 +11,13 @@
         "username": "Gosho",
         "dateOfCreation": "10.08.2021",
         "address": "Gorska Polyana",
-        "package": "120/80/20, 40kg"
+        "package": "115/70/40, 40kg"
     },
     {
         "id": "3",
         "username": "Stamat",
         "dateOfCreation": "05.03.2021",
         "address": "Rakovska",
-        "package": "120/80/20, 20kg"
+        "package": "110/60/60, 20kg"
     }
 ]

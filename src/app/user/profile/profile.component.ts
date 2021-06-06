@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ControlViewDirective } from '../control-view.directive';
 
 @Component({
@@ -7,7 +7,7 @@ import { ControlViewDirective } from '../control-view.directive';
   styleUrls: ['./profile.component.css']
 })
 
-export class ProfileComponent {
+export class ProfileComponent implements OnInit{
 
   user = {
     username: 'Pesho',
@@ -16,24 +16,22 @@ export class ProfileComponent {
   }
 
   
-
   resetControls = () => this.controls = {
     editMode: true,
     claimMode: true,
-    myShipments: false,
+    myShipments: true,
     createShipment: true,
   }
+
   controls= this.resetControls()
 
   public isVisible = false
 
-  constructor() { 
+  constructor() {  }
 
-    
-
+  ngOnInit() {
+    this.controls.myShipments = false
   }
-
-
 
   toggleView(controlsView: ControlViewDirective) {
     const el = controlsView.elementRef.nativeElement.id

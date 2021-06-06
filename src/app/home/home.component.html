@@ -1,6 +1,6 @@
 <div class="container">
     <div class="caroucel">
-        <app-carousel [banners]="slides"></app-carousel>
+        <app-carousel [banners]="news"></app-carousel>
     </div>
     <div class="row">
         <ul>
@@ -34,8 +34,8 @@
 
     <div class="main-container">
         <mat-tab-group [selectedIndex]="selectedIndex" >
-            <ng-container *ngFor="let news of slides">
-                <mat-tab [label]="news.name">{{news.description}}</mat-tab>
+            <ng-container *ngFor="let news of news">
+                <mat-tab [label]="news.title">{{news.description}}</mat-tab>
             </ng-container>
         </mat-tab-group>
 

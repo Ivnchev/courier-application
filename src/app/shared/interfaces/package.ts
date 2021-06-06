@@ -1,5 +1,6 @@
 export interface Ipackage {
+    trackingNumber: Number,
     address: String,
     packageSize: String,
-    kilograms: String
+    kilograms: Number
 }

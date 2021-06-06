@@ -7,14 +7,29 @@ import { Ipackage } from '../shared/interfaces';
 export class SearchFilerPipe implements PipeTransform {
 
   transform(records: Ipackage[], searchValue: string): Ipackage[] {
-    
-    if(!records || !searchValue){
+
+    if (!records || !searchValue) {
       return records
     }
 
-    return records.filter(x => x.address.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())) ||
-    records.filter(x => x.packageSize.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())) ||
-    records.filter(x => x.kilograms.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()))
+    function search() {
+      const trackingFilter = records.filter(x => x.trackingNumber.toString().includes(searchValue.toLocaleLowerCase()))
+      const addressFilter = records.filter(x => x.address.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()))
+      const packageFilter = records.filter(x => x.packageSize.toString().includes(searchValue.toString()))
+      const kilogramsFilter = records.filter(x => x.kilograms.toString() === searchValue.toLocaleLowerCase())
+
+      return addressFilter.length > 0
+        ? addressFilter
+        : kilogramsFilter.length > 0
+          ? kilogramsFilter
+          : packageFilter.length > 0
+            ? packageFilter
+            : trackingFilter.length > 0
+              ? trackingFilter
+              : []
+    }
+
+    return search()
   }
 
 }

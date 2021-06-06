@@ -1,13 +1,13 @@
 <div class="carousel">
     <div class="carousel-container">
-        <ng-container *ngFor="let slide of banners; let i = index">
+        <ng-container *ngFor="let news of banners; let i = index">
             <a class="image-link">
-                <img *ngIf="i === current" [src]="slide.src" [alt]="slide.name" class="slide" (click)="routSlides()">
+                <img *ngIf="i === current" [src]="news.imageSrc" [alt]="news.title" class="slide" (click)="routSlides()">
             </a>
             <div class="container" *ngIf="i === current" fxLayout="column" fxLayoutAlign="end start">
                 <div class="content-container">
-                    <p class="content-text">{{slide.description}}</p>
-                    <a class="content-link" [href]="slide.link">Click here to learn More!</a>
+                    <p class="content-text">{{news.description}}</p>
+                    <a class="content-link" [href]="news.link">Click here to learn More!</a>
                 </div>
             </div>
         </ng-container>

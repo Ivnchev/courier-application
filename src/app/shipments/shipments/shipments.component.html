@@ -9,6 +9,7 @@
         <table>
             <thead>
                 <tr>
+                    <th>Tracking Number</th>
                     <th>Adress</th>
                     <th>Package size</th>
                     <th>Package Weight</th>
@@ -18,6 +19,7 @@
             </thead>
             <tbody *ngFor="let shipment of packages | searchFiler: searchValue">
                 <tr>
+                    <td>{{shipment.trackingNumber}}</td>
                     <td>{{shipment.address}}</td>
                     <td>{{shipment.packageSize}}</td>
                     <td>{{shipment.kilograms}}</td>

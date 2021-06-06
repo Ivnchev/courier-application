@@ -9,6 +9,7 @@ import { SharedModule } from '../shared/shared.module';
 import { EditComponent } from './edit/edit.component';
 import { ControlViewDirective } from './control-view.directive';
 import { ClientCenterModule } from '../client-center/client-center.module';
+import { ShipmentsModule } from '../shipments/shipments.module';
 
 
 
@@ -25,7 +26,8 @@ import { ClientCenterModule } from '../client-center/client-center.module';
     SharedModule,
     UserRoutingModule,
     MaterialModule,
-    ClientCenterModule
+    ClientCenterModule,
+    ShipmentsModule
   ],
   exports: [
     ControlViewDirective,

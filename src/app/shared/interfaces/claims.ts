@@ -1,7 +1,7 @@
 export interface IClaim {
     id: String,
     username: String,
-    dateOfCreation: Date,
+    dateOfCreation: String,
     address: String,
     package: String
 }

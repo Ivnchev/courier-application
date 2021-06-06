@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location, LocationStrategy, PathLocationStrategy, PopStateEvent } from '@angular/common';
+import { INews } from '../shared/interfaces';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -9,31 +11,11 @@ import { Location, LocationStrategy, PathLocationStrategy, PopStateEvent } from 
 })
 export class HomeComponent implements OnInit {
 
-  public slides = [
-    {
-      src: 'assets/images/banking.jpg',
-      name: 'POS payments',
-      description: 'Learn more about POS payments ',
-      link: '#0'
-    },
-    {
-      src: 'assets/images/truck-crash.jpg',
-      name: 'Truck Crash',
-      description: 'Our truck is crashed!\nLearn more about!',
-      link: '#1'
-    },
-    {
-      src: 'assets/images/new-prices.jpg',
-      name: 'New Prices',
-      description: 'Learn more about our new price politicy',
-      link: '#2'
-    },
-  ]
-
+  news: INews[]
 
   selectedIndex = 0;
 
-  constructor(private location: Location) {
+  constructor(private location: Location, private http: HttpClient) {
     const index = Number(this.location.path(true).substring(1)) || 0
     this.selectedIndex = index
 
@@ -46,7 +28,10 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.http.get<INews[]>('../assets/demo-data/news-data.json')
+    .subscribe((result: INews[]) => {
+      this.news = result
+    })
   }
 
 }
