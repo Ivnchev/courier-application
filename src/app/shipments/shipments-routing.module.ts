@@ -10,7 +10,7 @@ import { CreateShipmentComponent } from './create-shipment/create-shipment.compo
 
 const routes: Routes = [
     {
-        path: '',
+        path: 'shipments',
         pathMatch: 'full',  
         redirectTo: '/shipments/my-shipments'
     },

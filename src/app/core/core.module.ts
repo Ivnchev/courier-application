@@ -6,6 +6,8 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { SidenavigationComponent } from './sidenavigation/sidenavigation.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { FooterComponent } from './footer/footer.component';
+import { AuthService } from './services/auth.service';
+import { AuthGuard } from './guards/auth.guard';
 
 
 
@@ -27,6 +29,10 @@ import { FooterComponent } from './footer/footer.component';
     SidenavigationComponent,
     CarouselComponent,
     FooterComponent
+  ],
+  providers: [
+    AuthGuard,
+    AuthService,
   ]
 })
 export class CoreModule { }
