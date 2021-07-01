@@ -1,0 +1,50 @@
+
+div.container {
+    padding: 30px 0px;
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    display: flex;
+}
+
+mat-card {
+    margin: auto;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.label {
+    margin: auto;
+    padding: 2%;
+    font-size: 25px;
+}
+
+div.btn-submit{
+    margin: auto;
+    position: relative;
+    text-align: center;
+}
+
+textarea {
+    width: 300px;
+    height: 170px;
+}
+
+.mat-card.mat-focus-indicator {
+    box-shadow: none
+}
+
+mat-form-field {
+    margin: auto;
+    width: 300px;
+    display: block;
+    position: relative;
+    text-align: justify;
+}
+
+.frame {
+    padding: 20px;
+    height: 100%;
+    width: 100%;
+    max-width: 800px;
+}

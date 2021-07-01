@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="frame">
+        <mat-card>
+            <mat-card-content>
+                <form [formGroup]="f" (ngSubmit)="newsHandler(f.value)">
+                    <div class="label">
+                        <mat-label class="edit-label">Create News</mat-label>
+                    </div>
+                    <div>
+                        <mat-hint>Enter title</mat-hint>
+                        <mat-form-field appearance="fill">
+                            <input type="text" name="title" placeholder="News title" formControlName="title" matInput>
+                            <p class="error" *ngIf="f.get('title').touched && f.get('title').errors?.required">
+                                Title is required!
+                            </p>
+                            <p class="error" *ngIf="f.get('title').touched && f.get('title').errors?.minlength">
+                                Title must be at least 4 characters!
+                            </p>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-hint>Enter Image</mat-hint>
+                        <mat-form-field apperance="fill">
+                            <input type="text" name="imageUrl" placeholder="http://pic.com/img.jpg" formControlName="imageUrl" matInput>
+                            <p class="error" *ngIf="f.get('imageUrl').touched && f.get('imageUrl').errors?.required">
+                                Image Url is required!
+                            </p>
+                            <p class="error" *ngIf="f.get('imageUrl').touched && f.get('imageUrl').errors?.imageValidator">
+                                Image URL is incorrect!
+                            </p>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-hint>Enter Description</mat-hint>
+                        <mat-form-field apperance="fill">
+                            <textarea name="description" placeholder="lorem ipsum" formControlName="description" matInput></textarea>
+                            <p class="error" *ngIf="f.get('description').touched && f.get('description').errors?.required"> Description is required! </p>
+                            <p class="error" *ngIf="f.get('description').touched && f.get('description').errors?.minlength"> Description must be at least 20 characters! </p>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="btn-submit">
+                        <button mat-raised-button type="submit">Submit</button>
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
