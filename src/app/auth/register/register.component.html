@@ -1,0 +1,97 @@
+<div class="card" fxLayout="column center" fxFlex.xs="70%">
+    <mat-card fxFlex  fxLayout="column" class="mat-elevation-z22">
+        <mat-card-content fxFlexAlign="center">
+            <form [formGroup]="f" (ngSubmit)="registerHandler(f.value)">
+                <div class="register-label">
+                    <mat-label class="register-label">REGISTER</mat-label>
+                </div>
+                <div>
+                    <mat-form-field apperance="fill">
+                        <mat-label>Enter username</mat-label>
+                        <input name="username" placeholder="Gosho" formControlName="username" matInput>
+                        <p class="error" *ngIf="f.get('username').touched && f.get('username').errors?.required">
+                            Username is required!
+                        </p>
+                        <p class="error" *ngIf="f.get('username').touched && f.get('username').errors?.minlength">
+                            Username must be at least 4 characters!
+                        </p>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field apperance="fill">
+                        <mat-label>Enter Email</mat-label>
+                        <input name="email" placeholder="example@example.com" formControlName="email" matInput>
+                        <p class="error" *ngIf="f.get('email').touched && f.get('email').errors?.required">
+                            Email is required!
+                        </p>
+                        <p class="error" *ngIf="f.get('email').touched && f.get('email').errors?.emailValidator">
+                            Email is incorrect!
+                        </p>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field apperance="fill">
+                        <mat-label>Enter Image Url</mat-label>
+                        <input name="image" placeholder="http://example@example.com/image.jpg" formControlName="image" matInput>
+                        <p class="error" *ngIf="f.get('image').touched && f.get('image').errors?.required">
+                            Image is required!
+                        </p>
+                        <p class="error" *ngIf="f.get('image').touched && f.get('image').errors?.imageValidator">
+                            Image URL is incorrect!
+                        </p>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field apperance="fill">
+                        <mat-label>Enter password</mat-label>
+                        <input matInput [type]="hide ? 'password' : 'text'" name="password"
+                            placeholder="******" formControlName="password">
+                        <button mat-icon-button matSuffix (click)="hide = !hide" type="button">
+                            <mat-icon>{{!hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                        </button>
+                        <p class="error" *ngIf="f.get('password').touched && f.get('password').errors?.required">
+                            Password is required!
+                        </p>
+                        <p class="error" *ngIf="f.get('password').touched && f.get('password').errors?.minlength">
+                            Password must be at least 4 characters!
+                        </p>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field apperance="fill">
+                        <mat-label>Repeat password</mat-label>
+                        <input matInput [type]="hideRepeat ? 'password' : 'text'" name="rePassword" 
+                            placeholder="******" formControlName="rePassword">
+                        <button mat-icon-button matSuffix (click)="hideRepeat = !hideRepeat" type="button">
+                            <mat-icon>{{!hideRepeat ? 'visibility' : 'visibility_off'}}</mat-icon>
+                        </button>
+                        <p class="error" *ngIf="f.get('rePassword').touched && f.get('rePassword').errors?.required">
+                            Password is required!
+                        </p>
+                        <p class="error" *ngIf="f.get('rePassword').touched && f.get('rePassword').errors?.rePassCheck">
+                            Repeat Password must be the same as password!
+                        </p>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-label>Gender: </mat-label>
+                    <br>
+                    <mat-radio-group fxLayoutGap="20px" formControlName="gender" name="gender">
+                        <mat-radio-button value="male">Male</mat-radio-button>
+                        <mat-radio-button value="female">Female</mat-radio-button>
+                    </mat-radio-group>
+
+                </div>
+                <br>
+                <div>
+                    <span> You have an accont? <a routerLink="/auth/login">Click here!</a> </span>
+                </div>
+                <br>
+                <div class="btn-submit">
+                    <button mat-raised-button type="submit">Sign in</button>
+                </div>
+            </form>
+        </mat-card-content>
+
+    </mat-card>
+</div>
