@@ -3,12 +3,12 @@
 
         <mat-card>
             <mat-card-header>
-                <mat-card-title>Welcome, {{user.username}}</mat-card-title>
+                <mat-card-title>Welcome, <span *ngIf="(isAdmin$ | async)">Admin </span>{{(user$ | async)?.username}}</mat-card-title>
             </mat-card-header>
             <mat-card-content>
                 <div class="user-content">
-                    <img mat-card-image [src]="user.image">
-                    <mat-card-subtitle>You have {{user.shipments}} shipments in transit.</mat-card-subtitle>
+                    <img mat-card-image [src]="(user$ | async)?.image">
+                    <mat-card-subtitle>You have {{(user$ | async)?.shipments?.length}} shipments in transit.</mat-card-subtitle>
                 </div>
 
             </mat-card-content>

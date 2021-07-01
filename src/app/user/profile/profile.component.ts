@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ControlViewDirective } from '../control-view.directive';
 
+import { UserService } from 'src/app/core/services/user.service';
+import { AuthService } from 'src/app/core/services/auth.service';
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -9,13 +12,16 @@ import { ControlViewDirective } from '../control-view.directive';
 
 export class ProfileComponent implements OnInit{
 
-  user = {
-    username: 'Pesho',
-    image: '../../assets/images/user-logo.png',
-    shipments: '3'
+  user$ = this.userService.user$
+  isAdmin$ = this.authService.isAdmin$
+  userData
+  constructor(
+    private userService: UserService,
+    private authService: AuthService,
+  ) {
+    
   }
 
-  
   resetControls = () => this.controls = {
     editMode: true,
     claimMode: true,
@@ -23,14 +29,18 @@ export class ProfileComponent implements OnInit{
     createShipment: true,
   }
 
-  controls= this.resetControls()
+  controls = this.resetControls()
 
   public isVisible = false
 
-  constructor() {  }
+
 
   ngOnInit() {
     this.controls.myShipments = false
+
+    this.userService.getUser().subscribe({
+      next: userData => this.userData = userData
+    })
   }
 
   toggleView(controlsView: ControlViewDirective) {
