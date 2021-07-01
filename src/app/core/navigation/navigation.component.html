@@ -20,7 +20,7 @@
 
     <div fxLayoutAlign="end" fxHide.xs>
         <ul fxLayout fxLayoutGap="25px" class="navigation">
-            <ng-container *ngIf="isLogged;then isLoggedIn else isNotLoggedIn "></ng-container>
+            <ng-container *ngIf="isLogged$ | async;then isLoggedIn else isNotLoggedIn "></ng-container>
         </ul>
     </div>
 </mat-toolbar>
@@ -51,16 +51,21 @@
             <a mat-list-item routerLink="/user/profile">Profile</a>
         </mat-list-item>
     </li>
+    <li *ngIf="(isAdmin$ | async)">
+        <mat-list-item>
+            <a mat-list-item routerLink="/admin">Admin Panel</a>
+        </mat-list-item>
+    </li>
     <li>
-        <a routerLink="/user/logout">Logout</a>
+        <a (click)="logout()">Logout</a>
     </li>
 </ng-template>
 
 <ng-template #isNotLoggedIn>
     <li>
-        <a routerLink="/user/login">Login</a>
+        <a routerLink="/auth/login">Login</a>
     </li>
     <li>
-        <a routerLink="/user/register">Register</a>
+        <a routerLink="/auth/register">Register</a>
     </li>
 </ng-template>

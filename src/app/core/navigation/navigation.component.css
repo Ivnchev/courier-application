@@ -76,11 +76,17 @@ div.circle.thirdCircle {
     position: relative;
 } */
 
+mat-list-item {
+    cursor: pointer;
+}
+
+
 a{
     text-decoration: none;
     color: white;
 }
 a:hover, a:active{
+    cursor: pointer;
     color: lightgray;
 }
 .navigation{

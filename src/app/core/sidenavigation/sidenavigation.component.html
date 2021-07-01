@@ -2,7 +2,7 @@
     <a mat-list-item routerLink="/" (click)="close()">
         <mat-icon>home</mat-icon> <span class="nav-caption">Home</span>
     </a>
-    <a mat-list-item *ngIf="isLogged">
+    <a mat-list-item *ngIf="isLogged$ | async">
         <mat-icon>supervised_user_circle</mat-icon>
         <mat-list-item [matMenuTriggerFor]="clientMenu">
             <span class="nav-caption">Client Center</span>
@@ -13,7 +13,7 @@
             <a class="menu-items" mat-menu-item routerLink="/client-center/services" (click)="close()">Services</a>
         </mat-menu>
     </a>
-    <a mat-list-item *ngIf="isLogged">
+    <a mat-list-item *ngIf="isLogged$ | async">
         <mat-icon>assignment_ind</mat-icon> 
         <mat-list-item [matMenuTriggerFor]="userMenu">
             <span class="nav-caption">Profile</span>
@@ -29,16 +29,16 @@
         <a matline>Settings</a>
     </mat-list-item>
     <mat-menu #menu="matMenu">
-        <ng-container *ngIf="isLogged;then isLoggedIn else isNotLoggedIn "></ng-container>
+        <ng-container *ngIf="isLogged$ | async;then isLoggedIn else isNotLoggedIn "></ng-container>
     </mat-menu>
 </mat-nav-list>
 
 
 <ng-template #isLoggedIn>
-    <button mat-menu-item (click)="close()">Logout</button>
+    <button mat-menu-item (click)="logout()" (click)="close()">Logout</button>
 </ng-template>
 
 <ng-template #isNotLoggedIn>
-    <button mat-menu-item routerLink="/user/login">Login</button>
-    <button mat-menu-item routerLink="/user/register">Register</button>
+    <button mat-menu-item routerLink="/auth/login" (click)="close()">Login</button>
+    <button mat-menu-item routerLink="/auth/register" (click)="close()">Register</button>
 </ng-template>
