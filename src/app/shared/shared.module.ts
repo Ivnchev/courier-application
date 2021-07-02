@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material/material.module';
-import { TrimTextPipe } from './pipes/trim-text.pipe';
+import { TrimTextPipe } from './common-pipes/trim-text.pipe';
 
 
 

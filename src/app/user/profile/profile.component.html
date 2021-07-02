@@ -3,7 +3,11 @@
 
         <mat-card>
             <mat-card-header>
-                <mat-card-title>Welcome, <span *ngIf="(isAdmin$ | async)">Admin </span>{{(user$ | async)?.username}}</mat-card-title>
+                <mat-card-title>Welcome, 
+                    <ng-container *ngIf="userData?.gender === 'male';then isMale else isFemale "></ng-container>
+                    <span *ngIf="(isAdmin$ | async)">Admin </span>
+                    {{(user$ | async)?.username}}
+                </mat-card-title>
             </mat-card-header>
             <mat-card-content>
                 <div class="user-content">
@@ -42,3 +46,6 @@
     </div>
 
 </div>
+
+<ng-template #isMale><span>Mr. </span></ng-template>
+<ng-template #isFemale><span>Mrs. </span></ng-template>

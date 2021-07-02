@@ -3,18 +3,18 @@
       "imageSrc": "assets/images/banking.jpg",
       "title": "POS payments",
       "description": "Learn more about POS payments",
-      "link": "#0"
+      "link": "0"
     },
     {
       "imageSrc": "assets/images/truck-crash.jpg",
       "title": "Truck Crash",
       "description": "Our truck is crashed!\nLearn more about!",
-      "link": "#1"
+      "link": "1"
     },
     {
       "imageSrc": "assets/images/new-prices.jpg",
       "title": "New Prices",
       "description": "Learn more about our new price politicy",
-      "link": "#2"
+      "link": "2"
     }
   ]

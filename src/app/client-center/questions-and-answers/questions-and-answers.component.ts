@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { IQuestion } from 'src/app/shared/interfaces';
-import { tap } from "rxjs/operators";
+import { StoreService } from 'src/app/core/services/store.service';
 @Component({
   selector: 'app-questions-and-answers',
   templateUrl: './questions-and-answers.component.html',
@@ -12,16 +11,16 @@ export class QuestionsAndAnswersComponent implements OnInit {
   searchValue: string
   questions: IQuestion[]
 
-  constructor(private http: HttpClient) { }
+  constructor(private storeService: StoreService) { }
 
   ngOnInit(): void {
 
-    this.http.get<IQuestion[]>('../assets/demo-data/question-data.json')
-      .pipe( tap((question: IQuestion[]) => question.map(x => x.showDetails = false)))
-      .subscribe((result: IQuestion[]) => {
-        this.questions = result
-      })
-      
+    this.storeService.getQuestions().subscribe({
+      next: (data: IQuestion[]) => {
+        this.questions = data
+      }
+    })
+
   }
 
 

@@ -39,18 +39,18 @@ mat-label {
 mat-card-header {
     text-align: center;
     display: block;
-    padding: 20%;
+    padding: 10%;
 }
 
 mat-card-actions {
     position: relative;
     display: block;
-    padding: 20% 0 20% 0;
+    padding: 10% 0 20% 0;
 }
 
 ul {
     margin: auto;
-    padding: 20% 0 20% 0;
+    padding: 8.9% 0 20% 0;
 }
 
 li {
