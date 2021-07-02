@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AdminService } from 'src/app/core/services/admin.service';
+import { StoreService } from 'src/app/core/services/store.service';
 import { imageValidator } from 'src/app/auth/validators';
 
 @Component({
@@ -16,7 +16,7 @@ export class NewsComponent implements OnInit {
   constructor(
     private router: Router,
     private fb: FormBuilder,
-    private adminService: AdminService
+    private storeService: StoreService
   ) {
     this.f = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(4)]],
@@ -28,9 +28,8 @@ export class NewsComponent implements OnInit {
   ngOnInit(): void { }
 
 
-  newsHandler(formData): void {
-    this.adminService.postNews(formData).subscribe(data => {
-      console.log(data);
+  newsHandler(formData: object): void {
+    this.storeService.postNews(formData).subscribe(data => {
       this.router.navigateByUrl('/')
     })
 

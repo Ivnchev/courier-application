@@ -31,5 +31,5 @@ export function genderValidator(control: AbstractControl): ValidationErrors | nu
         return null
     }
     const check = (value === 'male') || (value === 'female') ? null : { genderValidator: true }
-    return check ? null : { genderValidator: true }
+    return check
 }

@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { IUser } from 'src/app/shared/interfaces';
 import { constants } from 'src/app/shared/constants';
 import { StorageService } from './storage.service';
-import { tap, catchError } from 'rxjs/operators';
+import { tap, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +13,7 @@ export class UserService {
 
   private _user: BehaviorSubject<IUser | null> = new BehaviorSubject(undefined)
   user$ = this._user.asObservable()
+  isAdmin$ = this.user$.pipe(map(u => u?.role === 'admin'))
 
   constructor(private http: HttpClient, private store: StorageService) { }
 

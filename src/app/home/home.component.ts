@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Location, LocationStrategy, PathLocationStrategy, PopStateEvent } from '@angular/common';
 import { INews } from '../shared/interfaces';
-import { HttpClient } from '@angular/common/http';
-import { AdminService } from '../core/services/admin.service';
+import { StoreService } from '../core/services/store.service';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +17,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private location: Location,
-    private adminService: AdminService
+    private storeService: StoreService
   ) {
     const index = Number(this.location.path(true).substring(1)) || 0
     this.selectedIndex = index
@@ -34,7 +33,7 @@ export class HomeComponent implements OnInit {
     // .subscribe((result: INews[]) => {
     //   this.news = result
     // })
-    this.adminService.getNews().subscribe((result: INews[]) => {
+    this.storeService.getNews().subscribe((result: INews[]) => {
       result.map((x, i) => { x['link'] = i; return x })
       this.news = result
     })

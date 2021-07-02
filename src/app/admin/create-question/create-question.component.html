@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="frame">
+        <mat-card>
+            <mat-card-content>
+                <form [formGroup]="f" (ngSubmit)="questionHandler(f.value)">
+                    <div class="label">
+                        <mat-label class="edit-label">Create Q&A</mat-label>
+                    </div>
+                    <div>
+                        <mat-hint>Enter title</mat-hint>
+                        <mat-form-field appearance="fill">
+                            <input type="text" name="title" placeholder="question title" formControlName="title" matInput>
+                            <p class="error" *ngIf="f.get('title').touched && f.get('title').errors?.required"> Title is required! </p>
+                            <p class="error" *ngIf="f.get('title').touched && f.get('title').errors?.minlength"> Title must be at least 5 characters! </p>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-hint>Enter Description</mat-hint>
+                        <mat-form-field apperance="fill">
+                            <textarea name="description" placeholder="lorem ipsum" formControlName="description" matInput></textarea>
+                            <p class="error" *ngIf="f.get('description').touched && f.get('description').errors?.required"> Description is required! </p>
+                            <p class="error" *ngIf="f.get('description').touched && f.get('description').errors?.minlength"> Description must be at least 10 characters! </p>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="btn-submit">
+                        <button mat-raised-button type="submit">Submit</button>
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+
