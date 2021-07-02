@@ -6,7 +6,7 @@
             </a>
             <div class="container" *ngIf="i === current" fxLayout="column" fxLayoutAlign="end start">
                 <div class="content-container">
-                    <p class="content-text">{{news.description}}</p>
+                    <p class="content-text">{{news.description | trimText}}</p>
                     <a class="content-link" [href]="'/home#' + news.link">Click here to learn More!</a>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 export interface INews {
-    imageSrc: String,
+    imageUrl: String,
     title: String,
     description: String
 }
