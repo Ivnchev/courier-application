@@ -33,12 +33,22 @@
     </div>
 
     <div class="main-container">
-        <mat-tab-group [selectedIndex]="selectedIndex" >
+        <mat-tab-group [selectedIndex]="selectedIndex">
             <ng-container *ngFor="let news of news">
-                <mat-tab [label]="news.title">{{news.description}}</mat-tab>
+                <mat-tab class="news-label" [label]="news.title">
+                    <div class="news-layout">
+                        <img class="news-image" [src]="news.imageUrl">
+                        <div class="news-content">
+                            <h3>{{news.title}}</h3>
+                            <p>{{news.description}}</p>
+                        </div>
+                    </div>
+
+                </mat-tab>
             </ng-container>
         </mat-tab-group>
 
     </div>
 
 </div>
+

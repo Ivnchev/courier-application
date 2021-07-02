@@ -43,3 +43,48 @@ li:hover {
 h1 {
     text-align: center;
 }
+
+mat-tab {
+    width: 100%;
+    max-width: 4098px;
+}
+
+mat-tab-group {
+    width: 100%;
+    max-width: 4098px;
+}
+
+div.news-layout {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    
+}
+div.news-content {
+    display: block;
+    max-height: 150px;
+}
+
+img.news-image {
+    width: 300px;
+    height: 150px;
+    display: flex;
+    margin: 10px;
+}
+
+h3 {
+    display: inline-block;
+    text-decoration: underline;
+    font-weight: bold;
+    font-style: italic;
+}
+
+p {
+    text-align: justify;
+  text-justify: inter-word;
+    margin: 0px;
+    max-height: 150px;
+    width: 100%;
+    max-width: 100%;
+    display: block
+}
