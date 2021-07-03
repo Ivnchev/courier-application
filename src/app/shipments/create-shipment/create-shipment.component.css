@@ -50,3 +50,8 @@ mat-form-field {
     width: 100%;
     max-width: 800px;
 }
+
+mat-radio-group {
+    margin: 20px;
+    display: block;
+}

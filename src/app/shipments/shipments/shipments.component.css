@@ -27,3 +27,15 @@ tbody tr {
 tbody tr.active-row {
     font-weight: bold;
 }
+
+tr.own-shipments {
+    background-color: rgb(227, 234, 236);
+}
+
+button {
+    margin: auto;
+}
+
+h3.no-shipments{
+    text-align: center;
+}

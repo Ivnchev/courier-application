@@ -1,27 +1,62 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 
-import { Ipackage } from 'src/app/shared/interfaces';
+import { Ipackage, IUser } from 'src/app/shared/interfaces';
 import { HttpClient } from '@angular/common/http';
+import { StoreService } from 'src/app/core/services/store.service';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
-  selector: 'app-shipments',
-  templateUrl: './shipments.component.html',
-  styleUrls: ['./shipments.component.css']
+    selector: 'app-shipments',
+    templateUrl: './shipments.component.html',
+    styleUrls: ['./shipments.component.css']
 })
-export class ShipmentsComponent implements OnInit {
-
-  searchValue: string
-  packages: Ipackage[]
+export class ShipmentsComponent implements OnInit, OnChanges {
 
 
-  constructor(private http: HttpClient) { }
+    isAdmin$ = this.userService.isAdmin$
+    userData: IUser
+    searchValue: string
+    packages: Ipackage[]
 
-  ngOnInit(): void {
-    this.http.get<Ipackage[]>('../assets/demo-data/package-data.json')
-      .subscribe((result: Ipackage[]) => {
-        this.packages = result
-      })
-  }
+
+    constructor(
+        private storeService: StoreService,
+        private userService: UserService,
+    ) { }
+
+    ngOnInit(): void {
+        this.storeService.getShipments().subscribe({
+            next: (data: Ipackage[]) => this.packages = data
+        })
+
+        this.userService.getUser().subscribe({
+            next: (userData: IUser) => this.userData = userData
+        })
+    }
+
+    ngOnChanges(): void {
+        this.storeService.getShipments().subscribe({
+            next: (data: Ipackage[]) => this.packages = data
+        })
+    }
+
+
+    deleteHandler(event: HTMLElementEventMap, shipmentId: string, shipmentRow: HTMLElement): void {
+
+        const confirm = window.confirm('Are you sure you want to delete?')
+        if (confirm) {
+            this.storeService.deleteShipment(shipmentId).subscribe({
+                next: (data: Ipackage) => {
+                    shipmentRow.remove()
+                }
+            })
+        }
+    }
+
+
+    updateHandler(event: HTMLElementEventMap, shipmentId: string, shipmentRow: HTMLElement): void {
+
+    }
 
 
 }

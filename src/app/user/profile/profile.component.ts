@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ControlViewDirective } from '../control-view.directive';
 
 import { UserService } from 'src/app/core/services/user.service';
-import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -13,11 +12,10 @@ import { AuthService } from 'src/app/core/services/auth.service';
 export class ProfileComponent implements OnInit{
 
   user$ = this.userService.user$
-  isAdmin$ = this.authService.isAdmin$
+  isAdmin$ = this.userService.isAdmin$
   userData
   constructor(
     private userService: UserService,
-    private authService: AuthService,
   ) {
     
   }

@@ -2,7 +2,7 @@
     <div class="frame">
         <mat-card>
             <mat-card-content>
-                <form>
+                <form [formGroup]="f" (ngSubmit)="shipmentHandler(f.value)">
                     <div class="claim-label">
                         <mat-label class="edit-label">Create Shipment</mat-label>
                     </div>
@@ -10,33 +10,43 @@
                         <mat-hint>Delivery address</mat-hint>
                         <mat-form-field appearance="fill">
                             <mat-label>Enter delivery address</mat-label>
-                            <input matInput placeholder="Sofia, Krasna Polyana, 47" required>
+                            <input type="text" name="address" placeholder="Sofia, Krasna Polyana, 47" formControlName="address" matInput >
+                            <p class="error" *ngIf="f.get('address').touched && f.get('address').errors?.required"> Delivery address is required! </p>
+                            <p class="error" *ngIf="f.get('address').touched && f.get('address').errors?.minlength"> Delivery address must be at least 10 characters! </p>
                         </mat-form-field>
                     </div>
                     <div>
                         <mat-hint>Package size</mat-hint>
                         <mat-form-field appearance="fill">
                             <mat-label>Enter package size</mat-label>
-                            <input matInput placeholder="120/80/45" required>
+                            <input type="text" name="size" placeholder="120/80/45" formControlName="size" matInput>
+                            <p class="error" *ngIf="f.get('size').touched && f.get('size').errors?.required"> Package size is required! </p>
+                            <p class="error" *ngIf="f.get('size').touched && f.get('size').errors?.shipmentSize"> Package size should looks like 120/80/45 ! </p>
                         </mat-form-field>
                     </div>
                     <div>
-                        <mat-hint>Package size</mat-hint>
+                        <mat-hint>Package weight</mat-hint>
                         <mat-form-field appearance="fill">
                             <mat-label>Enter package weight</mat-label>
-                            <input matInput placeholder="45kg" required>
+                            <input type="text" name="weight" placeholder="45kg" formControlName="weight" matInput>
+                            <p class="error" *ngIf="f.get('weight').touched && f.get('weight').errors?.required"> Package weight is required! </p>
+                            <p class="error" *ngIf="f.get('weight').touched && f.get('weight').errors?.minlength"> Package weight must be at least 2 kg! </p>
+                            <p class="error" *ngIf="f.get('weight').touched && f.get('weight').errors?.shipmentWeight"> Package weight must be a number! </p>
                         </mat-form-field>
                     </div>
                     <div>
-                        <mat-hint>Describe your problem</mat-hint>
-                        <mat-form-field appearance="fill">
-                            <mat-label>Describe</mat-label>
-                            <textarea matInput placeholder="The package does not arrive." required></textarea>
-                        </mat-form-field>
+                        <mat-hint>Shipment Type: </mat-hint>
+                        <mat-label>Economy cost: 20$ , Express cost: 40$ </mat-label>
+                        <mat-radio-group fxLayoutGap="20px" formControlName="shipmentType" name="shipmentType">
+                            <mat-radio-button value="economy">Economy</mat-radio-button>
+                            <mat-radio-button value="express">Express</mat-radio-button>
+                        </mat-radio-group>
+                        <p class="error" *ngIf="f.get('shipmentType').touched && f.get('shipmentType').errors?.required"> Shipment Type is required! </p>
+                        <p class="error" *ngIf="f.get('shipmentType').touched && f.get('shipmentType').errors?.shipmentTypeValidator"> Shipment Type must be economy or express! </p>
                     </div>
-              
+                    <br>     
                     <div class="btn-submit">
-                        <button mat-raised-button type="submit">Submit Claim</button>
+                        <button mat-raised-button type="submit">Submit</button>
                     </div>
                 </form>
             </mat-card-content>
