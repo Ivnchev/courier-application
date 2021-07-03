@@ -10,18 +10,14 @@ import { CreateShipmentComponent } from './create-shipment/create-shipment.compo
 
 const routes: Routes = [
     {
-        path: 'shipments',
+        path: '',
         pathMatch: 'full',  
-        redirectTo: '/shipments/my-shipments'
+        component: ShipmentsComponent
     },
     {
         path: 'create',
         component: CreateShipmentComponent
     },
-    {
-        path: 'my-shipments',
-        component: ShipmentsComponent
-    }
 ];
 
 export const ShipmentRoutingModule = RouterModule.forChild(routes)

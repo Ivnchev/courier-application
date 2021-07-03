@@ -13,6 +13,7 @@ export class SidenavigationComponent implements OnChanges {
   @Output() sidenavClose = new EventEmitter();
 
   isLogged$ = this.authService.currentUser$
+  isAdmin$ = this.authService.isAdmin$
   user
   constructor(private router: Router, private authService: AuthService, public storage: StorageService) { }
 

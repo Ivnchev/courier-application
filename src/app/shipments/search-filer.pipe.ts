@@ -13,10 +13,11 @@ export class SearchFilerPipe implements PipeTransform {
     }
 
     function search() {
-      const trackingFilter = records.filter(x => x.trackingNumber.toString().includes(searchValue.toLocaleLowerCase()))
+      const trackingFilter = records.filter(x => x._id.toString().includes(searchValue.toLocaleLowerCase()))
       const addressFilter = records.filter(x => x.address.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()))
-      const packageFilter = records.filter(x => x.packageSize.toString().includes(searchValue.toString()))
-      const kilogramsFilter = records.filter(x => x.kilograms.toString() === searchValue.toLocaleLowerCase())
+      const packageFilter = records.filter(x => x.size.toString().includes(searchValue.toString()))
+      const kilogramsFilter = records.filter(x => x.weight.toString() === searchValue.toLocaleLowerCase())
+      const costFilter = records.filter(x => x.cost.toString() === searchValue.toLocaleLowerCase())
 
       return addressFilter.length > 0
         ? addressFilter
@@ -26,7 +27,9 @@ export class SearchFilerPipe implements PipeTransform {
             ? packageFilter
             : trackingFilter.length > 0
               ? trackingFilter
-              : []
+              : costFilter.length > 0
+                  ? costFilter
+                  : []
     }
 
     return search()

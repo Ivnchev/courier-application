@@ -1,6 +1,11 @@
+import { IUser } from './user';
+
 export interface Ipackage {
-    trackingNumber: Number,
+    _id: Number,
+    shipmentType: String,
     address: String,
-    packageSize: String,
-    kilograms: Number
+    size: String,
+    weight: Number,
+    cost: Number,
+    creator: IUser
 }
