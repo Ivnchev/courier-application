@@ -3,8 +3,10 @@
         <mat-card>
             <mat-card-content>
                 <form [formGroup]="f" (ngSubmit)="shipmentHandler(f.value)">
-                    <div class="claim-label">
-                        <mat-label class="edit-label">Create Shipment</mat-label>
+                    <div class="label">
+                        <ng-container *ngIf="isCreateMode;then createMode else editMode"></ng-container>
+                        <ng-template #createMode><mat-label class="label" >Create Shipment</mat-label></ng-template>
+                        <ng-template #editMode><mat-label class="label" >Edit Shipment</mat-label></ng-template>
                     </div>
                     <div>
                         <mat-hint>Delivery address</mat-hint>
@@ -30,7 +32,7 @@
                             <mat-label>Enter package weight</mat-label>
                             <input type="text" name="weight" placeholder="45kg" formControlName="weight" matInput>
                             <p class="error" *ngIf="f.get('weight').touched && f.get('weight').errors?.required"> Package weight is required! </p>
-                            <p class="error" *ngIf="f.get('weight').touched && f.get('weight').errors?.minlength"> Package weight must be at least 2 kg! </p>
+                            <p class="error" *ngIf="f.get('weight').touched && f.get('weight').errors?.min"> Package weight must be at least 2 kg! </p>
                             <p class="error" *ngIf="f.get('weight').touched && f.get('weight').errors?.shipmentWeight"> Package weight must be a number! </p>
                         </mat-form-field>
                     </div>

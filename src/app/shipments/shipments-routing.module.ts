@@ -1,7 +1,7 @@
 
 import { RouterModule, Routes } from '@angular/router';
 import { ShipmentsComponent } from './shipments/shipments.component';
-import { CreateShipmentComponent } from './create-shipment/create-shipment.component';
+import { CreateEditShipmentComponent } from './create-edit-shipment/create-edit-shipment.component';
 
 
 
@@ -16,7 +16,11 @@ const routes: Routes = [
     },
     {
         path: 'create',
-        component: CreateShipmentComponent
+        component: CreateEditShipmentComponent
+    },
+    {
+        path: ':id/edit',  
+        component: CreateEditShipmentComponent
     },
 ];
 

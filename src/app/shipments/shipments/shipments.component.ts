@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 
 import { Ipackage, IUser } from 'src/app/shared/interfaces';
-import { HttpClient } from '@angular/common/http';
 import { StoreService } from 'src/app/core/services/store.service';
 import { UserService } from 'src/app/core/services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-shipments',
@@ -22,6 +22,7 @@ export class ShipmentsComponent implements OnInit, OnChanges {
     constructor(
         private storeService: StoreService,
         private userService: UserService,
+        private router: Router,
     ) { }
 
     ngOnInit(): void {
@@ -54,8 +55,8 @@ export class ShipmentsComponent implements OnInit, OnChanges {
     }
 
 
-    updateHandler(event: HTMLElementEventMap, shipmentId: string, shipmentRow: HTMLElement): void {
-
+    updateHandler(event: HTMLElementEventMap, shipmentId: string): void {
+        this.router.navigateByUrl(`/shipments/${shipmentId}/edit`)
     }
 
 

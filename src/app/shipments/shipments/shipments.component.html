@@ -40,12 +40,12 @@
             <td>{{shipment.weight}} kg.</td>
             <td>{{shipment.cost}} $</td>
             <td>
-                <button mat-icon-button color="accent" (click)="updateHandler($event, shipmentId.id, shipmentRow)">
+                <button mat-icon-button color="accent" (click)="updateHandler($event, shipmentId?.id)">
                     <mat-icon class="mat-18">system_update</mat-icon>
                 </button>
             </td>
             <td>
-                <button mat-icon-button color="warn" (click)="deleteHandler($event, shipmentId.id, shipmentRow)">
+                <button mat-icon-button color="warn" (click)="deleteHandler($event, shipmentId?.id, shipmentRow)">
                     <mat-icon>delete</mat-icon>
                 </button>
             </td>
@@ -61,12 +61,12 @@
             <td>{{shipment.weight}} kg.</td>
             <td>{{shipment.cost}} $</td>
             <td>
-                <button mat-icon-button color="accent" (click)="updateHandler($event, shipmentId.id, shipmentRow)">
+                <button mat-icon-button color="accent" (click)="updateHandler($event, shipmentId?.id)">
                     <mat-icon class="mat-18">system_update</mat-icon>
                 </button>
             </td>
             <td>
-                <button mat-icon-button color="warn" (click)="deleteHandler($event, shipmentId.id, shipmentRow)">
+                <button mat-icon-button color="warn" (click)="deleteHandler($event, shipmentId?.id, shipmentRow)">
                     <mat-icon>delete</mat-icon>
                 </button>
             </td>
