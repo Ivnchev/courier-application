@@ -11,19 +11,19 @@ export class SearchClaimPipe implements PipeTransform {
             return records
         }
         function search() {
-            const usernameFilter = records.filter(x => x.username.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()))
-            const dateFilter = records.filter(x => x.dateOfCreation.includes(searchValue))
-            const addressFilter = records.filter(x => x.address.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()))
-            const packageFilter = records.filter(x => x.package.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()))
+            const trackingFilter = records.filter(x => x.trackingNumber._id.toString().toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()))
+            const titleFilter = records.filter(x => x.title.includes(searchValue.toLocaleLowerCase()))
+            const dateFilter = records.filter(x => x.createdAt.toString().includes(searchValue))
+            const descriptionFilter = records.filter(x => x.description.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()))
 
-            return usernameFilter.length > 0
-                ? usernameFilter
-                : dateFilter.length > 0
-                    ? dateFilter
-                    : addressFilter.length > 0
-                        ? addressFilter
-                        : packageFilter.length > 0
-                            ? packageFilter
+            return trackingFilter.length > 0
+                ? trackingFilter
+                : titleFilter.length > 0
+                    ? titleFilter
+                    : dateFilter.length > 0
+                        ? dateFilter
+                        : descriptionFilter.length > 0
+                            ? descriptionFilter
                             : []
 
         }

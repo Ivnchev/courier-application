@@ -1,7 +1,12 @@
+import { IUser } from './user';
+import { Ipackage } from './package';
+
 export interface IClaim {
-    id: String,
-    username: String,
-    dateOfCreation: String,
-    address: String,
-    package: String
+    _id: Number,
+    trackingNumber: Ipackage,
+    title: String,
+    description: String,
+    creator: IUser,
+    showDetails: Boolean,
+    createdAt: Date
 }

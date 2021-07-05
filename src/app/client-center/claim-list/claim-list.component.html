@@ -1,38 +1,77 @@
-<div fxLayout fxLayoutAlign="center center">
-    <mat-form-field fxFlex="40%">
-        <input matInput type="text" [(ngModel)]="searchValue" placeholder="Filter" >
-    </mat-form-field>
-</div>
-<div fxLayout fxLayoutAlign="center center">
-    <table>
-        <thead>
-            <tr>
-                <th>Username</th>
-                <th>Date of Creation</th>
-                <th>Address</th>
-                <th>Package size</th>
-                <th>Update</th>
-                <th>Delete</th>
-            </tr>
-        </thead>
-        <tbody *ngFor="let claim of claims | searchClaim: searchValue">
-            <tr>
-                <td>{{claim.username}}</td>
-                <td>{{claim.dateOfCreation}}</td>
-                <td>{{claim.address}}</td>
-                <td>{{claim.package}}</td>
-                <td>
-                    <button mat-icon-button color="accent">
-                        <mat-icon class="mat-18">system_update</mat-icon>
-                    </button>
-                </td>
-                <td>
-                    <button mat-icon-button color="warn">
-                        <mat-icon>delete</mat-icon>
-                    </button>
-                </td>
-            </tr>
-        </tbody>
+<h1>CLAIMS</h1>
 
-    </table>
-</div>
+<div *ngIf="(isLogged$ | async);then logged else logout"></div>
+<ng-template #logged>
+    <div class="register-content">
+        <a class="register-link" routerLink="/client-center/register-claim">
+            <h3>Register Claim</h3>
+        </a>
+    </div>
+
+    <ng-container *ngIf="claims">
+        <div fxLayout fxLayoutAlign="center center">
+            <mat-form-field fxFlex="40%">
+                <input matInput type="text" [(ngModel)]="searchValue" placeholder="Filter">
+            </mat-form-field>
+        </div>
+        <div fxLayout fxLayoutAlign="center center">
+            <table>
+                <thead>
+                    <tr>
+                        <th *ngIf="(isAdmin$ | async)">user</th>
+                        <th>Claim number</th>
+                        <th>Created At</th>
+                        <th>Title</th>
+                        <th>Package tracking number</th>
+                        <ng-container *ngIf="(isLogged$ | async)">
+                            <th>Description</th>
+                            <th>Update</th>
+                            <th>Delete</th>
+                        </ng-container>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let claim of claims | searchClaim: searchValue">
+                    <tr #claimRow>
+                        <td *ngIf="(isAdmin$ | async)">{{claim?.creator?.username}}</td>
+                        <td #claimId [id]="claim._id">{{claim._id}}</td>
+                        <td>{{(claim.createdAt | date)}}</td>
+                        <td>{{claim.title}}</td>
+                        <td>{{claim?.trackingNumber?._id}}</td>
+                        <ng-container *ngIf="((user$ | async)._id == claim.creator._id) || (isAdmin$ | async)">
+                            <td>
+                                <button mat-icon-button color="accent" (click)="toogleInfo(claim)">
+                                    <mat-icon class="mat-18">info</mat-icon>
+                                </button>
+                            </td>
+
+                            <td>
+                                <button mat-icon-button color="accent" (click)="updateHandler($event, claimId?.id)">
+                                    <mat-icon class="mat-18">system_update</mat-icon>
+                                </button>
+                            </td>
+                            <td>
+                                <button mat-icon-button color="warn" (click)="deleteHandler($event, claimId?.id, claimRow)">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </td>
+                        </ng-container>
+                    </tr>
+                    <tr *ngIf="claim.showDetails">
+                        <td colspan="6">
+                            <span>
+                                {{claim.description}}
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </ng-container>
+</ng-template>
+
+<ng-template #logout>
+    <div>
+        <p>You are not logged in! Click here <a routerLink="/auth/login">LOGIN</a> !</p>
+    </div>
+</ng-template>

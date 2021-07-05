@@ -28,3 +28,25 @@ tbody tr.active-row {
     font-weight: bold;
 }
 
+a.register-link {
+    color: black;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    border-radius: 5px;
+    text-shadow:0 0 20px rgba(0,0,0,0.5);
+}
+
+div.register-content {
+    background-color: lightgray;
+    border-radius: 20px;
+    margin: auto;
+    text-align: center;
+    width: 100%;
+    max-width: 250px;
+    height: 100%;
+    max-height: 30px;
+    box-shadow:0 0 20px rgba(0,0,0,0.5);
+}

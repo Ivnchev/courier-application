@@ -29,10 +29,6 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.http.get<INews[]>('../assets/demo-data/news-data.json')
-    // .subscribe((result: INews[]) => {
-    //   this.news = result
-    // })
     this.storeService.getNews().subscribe((result: INews[]) => {
       result.map((x, i) => { x['link'] = i; return x })
       this.news = result

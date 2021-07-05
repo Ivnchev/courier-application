@@ -46,4 +46,24 @@ export class StoreService {
     return this.http.delete(constants.baseUrl + 'shipments/' + id, { withCredentials: true })
   }
 
+  getClaims(): Observable<any> {
+    return this.http.get(constants.baseUrl + 'claims', { withCredentials: true })
+  }
+
+  getClaim(id: string): Observable<any> {
+    return this.http.get(constants.baseUrl + 'claims/' + id, { withCredentials: true })
+  }
+
+  postClaim(data: object): Observable<any> {
+    return this.http.post(constants.baseUrl + 'claims', data, { withCredentials: true })
+  }
+
+  editClaim(id: string, data: object): Observable<any> {
+    return this.http.put(constants.baseUrl + 'claims/' + id, data, { withCredentials: true })
+  }
+
+  deleteClaim(id: string): Observable<any> {
+    return this.http.delete(constants.baseUrl + 'claims/' + id, { withCredentials: true })
+  }
+
 }

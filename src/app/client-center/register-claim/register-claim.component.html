@@ -2,29 +2,37 @@
     <div class="frame">
         <mat-card>
             <mat-card-content>
-                <form>
+                <form [formGroup]="f" (ngSubmit)="claimHandler(f.value)">
                     <div class="claim-label">
-                        <mat-label class="edit-label">Register Claim</mat-label>
-                    </div>
-                    <div>
-                        <mat-hint>Delivery address</mat-hint>
-                        <mat-form-field appearance="fill">
-                            <mat-label>Enter delivery address</mat-label>
-                            <input matInput placeholder="Sofia, Krasna Polyana, 47" required>
-                        </mat-form-field>
+                        <ng-container *ngIf="isCreateMode;then createMode else editMode"></ng-container>
+                        <ng-template #createMode><mat-label class="label" >Register Claim</mat-label></ng-template>
+                        <ng-template #editMode><mat-label class="label" >Edit Claim</mat-label></ng-template>
                     </div>
                     <div>
                         <mat-hint>Tracking number</mat-hint>
                         <mat-form-field appearance="fill">
                             <mat-label>Enter Tacking number</mat-label>
-                            <input matInput placeholder="15sv34gfs5489" required>
+                            <input type="text" name="trackingNumber" placeholder="15sv34gfs5489" formControlName="trackingNumber" matInput >
+                            <p class="error" *ngIf="f.get('trackingNumber').touched && f.get('trackingNumber').errors?.required"> Tacking number is required! </p>
+                            <p class="error" *ngIf="f.get('trackingNumber').touched && f.get('trackingNumber').errors?.minlength"> Tacking number must be at least 24 characters! </p>
                         </mat-form-field>
                     </div>
                     <div>
-                        <mat-hint>Describe your problem</mat-hint>
+                        <mat-hint>Title</mat-hint>
                         <mat-form-field appearance="fill">
-                            <mat-label>Describe</mat-label>
-                            <textarea matInput placeholder="The package does not arrive." required></textarea>
+                            <mat-label>Title</mat-label>
+                            <input type="text" name="title"  placeholder="The package does not arrive." formControlName="title" matInput>
+                            <p class="error" *ngIf="f.get('title').touched && f.get('title').errors?.required"> Title is required! </p>
+                            <p class="error" *ngIf="f.get('title').touched && f.get('title').errors?.minlength"> Title must be at least 5 characters! </p>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-hint>Description</mat-hint>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Describe your problem</mat-label>
+                            <textarea type="text" name="description" placeholder="More info about the problem" formControlName="description" matInput></textarea>
+                            <p class="error" *ngIf="f.get('description').touched && f.get('description').errors?.required"> Description is required! </p>
+                            <p class="error" *ngIf="f.get('description').touched && f.get('description').errors?.minlength"> Description must be at least 10 characters! </p>
                         </mat-form-field>
                     </div>
               
