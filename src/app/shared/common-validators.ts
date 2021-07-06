@@ -21,3 +21,10 @@ export function shipmentSize(control: AbstractControl): ValidationErrors | null 
     const check = /\d{2,3}\/\d{2,3}\/\d{2,3}/g.test(value) ? null : { shipmentSize: true }
     return check
 }
+
+export function shipmentWeight(control: AbstractControl): ValidationErrors | null {
+    const value = control.value
+    if (!value) { return null }
+    const check = /[0-9]{1,3}/g.test(value) ? null : { shipmentSize: true }
+    return check
+}

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ClaimsComponent } from './claims/claims.component';
 import { QuestionsAndAnswersComponent } from './questions-and-answers/questions-and-answers.component';
 import { ClientCenterRoutingModule } from './client-center-routing.module';
 import { MaterialModule } from '../material/material.module';
@@ -14,7 +13,6 @@ import { ClientServicesComponent } from './client-services/client-services.compo
 
 @NgModule({
   declarations: [
-    ClaimsComponent,
     QuestionsAndAnswersComponent,
     ClaimListComponent,
     RegisterClaimComponent,

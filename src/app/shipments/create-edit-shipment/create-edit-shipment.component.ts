@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { StoreService } from 'src/app/core/services/store.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { shipmentTypeValidator, shipmentSize } from 'src/app/shared/common-validators';
+import { shipmentTypeValidator, shipmentSize, shipmentWeight } from 'src/app/shared/common-validators';
 import { first } from 'rxjs/operators';
 
 @Component({
@@ -30,7 +30,7 @@ export class CreateEditShipmentComponent implements OnInit {
     this.f = this.fb.group({
       address: ['', [Validators.required, Validators.minLength(10)]],
       size: ['', [Validators.required, shipmentSize]],
-      weight: ['', [Validators.required, Validators.min(2)]],
+      weight: ['', [Validators.required, Validators.min(2), shipmentWeight]],
       shipmentType: ['', [Validators.required, shipmentTypeValidator]],
     })
 

@@ -50,3 +50,7 @@ div.register-content {
     max-height: 30px;
     box-shadow:0 0 20px rgba(0,0,0,0.5);
 }
+
+tr.own-shipments {
+    background-color: rgb(227, 234, 236);
+}

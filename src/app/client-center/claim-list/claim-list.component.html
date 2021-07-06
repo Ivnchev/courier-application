@@ -3,7 +3,7 @@
 <div *ngIf="(isLogged$ | async);then logged else logout"></div>
 <ng-template #logged>
     <div class="register-content">
-        <a class="register-link" routerLink="/client-center/register-claim">
+        <a class="register-link" routerLink="/client-center/claims/register">
             <h3>Register Claim</h3>
         </a>
     </div>
@@ -31,7 +31,7 @@
                     </tr>
                 </thead>
                 <tbody *ngFor="let claim of claims | searchClaim: searchValue">
-                    <tr #claimRow>
+                    <tr [ngClass]="claim?.creator?.username === (user$ | async)?.username ? 'own-shipments': ''" #claimRow>
                         <td *ngIf="(isAdmin$ | async)">{{claim?.creator?.username}}</td>
                         <td #claimId [id]="claim._id">{{claim._id}}</td>
                         <td>{{(claim.createdAt | date)}}</td>

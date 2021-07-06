@@ -5,39 +5,42 @@
                 <form [formGroup]="f" (ngSubmit)="claimHandler(f.value)">
                     <div class="claim-label">
                         <ng-container *ngIf="isCreateMode;then createMode else editMode"></ng-container>
-                        <ng-template #createMode><mat-label class="label" >Register Claim</mat-label></ng-template>
-                        <ng-template #editMode><mat-label class="label" >Edit Claim</mat-label></ng-template>
+                        <ng-template #createMode>
+                            <mat-label class="label">Register Claim</mat-label>
+                        </ng-template>
+                        <ng-template #editMode>
+                            <mat-label class="label">Edit Claim</mat-label>
+                        </ng-template>
                     </div>
                     <div>
-                        <mat-hint>Tracking number</mat-hint>
                         <mat-form-field appearance="fill">
-                            <mat-label>Enter Tacking number</mat-label>
-                            <input type="text" name="trackingNumber" placeholder="15sv34gfs5489" formControlName="trackingNumber" matInput >
-                            <p class="error" *ngIf="f.get('trackingNumber').touched && f.get('trackingNumber').errors?.required"> Tacking number is required! </p>
-                            <p class="error" *ngIf="f.get('trackingNumber').touched && f.get('trackingNumber').errors?.minlength"> Tacking number must be at least 24 characters! </p>
+                            <mat-label>Tacking number</mat-label>
+                            <mat-hint *ngIf="f.get('trackingNumber').touched && f.get('trackingNumber').errors?.required">Tacking number is required!</mat-hint>
+                            <mat-hint *ngIf="f.get('trackingNumber').touched && f.get('trackingNumber').errors?.minlength">Tacking number must be at least 24 characters!</mat-hint>
+                            <input type="text" name="trackingNumber" placeholder="15sv34gfs5489" formControlName="trackingNumber" matInput>
                         </mat-form-field>
                     </div>
                     <div>
-                        <mat-hint>Title</mat-hint>
+                        
                         <mat-form-field appearance="fill">
                             <mat-label>Title</mat-label>
-                            <input type="text" name="title"  placeholder="The package does not arrive." formControlName="title" matInput>
-                            <p class="error" *ngIf="f.get('title').touched && f.get('title').errors?.required"> Title is required! </p>
-                            <p class="error" *ngIf="f.get('title').touched && f.get('title').errors?.minlength"> Title must be at least 5 characters! </p>
+                            <mat-hint *ngIf="f.get('title').touched && f.get('title').errors?.required">Title is required!</mat-hint>
+                            <mat-hint *ngIf="f.get('title').touched && f.get('title').errors?.minlength">Title must be at least 5 characters!</mat-hint>
+                            <input type="text" name="title" placeholder="The package does not arrive." formControlName="title" matInput>
                         </mat-form-field>
                     </div>
                     <div>
-                        <mat-hint>Description</mat-hint>
+                        
                         <mat-form-field appearance="fill">
                             <mat-label>Describe your problem</mat-label>
-                            <textarea type="text" name="description" placeholder="More info about the problem" formControlName="description" matInput></textarea>
-                            <p class="error" *ngIf="f.get('description').touched && f.get('description').errors?.required"> Description is required! </p>
-                            <p class="error" *ngIf="f.get('description').touched && f.get('description').errors?.minlength"> Description must be at least 10 characters! </p>
+                            <mat-hint *ngIf="f.get('description').touched && f.get('description').errors?.required">Description is required!</mat-hint>
+                            <mat-hint *ngIf="f.get('description').touched && f.get('description').errors?.minlength">Description must be at least 10 characters!</mat-hint>
+                            <textarea type="text" name="description" placeholder="More info about the problem"formControlName="description" matInput></textarea>
                         </mat-form-field>
                     </div>
-              
+
                     <div class="btn-submit">
-                        <button mat-raised-button type="submit">Submit Claim</button>
+                        <button mat-raised-button type="submit">Submit</button>
                     </div>
                 </form>
             </mat-card-content>

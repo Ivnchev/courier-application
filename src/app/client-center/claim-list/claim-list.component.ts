@@ -50,7 +50,7 @@ export class ClaimListComponent implements OnInit {
 
 
   updateHandler(event: HTMLElementEventMap, claimId: string): void {
-    this.router.navigateByUrl(`/${claimId}/edit-claim`)
+    this.router.navigateByUrl(`/client-center/claims/${claimId}/edit`)
   }
 
 }

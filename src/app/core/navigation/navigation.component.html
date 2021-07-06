@@ -1,13 +1,4 @@
 <mat-toolbar color="primary">
-    <!-- <a class="logo-container">
-        <div class="logo">
-            <div class="line lineLong"></div>
-            <div class="line lineShort"></div>
-            <div class="circle firstCircle"></div>
-            <div class="circle secondCircle"></div>
-            <div class="circle thirdCircle"></div>
-        </div>
-    </a> -->
     <div fxHide.gt-xs>
         <button mat-icon-button (click)="toggle()">
             <mat-icon>menu</mat-icon>
@@ -15,7 +6,7 @@
     </div>
 
     <div fxFlex fxLayout fxLayoutAlign="start">
-        <a routerLink="/home">Courier EXPRESS</a>
+        <a routerLink="/home"><mat-icon>local_shipping</mat-icon> <span class="home-link"> Courier EXPRESS</span></a>
     </div>
 
     <div fxLayoutAlign="end" fxHide.xs>
@@ -62,6 +53,15 @@
 </ng-template>
 
 <ng-template #isNotLoggedIn>
+    <li>
+        <mat-list-item [matMenuTriggerFor]="clientMenu">
+            <a mat-list-item>Client Center</a>
+        </mat-list-item>
+        <mat-menu #clientMenu="matMenu">
+            <a class="menu-items" mat-menu-item routerLink="/client-center/q&a">Q&A</a>
+            <a class="menu-items" mat-menu-item routerLink="/client-center/services">Services</a>
+        </mat-menu>
+    </li>
     <li>
         <a routerLink="/auth/login">Login</a>
     </li>
