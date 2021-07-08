@@ -5,8 +5,8 @@
                 <form [formGroup]="f" (ngSubmit)="shipmentHandler(f.value)">
                     <div class="label">
                         <ng-container *ngIf="isCreateMode;then createMode else editMode"></ng-container>
-                        <ng-template #createMode><mat-label class="label" >Create Shipment</mat-label></ng-template>
-                        <ng-template #editMode><mat-label class="label" >Edit Shipment</mat-label></ng-template>
+                        <ng-template #createMode><mat-label class="label-form">Create Shipment</mat-label></ng-template>
+                        <ng-template #editMode><mat-label class="label-form">Edit Shipment</mat-label></ng-template>
                     </div>
                     <div>
                         <mat-form-field appearance="fill">

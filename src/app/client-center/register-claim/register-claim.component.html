@@ -5,12 +5,8 @@
                 <form [formGroup]="f" (ngSubmit)="claimHandler(f.value)">
                     <div class="claim-label">
                         <ng-container *ngIf="isCreateMode;then createMode else editMode"></ng-container>
-                        <ng-template #createMode>
-                            <mat-label class="label">Register Claim</mat-label>
-                        </ng-template>
-                        <ng-template #editMode>
-                            <mat-label class="label">Edit Claim</mat-label>
-                        </ng-template>
+                        <ng-template #createMode> <mat-label class="label-form">Register Claim</mat-label> </ng-template>
+                        <ng-template #editMode> <mat-label class="label-form">Edit Claim</mat-label> </ng-template>
                     </div>
                     <div>
                         <mat-form-field appearance="fill">

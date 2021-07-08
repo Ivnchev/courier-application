@@ -4,12 +4,17 @@ div.container {
     max-width: 600px;
     margin: auto;
     display: flex;
+    padding-top: 5%;
 }
 
 mat-card {
     margin: auto;
     border-radius: 10px;
     text-align: center;
+}
+
+mat-label.label-form {
+    font-weight: bold;
 }
 
 .label {

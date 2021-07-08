@@ -1,11 +1,10 @@
 
 div.container {
-    padding: 30px 0px;
     width: 100%;
     max-width: 600px;
     margin: auto;
-
     display: flex;
+    padding-top: 5%;
 }
 
 mat-label {
@@ -15,22 +14,25 @@ mat-label {
     display: block;
 }
 
+mat-label.label-form {
+    font-weight: bold;
+}
+
 .gender{
     margin: auto;
     padding: 10px;
 }
 
 .frame {
-    padding: 20px;
     height: 100%;
     display: block;
     width: 100%;
     max-width: 800px;
 }
 mat-card {
-    text-align: center;
     margin: auto;
-    
+    border-radius: 10px;
+    text-align: center;
 }
 
 .mat-card.mat-focus-indicator {
@@ -39,7 +41,7 @@ mat-card {
 
 mat-form-field {
     margin: auto;
-    width: 300px;
+    width: 350px;
     display: block;
     position: relative;
     text-align: justify;

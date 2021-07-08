@@ -1,22 +1,19 @@
-<div class="layout" fxFlex>
-    <div class="profile-header" fxFlex>
+<div class="layout" fxFlex fxLayout.xs="column" fxLayoutAlign.xs="space-around center" >
+    <div class="profile">
 
-        <mat-card>
-            <mat-card-header>
-                <mat-card-title>Welcome, 
+        <div class="profile-layout">
+            <div class="profile-header">
+                <div class="profile-title">Welcome, 
                     <ng-container *ngIf="userData?.gender === 'male';then isMale else isFemale "></ng-container>
                     <span *ngIf="(isAdmin$ | async)">Admin </span>
                     {{(user$ | async)?.username}}
-                </mat-card-title>
-            </mat-card-header>
-            <mat-card-content>
-                <div class="user-content">
-                    <img mat-card-image [src]="(user$ | async)?.image">
-                    <mat-card-subtitle>You have {{(user$ | async)?.shipments?.length}} shipments in transit.</mat-card-subtitle>
                 </div>
-
-            </mat-card-content>
-            <mat-card-actions>
+            </div>
+            <div class="profile-content">
+                    <img mat-card-image [src]="(user$ | async)?.image">
+                    <p>You have {{(user$ | async)?.shipments?.length}} shipments in transit.</p>
+            </div>
+            <div class="profile-actions">
                 <ul>
                     <li>
                         <button class="edit btn" mat-button (click)="toggleView(controlView)">Edit profile</button>
@@ -31,12 +28,12 @@
                         <button class="register claim btn" mat-button (click)="toggleView(controlViewClaim)">Register Claim</button>
                     </li>
                 </ul>
-            </mat-card-actions>
-        </mat-card>
+            </div>
+        </div>
 
     </div>
 
-    <div class="container">
+    <div class="container" fxFlex.xs="1">
 
             <app-edit id="editMode" #controlView="appIsVisible" [appIsVisible]="controls.editMode"></app-edit>
             <app-register-claim id="claimMode" #controlViewClaim="appIsVisible" [appIsVisible]="controls.claimMode"></app-register-claim>
