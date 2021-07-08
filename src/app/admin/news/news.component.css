@@ -19,6 +19,10 @@ mat-card {
     font-size: 25px;
 }
 
+.label-form {
+    font-weight: bold;
+}
+
 div.btn-submit{
     margin: auto;
     position: relative;
@@ -36,7 +40,7 @@ textarea {
 
 mat-form-field {
     margin: auto;
-    width: 300px;
+    width: 350px;
     display: block;
     position: relative;
     text-align: justify;
