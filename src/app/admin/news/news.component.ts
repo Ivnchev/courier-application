@@ -10,7 +10,7 @@ import { imageValidator } from 'src/app/auth/validators';
   styleUrls: ['./news.component.css']
 })
 export class NewsComponent implements OnInit {
-
+  isLoading: boolean = false
   f: FormGroup
 
   constructor(
@@ -29,8 +29,12 @@ export class NewsComponent implements OnInit {
 
 
   newsHandler(formData: object): void {
-    this.storeService.postNews(formData).subscribe(data => {
-      this.router.navigateByUrl('/')
+    this.isLoading = true
+    this.storeService.postNews(formData).subscribe({
+      next: data => {
+        this.isLoading = false
+        this.router.navigateByUrl('/')
+      }
     })
 
   }

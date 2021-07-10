@@ -1,0 +1,32 @@
+.container {
+    height: 100%;
+    width: 100%;
+}
+
+.progress-bar {
+    border: 3px solid rgb(150, 224, 39);
+    height: 100%;
+    width: 100%;
+}
+
+.progress-bar-nok {
+    background-color: rgb(216, 43, 43);
+    height: 100%;
+    width: 100%;
+}
+
+.progress {
+    border: 1px solid lightgrey;
+    display: flex;
+}
+
+.title {
+    display: flex;
+}
+
+.titles {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+}

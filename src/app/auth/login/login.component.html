@@ -1,3 +1,4 @@
+<app-loader *ngIf="isLoading" showLoader="isLoading"></app-loader>
 <div class="card" fxLayout="column center" fxFlex.xs="70%">
     <mat-card fxFlex fxLayout="column" class="mat-elevation-z22">
         <mat-card-content fxFlexAlign="center">
@@ -8,7 +9,7 @@
                 <div>
                     <mat-form-field apperance="fill">
                         <mat-label>Enter your username</mat-label>
-                        <input name="username" placeholder="Gosho" formControlName="username" matInput>
+                        <input name="username" placeholder="Gosho" type="text" formControlName="username" matInput>
                         <mat-hint *ngIf="f.get('username').touched && f.get('username').errors?.required">Username is required!</mat-hint>
                         <mat-hint *ngIf="f.get('username').touched && f.get('username').errors?.minlength">Username must be at least 4 characters!</mat-hint>
                     </mat-form-field>

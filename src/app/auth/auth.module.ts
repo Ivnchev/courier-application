@@ -5,6 +5,7 @@ import { RegisterComponent } from './register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
 import { AuthRoutingModule } from './auth-routing.module';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -18,7 +19,8 @@ import { AuthRoutingModule } from './auth-routing.module';
     FormsModule,
     MaterialModule,
     ReactiveFormsModule,
-    AuthRoutingModule
+    AuthRoutingModule,
+    SharedModule
   ],
   exports: [
     LoginComponent,

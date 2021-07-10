@@ -1,12 +1,16 @@
+<div class="layout">
+
+<app-loader *ngIf="isLoading"></app-loader>
+
 <h1>Shipments</h1>
 
 <ng-container *ngIf="packages?.length > 0;else noShipments">
     <div fxLayout fxLayoutAlign="center center">
-        <mat-form-field fxFlex="40%">
+        <mat-form-field fxFlex="40%" fxFlex.xs="80%">
             <input matInput type="text" [(ngModel)]="searchValue" placeholder="Filter">
         </mat-form-field>
     </div>
-    <div fxLayout fxLayoutAlign="center center">
+    <div class="table-content">
 
         <table>
             <thead>
@@ -17,13 +21,13 @@
                     <th>Package size</th>
                     <th>Package Weight</th>
                     <th>Package Cost</th>
+                    <th>Status</th>
                     <th>Update</th>
                     <th>Delete</th>
                 </tr>
             </thead>
 
             <ng-container *ngIf="(isAdmin$ | async);then isAdmin else isUser "></ng-container>
-
         </table>
 
     </div>
@@ -32,13 +36,18 @@
 
 <ng-template #isAdmin>
     <tbody *ngFor="let shipment of packages | searchFiler: searchValue">
-        <tr [ngClass]="shipment?.creator?.username === userData?.username ? 'own-shipments': ''" #shipmentRow>
+        <tr [ngClass]="(user$ | async)?.username === shipment.creator?.username ? 'own-shipments': ''" #shipmentRow>
             <td>{{shipment?.creator?.username}}</td>
             <td #shipmentId [id]="shipment._id">{{shipment._id}}</td>
             <td>{{shipment.address}}</td>
             <td>{{shipment.size}}</td>
             <td>{{shipment.weight}} kg.</td>
             <td>{{shipment.cost}} $</td>
+            <td>
+                <button mat-icon-button color="accent" (click)="toogleInfo(shipment)">
+                    <mat-icon class="mat-18">info</mat-icon>
+                </button>
+            </td>
             <td>
                 <button mat-icon-button color="accent" (click)="updateHandler($event, shipmentId?.id)">
                     <mat-icon class="mat-18">system_update</mat-icon>
@@ -48,6 +57,13 @@
                 <button mat-icon-button color="warn" (click)="deleteHandler($event, shipmentId?.id, shipmentRow)">
                     <mat-icon>delete</mat-icon>
                 </button>
+            </td>
+        </tr>
+        <tr *ngIf="shipment.showDetails">
+            <td colspan="6">
+                <span>
+                    <app-status [status]="shipment.status" ></app-status>
+                </span>
             </td>
         </tr>
     </tbody>
@@ -61,6 +77,11 @@
             <td>{{shipment.weight}} kg.</td>
             <td>{{shipment.cost}} $</td>
             <td>
+                <button mat-icon-button color="accent" (click)="toogleInfo(shipment)">
+                    <mat-icon class="mat-18">info</mat-icon>
+                </button>
+            </td>
+            <td>
                 <button mat-icon-button color="accent" (click)="updateHandler($event, shipmentId?.id)">
                     <mat-icon class="mat-18">system_update</mat-icon>
                 </button>
@@ -69,6 +90,13 @@
                 <button mat-icon-button color="warn" (click)="deleteHandler($event, shipmentId?.id, shipmentRow)">
                     <mat-icon>delete</mat-icon>
                 </button>
+            </td>
+        </tr>
+        <tr *ngIf="shipment.showDetails">
+            <td colspan="8">
+                <span>
+                    <app-status [status]="shipment.status" ></app-status>
+                </span>
             </td>
         </tr>
     </tbody>
@@ -81,3 +109,4 @@
 </ng-template>
 
 
+</div>

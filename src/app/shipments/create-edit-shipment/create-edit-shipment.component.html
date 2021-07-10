@@ -33,6 +33,14 @@
                             <input type="text" name="weight" placeholder="45kg" formControlName="weight" matInput>
                         </mat-form-field>
                     </div>
+                    <mat-form-field appearance="fill" *ngIf="(isAdmin$ | async)">
+                        <mat-label>Favorite food</mat-label>
+                        <mat-select name="status" formControlName="status">
+                          <mat-option value="created">Created</mat-option>
+                          <mat-option value="transit">In Transit</mat-option>
+                          <mat-option value="completed">Completed</mat-option>
+                        </mat-select>
+                      </mat-form-field>
                     <div>
                         <mat-label>Shipment Type: Economy cost: 20$ , Express cost: 40$ </mat-label>
                         <mat-radio-group fxLayoutGap="20px" formControlName="shipmentType" name="shipmentType">

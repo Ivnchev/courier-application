@@ -14,6 +14,7 @@ export class RegisterClaimComponent implements OnInit {
   f: FormGroup
   id: string
   isCreateMode: boolean
+  isLoading: boolean = false
 
   constructor(
     private storeService: StoreService,
@@ -25,7 +26,6 @@ export class RegisterClaimComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id']
     this.isCreateMode = !this.id
-
     this.f = this.fb.group({
       trackingNumber: ['', [Validators.required, Validators.minLength(24)]],
       title: ['', [Validators.required, Validators.minLength(5)]],
@@ -52,14 +52,22 @@ export class RegisterClaimComponent implements OnInit {
   }
 
   private createClaim(formData) {
-    this.storeService.postClaim(formData).subscribe(data => {
-      this.router.navigateByUrl('/client-center/claims')
+    this.isLoading = true
+    this.storeService.postClaim(formData).subscribe({
+      next: data => {
+        this.isLoading = false
+        this.router.navigateByUrl('/client-center/claims')
+      }
     })
   }
 
   private editClaim(formData) {
-    this.storeService.editClaim(this.id, formData).subscribe(data => {
-      this.router.navigateByUrl('/client-center/claims')
+    this.isLoading = true
+    this.storeService.editClaim(this.id, formData).subscribe({
+      next: data => {
+        this.isLoading = false
+        this.router.navigateByUrl('/client-center/claims')
+      }
     })
   }
 

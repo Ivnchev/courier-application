@@ -7,6 +7,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { PanelComponent } from './panel/panel.component';
 import { AdminRoutingModule } from './admin-routing.module';
 import { CreateQuestionComponent } from './create-question/create-question.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -22,7 +23,8 @@ import { CreateQuestionComponent } from './create-question/create-question.compo
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    SharedModule
   ]
 })
 export class AdminModule { }

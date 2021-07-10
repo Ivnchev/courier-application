@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { shipmentTypeValidator, shipmentSize, shipmentWeight } from 'src/app/shared/common-validators';
 import { first } from 'rxjs/operators';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-create-shipment',
@@ -15,12 +16,14 @@ export class CreateEditShipmentComponent implements OnInit {
   f: FormGroup
   id: string
   isCreateMode: boolean
+  isAdmin$ = this.authService.isAdmin$
 
   constructor(
     private storeService: StoreService,
     private route: ActivatedRoute,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private authService: AuthService,
   ) { }
 
   ngOnInit(): void {
@@ -32,6 +35,7 @@ export class CreateEditShipmentComponent implements OnInit {
       size: ['', [Validators.required, shipmentSize]],
       weight: ['', [Validators.required, Validators.min(2), shipmentWeight]],
       shipmentType: ['', [Validators.required, shipmentTypeValidator]],
+      status: ['', [Validators.required]]
     })
 
     if (!this.isCreateMode) {

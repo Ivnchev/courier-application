@@ -6,6 +6,8 @@ import { CreateEditShipmentComponent } from './create-edit-shipment/create-edit-
 import { MaterialModule } from '../material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchFilerPipe } from './search-filer.pipe';
+import { SharedModule } from '../shared/shared.module';
+import { StatusComponent } from './status/status.component';
 
 
 @NgModule({
@@ -13,13 +15,15 @@ import { SearchFilerPipe } from './search-filer.pipe';
     ShipmentsComponent,
     CreateEditShipmentComponent,
     SearchFilerPipe,
+    StatusComponent,
   ],
   imports: [
     CommonModule,
     MaterialModule,
     ShipmentRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   exports: [
     ShipmentsComponent,

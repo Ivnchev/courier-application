@@ -12,7 +12,8 @@ table {
 }
 
 thead tr {
-    color: #adadad 
+    color: #adadad;
+    width: 100%;
 }
 
 th, td {
@@ -22,14 +23,23 @@ th, td {
 tbody tr {
     text-align: center;
     border-bottom: 1px solid #dddddd;
+    width: 100%;
 }
 
 tbody tr.active-row {
     font-weight: bold;
+    width: 100%;
 }
 
 tr.own-shipments {
     background-color: rgb(227, 234, 236);
+    width: 100%;
+}
+
+div.table-content {
+    overflow-x:auto;
+    width: 100%;
+    display: grid
 }
 
 button {

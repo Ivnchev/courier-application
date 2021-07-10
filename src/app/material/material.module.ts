@@ -15,7 +15,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
-
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [],
@@ -35,7 +35,7 @@ import { MatSortModule } from '@angular/material/sort';
     MatRadioModule,
     MatTableModule,
     MatSortModule,
-
+    MatSelectModule,
   ],
   exports: [
     FlexLayoutModule,
@@ -52,7 +52,7 @@ import { MatSortModule } from '@angular/material/sort';
     MatRadioModule,
     MatTableModule,
     MatSortModule,
-
+    MatSelectModule,
   ]
 })
 export class MaterialModule { }

@@ -18,9 +18,9 @@ export class UserService {
   constructor(private http: HttpClient, private store: StorageService) { }
 
   getUser(): Observable<any> {
-    const {_id, token} = this.store.getItem('auth')
-    const headers = new HttpHeaders({ [constants.authHeaderName]: token })
-    return this.http.get(constants.baseUrl + 'users/' + _id, { headers, withCredentials: true })
+    const {_id} = this.store.getItem('auth')
+    // const headers = new HttpHeaders({ [constants.authHeaderName]: token })
+    return this.http.get(constants.baseUrl + 'users/' + _id, { withCredentials: true })
       .pipe(tap((u: IUser) => this._user.next(u)),)
   }
 

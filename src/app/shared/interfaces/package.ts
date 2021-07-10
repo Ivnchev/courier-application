@@ -7,5 +7,7 @@ export interface Ipackage {
     size: String,
     weight: Number,
     cost: Number,
-    creator: IUser
+    creator: IUser,
+    status: String,
+    showDetails: Boolean
 }

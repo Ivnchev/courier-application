@@ -17,7 +17,7 @@ export class ClaimListComponent implements OnInit {
   user$ = this.authService.currentUser$
   searchValue: string
   claims: IClaim[]
-
+  isLoading: boolean = false
 
   constructor(
     private authService: AuthService,
@@ -26,8 +26,12 @@ export class ClaimListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.isLoading = true
     this.storeService.getClaims().subscribe({
-      next: (data: IClaim[]) => this.claims = data
+      next: (data: IClaim[]) => {
+        this.isLoading = false
+        this.claims = data
+      }
     })
   }
 

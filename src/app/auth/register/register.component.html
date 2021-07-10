@@ -1,3 +1,4 @@
+<app-loader *ngIf="isLoading" showLoader="isLoading"></app-loader>
 <div class="card" fxLayout="column center" fxFlex.xs="70%">
     <mat-card fxFlex  fxLayout="column" class="mat-elevation-z22">
         <mat-card-content fxFlexAlign="center">
@@ -8,7 +9,7 @@
                 <div>
                     <mat-form-field apperance="fill">
                         <mat-label>Enter username</mat-label>
-                        <input name="username" placeholder="Gosho" formControlName="username" matInput>
+                        <input name="username" placeholder="Gosho" type="text" formControlName="username" matInput>
                         <mat-hint *ngIf="f.get('username').touched && f.get('username').errors?.required">Username is required!</mat-hint>
                         <mat-hint *ngIf="f.get('username').touched && f.get('username').errors?.minlength">Username must be at least 4 characters!</mat-hint>
                     </mat-form-field>
@@ -16,7 +17,7 @@
                 <div>
                     <mat-form-field apperance="fill">
                         <mat-label>Enter Email</mat-label>
-                        <input name="email" placeholder="example@example.com" formControlName="email" matInput>
+                        <input name="email" placeholder="example@example.com" type="text" formControlName="email" matInput>
                         <mat-hint *ngIf="f.get('email').touched && f.get('email').errors?.required">Email is required!</mat-hint>
                         <mat-hint *ngIf="f.get('email').touched && f.get('email').errors?.emailValidator">Email is incorrect!</mat-hint>
                     </mat-form-field>
@@ -24,7 +25,7 @@
                 <div>
                     <mat-form-field apperance="fill">
                         <mat-label>Enter Image Url</mat-label>
-                        <input name="image" placeholder="http://example@example.com/image.jpg" formControlName="image" matInput>
+                        <input name="image" placeholder="http://example@example.com/image.jpg" type="text" formControlName="image" matInput>
                         <mat-hint *ngIf="f.get('image').touched && f.get('image').errors?.required">Image is required!</mat-hint>
                         <mat-hint *ngIf="f.get('image').touched && f.get('image').errors?.imageValidator">Image URL is incorrect!</mat-hint>
                     </mat-form-field>

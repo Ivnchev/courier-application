@@ -9,7 +9,7 @@ import { StoreService } from 'src/app/core/services/store.service';
   styleUrls: ['./create-question.component.css']
 })
 export class CreateQuestionComponent implements OnInit {
-
+  isLoading: boolean = false
   f: FormGroup
 
   constructor(
@@ -27,8 +27,12 @@ export class CreateQuestionComponent implements OnInit {
   }
 
   questionHandler(formData: object): void {
-    this.storeService.postQuestions(formData).subscribe(data => {
+    this.isLoading = true
+    this.storeService.postQuestions(formData).subscribe({
+      next: data => {
+      this.isLoading = false
       this.router.navigateByUrl('/client-center/q&a')
+      }
     })
   }
 

@@ -51,6 +51,12 @@ div.register-content {
     box-shadow:0 0 20px rgba(0,0,0,0.5);
 }
 
-tr.own-shipments {
+tr.own-claims {
     background-color: rgb(227, 234, 236);
+}
+
+div.table-content {
+    overflow-x:auto;
+    width: 100%;
+    display: grid
 }

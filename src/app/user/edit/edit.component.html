@@ -32,24 +32,24 @@
                     </div>
                     <div>
                         <mat-form-field appearance="fill">
-                            <mat-label>Enter password</mat-label>
-                            <input matInput [type]="hide ? 'password' : 'text'" name="password" placeholder="******" formControlName="password">
+                            <mat-label>Enter old password</mat-label>
+                            <input matInput [type]="hide ? 'password' : 'text'" name="oldPassword" placeholder="******" formControlName="oldPassword">
                             <button mat-icon-button matSuffix (click)="hide = !hide" type="button">
                                 <mat-icon>{{!hide ? 'visibility' : 'visibility_off'}}</mat-icon>
                             </button>
-                            <mat-hint *ngIf="f.get('password').touched && f.get('password').errors?.required">Password is required!</mat-hint>
-                            <mat-hint *ngIf="f.get('password').touched && f.get('password').errors?.minlength">Password must be at least 4 characters!</mat-hint>
+                            <mat-hint *ngIf="f.get('oldPassword').touched && f.get('oldPassword').errors?.required">Password is required!</mat-hint>
+                            <mat-hint *ngIf="f.get('oldPassword').touched && f.get('oldPassword').errors?.minlength">Password must be at least 4 characters!</mat-hint>
                         </mat-form-field>
                     </div>
                     <div>
                         <mat-form-field appearance="fill">
-                            <mat-label>Repeat password</mat-label>
-                            <input matInput [type]="hideRepeat ? 'password' : 'text'" name="rePassword" placeholder="******" formControlName="rePassword">
+                            <mat-label>Enter new password</mat-label>
+                            <input matInput [type]="hideRepeat ? 'password' : 'text'" name="newPassword" placeholder="******" formControlName="newPassword">
                             <button mat-icon-button matSuffix (click)="hideRepeat = !hideRepeat" type="button">
                                 <mat-icon>{{!hideRepeat ? 'visibility' : 'visibility_off'}}</mat-icon>
                             </button>
-                            <mat-hint *ngIf="f.get('rePassword').touched && f.get('rePassword').errors?.required">Repeat password is required!</mat-hint>
-                            <mat-hint *ngIf="f.get('rePassword').touched && f.get('rePassword').errors?.rePassCheck">Repeat Password must be the same as password!</mat-hint>
+                            <mat-hint *ngIf="f.get('newPassword').touched && f.get('newPassword').errors?.required">Enter new password is required!</mat-hint>
+                            <mat-hint *ngIf="f.get('newPassword').touched && f.get('newPassword').errors?.rePassCheck">Enter new password must be the same as password!</mat-hint>
                         </mat-form-field>
                     </div>
                     <div>

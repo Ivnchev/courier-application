@@ -14,6 +14,7 @@ export class RegisterComponent implements OnInit {
 
   f: FormGroup
 
+  isLoading= false
   hide = true
   hideRepeat = true
 
@@ -38,15 +39,15 @@ export class RegisterComponent implements OnInit {
   }
 
   registerHandler(formData) {
-    console.log(formData);
+    this.isLoading = true
     this.authService.register(formData).subscribe({
       next: (data) => {
-        const { token, user } = data
-        // this.authService.isLogged()
+        this.isLoading = false
         this.storage.setItem('auth', data)
         this.router.navigateByUrl('/')
       },
       error: (err) => {
+        this.isLoading = false
         window.alert(err.message)
       }
     })

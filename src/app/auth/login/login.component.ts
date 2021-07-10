@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
 
   f: FormGroup
   hide = true
+  isLoading = false
 
   constructor(
     private authService: AuthService,
@@ -29,13 +30,16 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   loginHandler(formData): void {
+    this.isLoading = true
     this.authService.login(formData).subscribe({
       next: (data) => {
+        this.isLoading = false
         this.storage.setItem('auth', data)
         this.router.navigateByUrl('/')
       },
       error: (err) => {
-        window.alert(err.message)
+        window.alert(err.error)
+        this.isLoading = false
       }
     })
 
