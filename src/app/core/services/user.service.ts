@@ -24,4 +24,14 @@ export class UserService {
       .pipe(tap((u: IUser) => this._user.next(u)),)
   }
 
+  edit(data: object): Observable<any> {
+    const {_id} = this.store.getItem('auth')
+    return this.http.put(constants.baseUrl + 'users/' + _id, data, { withCredentials: true })
+  }
+
+  deleteUser(): Observable<any> {
+    const {_id} = this.store.getItem('auth')
+    return this.http.put(constants.baseUrl + 'users/' + _id, { withCredentials: true })
+  }
+
 }

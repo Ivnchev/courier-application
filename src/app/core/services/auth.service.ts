@@ -48,7 +48,7 @@ export class AuthService {
         tap((u: IUser) => this._currentUser.next(u)),
         catchError(() => { this._currentUser.next(null); return [null] })
       )
-
   }
+  
 
 }

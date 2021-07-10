@@ -27,6 +27,9 @@
                     <li>
                         <button class="register claim btn" mat-button (click)="toggleView(controlViewClaim)">Register Claim</button>
                     </li>
+                    <li>
+                        <button class="delete-user" mat-button (click)="deleteUser()">Delete Account</button>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -34,7 +37,6 @@
     </div>
 
     <div class="container" fxFlex.xs="1">
-
             <app-edit id="editMode" #controlView="appIsVisible" [appIsVisible]="controls.editMode"></app-edit>
             <app-register-claim id="claimMode" #controlViewClaim="appIsVisible" [appIsVisible]="controls.claimMode"></app-register-claim>
             <app-shipments id="myShipments" #controlViewShipments="appIsVisible" [appIsVisible]="controls.myShipments"></app-shipments>
