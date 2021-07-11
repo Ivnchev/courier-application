@@ -3,6 +3,8 @@ import { IClaim } from '../../shared/interfaces';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { StoreService } from 'src/app/core/services/store.service';
 import { Router } from '@angular/router';
+import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
+import { ModalComponent } from 'src/app/shared/modal/modal.component';
 
 
 @Component({
@@ -22,7 +24,8 @@ export class ClaimListComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private storeService: StoreService,
-    private router: Router
+    private router: Router,
+    private matDialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -39,17 +42,34 @@ export class ClaimListComponent implements OnInit {
     question.showDetails = !question.showDetails
   }
 
+  openModal(event: HTMLElementEventMap, claimId: string, claimRow: HTMLElement): void {
+    const dialogCfg = new MatDialogConfig()
 
-  deleteHandler(event: HTMLElementEventMap, claimId: string, claimRow: HTMLElement): void {
-
-    const confirm = window.confirm('Are you sure you want to delete?')
-    if (confirm) {
-      this.storeService.deleteClaim(claimId).subscribe({
-        next: (data: IClaim) => {
-          claimRow.remove()
-        }
-      })
+    dialogCfg.disableClose = true;
+    dialogCfg.id = "custom-modal";
+    dialogCfg.data = {
+      title: "Are you sure you want to delete?",
+      isConfirmed: true,
     }
+    const modalDialog = this.matDialog.open(ModalComponent, dialogCfg);
+
+    modalDialog.afterClosed().subscribe({
+      next: result => {
+        if (result) {
+          this.deleteHandler(claimId, claimRow)
+        }
+      }
+    })
+  }
+
+  deleteHandler(claimId: string, claimRow: HTMLElement): void {
+    this.isLoading = true
+    this.storeService.deleteClaim(claimId).subscribe({
+      next: (data: IClaim) => {
+        this.isLoading = false
+        claimRow.remove()
+      }
+    })
   }
 
 

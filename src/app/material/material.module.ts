@@ -16,6 +16,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import {MatSelectModule} from '@angular/material/select';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [],
@@ -36,6 +37,7 @@ import {MatSelectModule} from '@angular/material/select';
     MatTableModule,
     MatSortModule,
     MatSelectModule,
+    MatDialogModule
   ],
   exports: [
     FlexLayoutModule,
@@ -53,6 +55,7 @@ import {MatSelectModule} from '@angular/material/select';
     MatTableModule,
     MatSortModule,
     MatSelectModule,
+    MatDialogModule
   ]
 })
 export class MaterialModule { }

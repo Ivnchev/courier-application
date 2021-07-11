@@ -33,8 +33,8 @@
                             <input type="text" name="weight" placeholder="45kg" formControlName="weight" matInput>
                         </mat-form-field>
                     </div>
-                    <mat-form-field appearance="fill" *ngIf="(isAdmin$ | async)">
-                        <mat-label>Favorite food</mat-label>
+                    <mat-form-field appearance="fill" *ngIf="(isAdmin$ | async) && !isCreateMode">
+                        <mat-label>Status</mat-label>
                         <mat-select name="status" formControlName="status">
                           <mat-option value="created">Created</mat-option>
                           <mat-option value="transit">In Transit</mat-option>
@@ -44,7 +44,7 @@
                     <div>
                         <mat-label>Shipment Type: Economy cost: 20$ , Express cost: 40$ </mat-label>
                         <mat-radio-group fxLayoutGap="20px" formControlName="shipmentType" name="shipmentType">
-                            <mat-radio-button value="economy" [checked]="true">Economy</mat-radio-button>
+                            <mat-radio-button value="economy">Economy</mat-radio-button>
                             <mat-radio-button value="express">Express</mat-radio-button>
                             <mat-hint *ngIf="f.get('shipmentType').touched && f.get('shipmentType').errors?.required">Shipment Type is required !</mat-hint>
                             <mat-hint *ngIf="f.get('shipmentType').touched && f.get('shipmentType').errors?.shipmentTypeValidator">Shipment Type must be economy or express !</mat-hint>

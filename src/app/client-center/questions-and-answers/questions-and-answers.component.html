@@ -11,14 +11,20 @@
                 <tr>
                     <th>Title</th>
                     <th>View More</th>
+                    <th *ngIf="(isAdmin$ | async)">Delete</th>
                 </tr>
             </thead>
             <tbody *ngFor="let question of questions | searchQuestion: searchValue">
-                <tr>
-                    <td>{{question.title}}</td>
+                <tr #questionRow>
+                    <td #questionId [id]="question._id">{{question.title}}</td>
                     <td>
                         <button mat-icon-button color="accent" (click)="toogleInfo(question)">
                             <mat-icon class="mat-18">info</mat-icon>
+                        </button>
+                    </td>
+                    <td *ngIf="(isAdmin$ | async)">
+                        <button mat-icon-button color="warn" (click)="openModal($event, questionId?.id, questionRow)">
+                            <mat-icon>delete</mat-icon>
                         </button>
                     </td>
                 </tr>

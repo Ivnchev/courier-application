@@ -1,9 +1,10 @@
 export interface IUser {
-    _id: String,
-    username: String,
-    email: String,
-    image: String,
-    role: String,
+    _id: string,
+    username: string,
+    email: string,
+    image: string,
+    role: string,
     shipments: string[],
-    claims: string[]
+    claims: string[],
+    gender: string
 }

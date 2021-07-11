@@ -3,6 +3,9 @@ import { ControlViewDirective } from '../control-view.directive';
 
 import { UserService } from 'src/app/core/services/user.service';
 import { Router } from '@angular/router';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { ModalComponent } from 'src/app/shared/modal/modal.component';
+import { IUser } from 'src/app/shared/interfaces';
 
 @Component({
   selector: 'app-profile',
@@ -14,10 +17,13 @@ export class ProfileComponent implements OnInit {
 
   user$ = this.userService.user$
   isAdmin$ = this.userService.isAdmin$
-  userData
+  isLoading: boolean = false
+  userData: IUser
+
   constructor(
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private matDialog: MatDialog
   ) {
 
   }
@@ -39,7 +45,7 @@ export class ProfileComponent implements OnInit {
     this.controls.myShipments = false
 
     this.userService.getUser().subscribe({
-      next: userData => this.userData = userData
+      next: (userData: IUser) => this.userData = userData
     })
   }
 
@@ -49,13 +55,36 @@ export class ProfileComponent implements OnInit {
     this.controls[el] = !this.controls[el]
   }
 
-  deleteUser(): void {
-    const confirm = window.confirm("Are you sure?")
-    if(confirm){
-      this.userService.deleteUser().subscribe({
-        next: data => this.router.navigateByUrl('/auth/register')
-      })
+  openModal(): void {
+    const dialogCfg = new MatDialogConfig()
+
+    dialogCfg.disableClose = true;
+    dialogCfg.id = "custom-modal";
+    dialogCfg.data = {
+        title: "Are you sure you want to say Goodbye?",
+        isConfirmed: true,
+        userDelete: true,
+        accept: 'Goodbye'
     }
+    const modalDialog = this.matDialog.open(ModalComponent, dialogCfg);
+
+    modalDialog.afterClosed().subscribe({
+        next: result => {
+            if(result){
+                this.deleteUser()
+            }
+        }
+    })
+}
+
+  deleteUser(): void {
+      this.isLoading = true
+      this.userService.deleteUser().subscribe({
+        next: data => {
+          this.isLoading = false
+          this.router.navigateByUrl('/auth/register')
+        }
+      })
     
   }
 

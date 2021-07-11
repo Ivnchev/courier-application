@@ -1,0 +1,16 @@
+<div class="layout">
+    <div class="container">
+        <header>
+            <h1 class="title">{{data.title}}</h1>
+        </header>
+        <section *ngIf="data.userDelete">
+            <img src="https://img.icons8.com/ios/100/000000/sad.png" alt="SAD_FACE">
+        </section>
+        <footer>
+            <div class="action-wrapper">
+                <button mat-raised-button class="cancel" (click)="close()" cdkFocusInitial>{{data.reject || 'No'}}</button>
+                <button mat-raised-button class="action" [mat-dialog-close]="data.isConfirmed">{{data.accept || 'Yes'}}</button>
+            </div>
+        </footer>
+    </div>
+</div>

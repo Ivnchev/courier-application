@@ -26,6 +26,10 @@ export class StoreService {
     return this.http.post(constants.baseUrl + 'question-and-answers', data, { withCredentials: true })
   }
 
+  deleteQuestion(id: string): Observable<any> {
+    return this.http.delete(constants.baseUrl + 'question-and-answers/' + id, { withCredentials: true })
+  }
+
   getShipments(): Observable<any> {
     return this.http.get(constants.baseUrl + 'shipments', { withCredentials: true })
   }

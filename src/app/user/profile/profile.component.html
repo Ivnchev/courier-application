@@ -1,4 +1,5 @@
 <div class="layout" fxFlex fxLayout.xs="column" fxLayoutAlign.xs="space-around center" >
+    <app-loader *ngIf="isLoading"></app-loader>
     <div class="profile">
 
         <div class="profile-layout">
@@ -28,7 +29,7 @@
                         <button class="register claim btn" mat-button (click)="toggleView(controlViewClaim)">Register Claim</button>
                     </li>
                     <li>
-                        <button class="delete-user" mat-button (click)="deleteUser()">Delete Account</button>
+                        <button class="delete-user" mat-button (click)="openModal()">Delete Account</button>
                     </li>
                 </ul>
             </div>
