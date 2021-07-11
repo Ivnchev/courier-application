@@ -1,0 +1,32 @@
+[
+    {
+        "trackingNumber": 12457326,
+        "address": "Krasna Polyana",
+        "packageSize": "120/80/40",
+        "kilograms": 40
+    },
+    {
+        "trackingNumber": 13456656,
+        "address": "Samuilovsko shose",
+        "packageSize": "120/80/40",
+        "kilograms": 30
+    },
+    {
+        "trackingNumber": 43234565,
+        "address": "Dimitur Blagoev",
+        "packageSize": "110/70/40",
+        "kilograms": 20
+    },
+    {
+        "trackingNumber": 95016651,
+        "address": "Rakovska",
+        "packageSize": "100/60/40",
+        "kilograms": 40
+    },
+    {
+        "trackingNumber": 89426123,
+        "address": "Turgovska",
+        "packageSize": "150/80/30",
+        "kilograms": 40
+    }
+]
