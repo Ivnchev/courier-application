@@ -1,0 +1,31 @@
+div.layout {
+    height: 100%;
+    width: 100%;
+}
+h2.title {
+    padding: 3%;
+    text-align: center;
+}
+
+section {
+    text-align: center;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.5em;
+    color: rgb(0, 191, 255);
+}
+
+img {
+    max-width: 100%;
+    margin: auto;
+}
+
+
+div.road{
+    margin: 0;
+    border: 20px solid rgb(0, 0, 0);
+}

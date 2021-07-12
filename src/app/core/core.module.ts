@@ -9,6 +9,7 @@ import { FooterComponent } from './footer/footer.component';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './guards/auth.guard';
 import { SharedModule } from '../shared/shared.module';
+import { NotFound404Component } from './not-found404/not-found404.component';
 
 
 
@@ -18,7 +19,8 @@ import { SharedModule } from '../shared/shared.module';
     NavigationComponent,
     SidenavigationComponent,
     CarouselComponent,
-    FooterComponent
+    FooterComponent,
+    NotFound404Component
   ],
   imports: [
     CommonModule,
@@ -30,7 +32,8 @@ import { SharedModule } from '../shared/shared.module';
     NavigationComponent,
     SidenavigationComponent,
     CarouselComponent,
-    FooterComponent
+    FooterComponent,
+    NotFound404Component
   ],
   providers: [
     AuthGuard,
