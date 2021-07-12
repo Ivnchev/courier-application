@@ -35,7 +35,7 @@ export class CreateEditShipmentComponent implements OnInit {
       size: ['', [Validators.required, shipmentSize]],
       weight: ['', [Validators.required, Validators.min(2), shipmentWeight]],
       shipmentType: ['', [Validators.required, shipmentTypeValidator]],
-      status: ['']
+      status: [undefined]
     })
 
     if (!this.isCreateMode) {

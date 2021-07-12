@@ -49,6 +49,15 @@ export class AuthService {
         catchError(() => { this._currentUser.next(null); return [null] })
       )
   }
+
+  deleteUser(): Observable<any> {
+    const { _id } = this.store.getItem('auth')
+    return this.http.delete(constants.baseUrl + 'users/' + _id, { withCredentials: true })
+    .pipe(
+        tap((u: IUser) => { this._currentUser.next(null); return [null] }),
+          tap(u => this.store.removeItem('auth'))
+    )
+  }
   
 
 }

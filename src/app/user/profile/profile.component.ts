@@ -82,7 +82,7 @@ export class ProfileComponent implements OnInit {
       this.userService.deleteUser().subscribe({
         next: data => {
           this.isLoading = false
-          this.router.navigateByUrl('/auth/register')
+          this.router.navigateByUrl('/')
         }
       })
     

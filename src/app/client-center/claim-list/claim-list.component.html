@@ -34,8 +34,7 @@
                         </tr>
                     </thead>
                     <tbody *ngFor="let claim of claims | searchClaim: searchValue">
-                        <tr [ngClass]="claim?.creator?.username === (user$ | async)?.username ? 'own-claims': ''"
-                            #claimRow>
+                        <tr [ngClass]="(claim?.creator?._id === (user$ | async)?._id) && (isAdmin$ | async) ? 'own-claims': ''" #claimRow>
                             <td *ngIf="(isAdmin$ | async)">{{claim?.creator?.username}}</td>
                             <td #claimId [id]="claim._id">{{claim._id}}</td>
                             <td>{{(claim.createdAt | date)}}</td>

@@ -36,7 +36,7 @@
 
 <ng-template #isAdmin>
     <tbody *ngFor="let shipment of packages | searchFiler: searchValue">
-        <tr [ngClass]="(user$ | async)?.username === shipment.creator?.username ? 'own-shipments': ''" #shipmentRow>
+        <tr [ngClass]="shipment?.creator?._id === (user$ | async)?._id ? 'own-shipments': ''" #shipmentRow>
             <td>{{shipment?.creator?.username}}</td>
             <td #shipmentId [id]="shipment._id">{{shipment._id}}</td>
             <td>{{shipment.address}}</td>
