@@ -1,9 +1,9 @@
-import { Component, Output, EventEmitter, OnInit, OnChanges } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { StorageService } from '../services/storage.service';
 import { Subscription } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { AlertService } from '../services/alert.service';
 
 
 @Component({
@@ -20,9 +20,15 @@ export class NavigationComponent implements OnInit {
   isLogged$ = this.authService.currentUser$
   isAdmin$ = this.authService.isAdmin$
   user
-  
-  constructor(private router: Router, private authService: AuthService, public storage: StorageService) {
-    
+  hasError: boolean
+
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private storage: StorageService,
+    private alertService: AlertService
+  ) {
+    this.hasError = false
   }
 
   ngOnInit() : void { }
@@ -41,7 +47,8 @@ export class NavigationComponent implements OnInit {
         this.router.navigateByUrl('/')
       },
       error: (err) => {
-        window.alert(err.message)
+        this.hasError = true
+        this.alertService.create({ type: 'danger', message: err.error, time: 3000 })
       }
     })
   }

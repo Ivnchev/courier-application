@@ -4,6 +4,7 @@ import { emailValidator, rePassCheckFn, genderValidator, imageValidator } from '
 import { StorageService } from 'src/app/core/services/storage.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { AlertService } from 'src/app/core/services/alert.service';
 
 @Component({
   selector: 'app-register',
@@ -14,15 +15,17 @@ export class RegisterComponent implements OnInit {
 
   f: FormGroup
 
-  isLoading= false
-  hide = true
-  hideRepeat = true
+  isLoading: boolean = false
+  hide: boolean = true
+  hideRepeat: boolean = true
+  hasError: boolean
 
   constructor(
     private authService: AuthService,
     private router: Router,
     private storage: StorageService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private alertService: AlertService
   ) {
     const passwordCheck = this.fb.control('', [Validators.required, Validators.minLength(4)])
     this.f = this.fb.group({
@@ -33,6 +36,7 @@ export class RegisterComponent implements OnInit {
       gender: ['', [Validators.required, genderValidator]],
       image: ['', [Validators.required, imageValidator]]
     })
+    this.hasError = false
   }
 
   ngOnInit(): void {
@@ -47,8 +51,9 @@ export class RegisterComponent implements OnInit {
         this.router.navigateByUrl('/')
       },
       error: (err) => {
+        this.hasError = true
         this.isLoading = false
-        window.alert(err.message)
+        this.alertService.create({ type: 'danger', message: err.error, time: 3000 })
       }
     })
   }

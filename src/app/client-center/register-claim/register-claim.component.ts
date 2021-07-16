@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { StoreService } from 'src/app/core/services/store.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
+import { AlertService } from 'src/app/core/services/alert.service';
 
 @Component({
   selector: 'app-register-claim',
@@ -15,12 +16,13 @@ export class RegisterClaimComponent implements OnInit {
   id: string
   isCreateMode: boolean
   isLoading: boolean = false
-
+  hasError: boolean
   constructor(
     private storeService: StoreService,
     private route: ActivatedRoute,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private alertService: AlertService
   ) { }
 
   ngOnInit(): void {
@@ -37,12 +39,12 @@ export class RegisterClaimComponent implements OnInit {
         .pipe(first())
         .subscribe(x => this.f.patchValue(x))
     }
-
+    this.hasError = false
   }
 
   claimHandler(formData: object): void {
     if (this.f.invalid) { return }
-
+    this.isLoading = true
     if (this.isCreateMode) {
       this.createClaim(formData)
     } else {
@@ -52,21 +54,29 @@ export class RegisterClaimComponent implements OnInit {
   }
 
   private createClaim(formData) {
-    this.isLoading = true
     this.storeService.postClaim(formData).subscribe({
       next: data => {
         this.isLoading = false
         this.router.navigateByUrl('/client-center/claims')
+      },
+      error: err => {
+        this.hasError = true
+        this.isLoading = false
+        this.alertService.create({ type: 'danger', message: err.error, time: 3000 })
       }
     })
   }
 
   private editClaim(formData) {
-    this.isLoading = true
     this.storeService.editClaim(this.id, formData).subscribe({
       next: data => {
         this.isLoading = false
         this.router.navigateByUrl('/client-center/claims')
+      },
+      error: err => {
+        this.hasError = true
+        this.isLoading = false
+        this.alertService.create({ type: 'danger', message: err.error, time: 3000 })
       }
     })
   }

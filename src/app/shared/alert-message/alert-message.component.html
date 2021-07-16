@@ -1,0 +1,9 @@
+<div class="layout" *ngIf="status" >
+    <div class="container" [ngStyle]="color" *ngFor="let alert of alerts">
+        
+        <span class="content">
+            <p class="error-message">{{alert.message}}</p>
+        </span>
+        <span class="icon" (click)="close()">X</span>
+    </div>
+</div>

@@ -5,6 +5,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { shipmentTypeValidator, shipmentSize, shipmentWeight } from 'src/app/shared/common-validators';
 import { first } from 'rxjs/operators';
 import { AuthService } from 'src/app/core/services/auth.service';
+import { AlertService } from 'src/app/core/services/alert.service';
 
 @Component({
   selector: 'app-create-shipment',
@@ -16,7 +17,10 @@ export class CreateEditShipmentComponent implements OnInit {
   f: FormGroup
   id: string
   isCreateMode: boolean
+  hasError: boolean
+  isLoading: boolean = false
   isAdmin$ = this.authService.isAdmin$
+
 
   constructor(
     private storeService: StoreService,
@@ -24,6 +28,7 @@ export class CreateEditShipmentComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private authService: AuthService,
+    private alertService: AlertService
   ) { }
 
   ngOnInit(): void {
@@ -37,11 +42,14 @@ export class CreateEditShipmentComponent implements OnInit {
       shipmentType: ['', [Validators.required, shipmentTypeValidator]],
       status: [undefined]
     })
-
+    this.hasError = false
     if (!this.isCreateMode) {
       this.storeService.getShipment(this.id)
         .pipe(first())
-        .subscribe(x => this.f.patchValue(x))
+        .subscribe(x => this.f.patchValue(x), err => {
+          this.hasError = true
+          this.alertService.create({ type: 'danger', message: err.error, time: 3000 })
+        })
     }
 
   }
@@ -51,6 +59,7 @@ export class CreateEditShipmentComponent implements OnInit {
     if (this.f.invalid) {
       return
     }
+    this.isLoading = true
     if (this.isCreateMode) {
       this.createShipment(formData)
     } else {
@@ -60,14 +69,30 @@ export class CreateEditShipmentComponent implements OnInit {
   }
 
   private createShipment(formData) {
-    this.storeService.postShipment(formData).subscribe(data => {
-      this.router.navigateByUrl('/shipments')
+    this.storeService.postShipment(formData).subscribe({
+      next: data => {
+        this.isLoading = false
+        this.router.navigateByUrl('/shipments')
+      },
+      error: err => {
+        this.hasError = true
+        this.isLoading = false
+        this.alertService.create({ type: 'danger', message: err.error, time: 3000 })
+      }
     })
   }
 
   private editShipment(formData) {
-    this.storeService.editShipment(this.id, formData).subscribe(data => {
-      this.router.navigateByUrl('/shipments')
+    this.storeService.editShipment(this.id, formData).subscribe({
+      next: data => {
+        this.isLoading = false
+        this.router.navigateByUrl('/shipments')
+      },
+      error: err => {
+        this.hasError = true
+        this.isLoading = false
+        this.alertService.create({ type: 'danger', message: err.error, time: 3000 })
+      }
     })
   }
 

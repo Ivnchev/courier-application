@@ -10,17 +10,17 @@
                     Services
                 </a>
             </li>
-            <li>
+            <li *ngIf="(isLogged$ | async)">
                 <a routerLink="/shipments">
                     <mat-icon>pageview</mat-icon> Find Shipment
                 </a>
             </li>
-            <li>
+            <li *ngIf="(isLogged$ | async)">
                 <a routerLink="/shipments/create">
                     <mat-icon>local_shipping</mat-icon> Create Shipment
                 </a>
             </li>
-            <li>
+            <li *ngIf="(isLogged$ | async)">
                 <a routerLink="/client-center/claims">
                     <mat-icon>content_paste</mat-icon> Report shipment
                 </a>

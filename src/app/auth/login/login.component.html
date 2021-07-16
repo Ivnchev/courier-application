@@ -1,40 +1,43 @@
-<app-loader *ngIf="isLoading" showLoader="isLoading"></app-loader>
-<div class="card" fxLayout="column center" fxFlex.xs="70%">
-    <mat-card fxFlex fxLayout="column" class="mat-elevation-z22">
-        <mat-card-content fxFlexAlign="center">
-            <form [formGroup]="f" (ngSubmit)="loginHandler(f.value)">
-                <div class="login-label">
-                    <mat-label class="login-label">LOGIN</mat-label>
-                </div>
-                <div>
-                    <mat-form-field apperance="fill">
-                        <mat-label>Enter your username</mat-label>
-                        <input name="username" placeholder="Gosho" type="text" formControlName="username" matInput>
-                        <mat-hint *ngIf="f.get('username').touched && f.get('username').errors?.required">Username is required!</mat-hint>
-                        <mat-hint *ngIf="f.get('username').touched && f.get('username').errors?.minlength">Username must be at least 4 characters!</mat-hint>
-                    </mat-form-field>
-                </div>
-                <div>
-                    <mat-form-field apperance="fill">
-                        <mat-label>Enter your password</mat-label>
-                        <input matInput [type]="hide ? 'password' : 'text'" name="password" id="password" placeholder="******" formControlName="password">
-                        <button mat-icon-button matSuffix (click)="hide = !hide" type="button">
-                            <mat-icon>{{!hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-                        </button>
-                        <mat-hint *ngIf="f.get('password').touched && f.get('password').errors?.required">Password is required!</mat-hint>
-                        <mat-hint *ngIf="f.get('password').touched && f.get('password').errors?.minlength">Password must be at least 4 characters!</mat-hint>
-                    </mat-form-field>
-                </div>
-                <br>
-                <div>
-                    <span> Don't have account? <a routerLink="/auth/register">Click here!</a> </span>
-                </div>
-                <br>
-                <div class="btn-submit">
-                    <button mat-raised-button type="submit" [disabled]="f.invalid">Sign in</button>
-                </div>
-            </form>
-        </mat-card-content>
-
-    </mat-card>
+<div class="layout">
+    <app-loader *ngIf="isLoading" showLoader="isLoading"></app-loader>
+    <app-alert-message *ngIf="hasError"></app-alert-message>
+    <div class="card" fxLayout="column center" fxFlex.xs="70%">
+        <mat-card fxFlex fxLayout="column" class="mat-elevation-z22">
+            <mat-card-content fxFlexAlign="center">
+                <form [formGroup]="f" (ngSubmit)="loginHandler(f.value)">
+                    <div class="login-label">
+                        <mat-label class="login-label">LOGIN</mat-label>
+                    </div>
+                    <div>
+                        <mat-form-field apperance="fill">
+                            <mat-label>Enter your username</mat-label>
+                            <input name="username" placeholder="Gosho" type="text" formControlName="username" matInput>
+                            <mat-hint *ngIf="f.get('username').touched && f.get('username').errors?.required">Username is required!</mat-hint>
+                            <mat-hint *ngIf="f.get('username').touched && f.get('username').errors?.minlength">Username must be at least 4 characters!</mat-hint>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field apperance="fill">
+                            <mat-label>Enter your password</mat-label>
+                            <input matInput [type]="hide ? 'password' : 'text'" name="password" id="password" placeholder="******" formControlName="password">
+                            <button mat-icon-button matSuffix (click)="hide = !hide" type="button">
+                                <mat-icon>{{!hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                            </button>
+                            <mat-hint *ngIf="f.get('password').touched && f.get('password').errors?.required">Password is required!</mat-hint>
+                            <mat-hint *ngIf="f.get('password').touched && f.get('password').errors?.minlength">Password must be at least 4 characters!</mat-hint>
+                        </mat-form-field>
+                    </div>
+                    <br>
+                    <div>
+                        <span> Don't have account? <a routerLink="/auth/register">Click here!</a> </span>
+                    </div>
+                    <br>
+                    <div class="btn-submit">
+                        <button mat-raised-button type="submit" [disabled]="f.invalid">Sign in</button>
+                    </div>
+                </form>
+            </mat-card-content>
+    
+        </mat-card>
+    </div>
 </div>

@@ -1,4 +1,5 @@
 <app-loader *ngIf="isLoading" showLoader="isLoading"></app-loader>
+<app-alert-message *ngIf="hasError"></app-alert-message>
 <div class="card" fxLayout="column center" fxFlex.xs="70%">
     <mat-card fxFlex  fxLayout="column" class="mat-elevation-z22">
         <mat-card-content fxFlexAlign="center">

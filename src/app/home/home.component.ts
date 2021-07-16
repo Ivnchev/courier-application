@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { Location, LocationStrategy, PathLocationStrategy, PopStateEvent } from '@angular/common';
 import { INews } from '../shared/interfaces';
 import { StoreService } from '../core/services/store.service';
+import { AuthService } from '../core/services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +10,9 @@ import { StoreService } from '../core/services/store.service';
   styleUrls: ['./home.component.css'],
   providers: [Location, { provide: LocationStrategy, useClass: PathLocationStrategy }]
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnChanges {
+
+  isLogged$ = this.authService.isLogged$
 
   news: INews[]
 
@@ -17,7 +20,8 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private location: Location,
-    private storeService: StoreService
+    private storeService: StoreService,
+    private authService: AuthService
   ) {
     const index = Number(this.location.path(true).substring(1)) || 0
     this.selectedIndex = index
@@ -26,9 +30,13 @@ export class HomeComponent implements OnInit {
       const index = Number(value.url.substring(6)) || 0
       this.selectedIndex = value.url ? index : 0
     });
+    this.storeService.getNews().subscribe((result: INews[]) => {
+      result.map((x, i) => { x['link'] = i; return x })
+      this.news = result
+    })
   }
 
-  ngOnInit(): void {
+  ngOnChanges(): void {
     this.storeService.getNews().subscribe((result: INews[]) => {
       result.map((x, i) => { x['link'] = i; return x })
       this.news = result

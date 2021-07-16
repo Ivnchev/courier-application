@@ -4,13 +4,16 @@ import { MaterialModule } from '../material/material.module';
 import { TrimTextPipe } from './common-pipes/trim-text.pipe';
 import { LoaderComponent } from './loader/loader.component';
 import { ModalComponent } from './modal/modal.component';
+import { AlertMessageComponent } from './alert-message/alert-message.component';
 
 
 
 @NgModule({
   declarations: [  
     TrimTextPipe, 
-    LoaderComponent, ModalComponent
+    LoaderComponent, 
+    ModalComponent, 
+    AlertMessageComponent
   ],
   imports: [
     CommonModule,
@@ -18,7 +21,8 @@ import { ModalComponent } from './modal/modal.component';
   ],
   exports: [
     TrimTextPipe,
-    LoaderComponent
+    LoaderComponent,
+    AlertMessageComponent
   ],
   entryComponents: [ModalComponent]
 })

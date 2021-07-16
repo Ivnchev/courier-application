@@ -1,0 +1,39 @@
+.layout {
+    max-width: 350px;
+    max-height: 50px;
+    height: 100%;
+    width: 100%;
+    z-index: 9999;
+    right: 3%;
+    margin: auto;
+    float: right;
+    position: fixed;
+    text-align: center;
+
+}
+
+.icon, .content {
+    display: inline-block;
+    margin: auto;
+
+}
+
+.icon {
+    position: relative;
+    margin: 10px;
+    font-weight: bold;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.container {
+    margin: 10px;
+    display: block;
+    height: 100%;
+    width: 100%;
+    border-radius: 2em;
+}
+.error-message {
+    display: inline-block;
+}
+
