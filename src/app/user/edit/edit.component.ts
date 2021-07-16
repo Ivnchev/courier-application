@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { emailValidator, genderValidator, imageValidator } from 'src/app/auth/validators';
 import { first } from 'rxjs/operators';
-import { AlertService } from 'src/app/core/services/alert.service';
+import { AlertService } from 'src/app/shared/services/alert.service';
 
 @Component({
   selector: 'app-edit',

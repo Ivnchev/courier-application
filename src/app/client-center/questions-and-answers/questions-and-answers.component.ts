@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { IQuestion } from 'src/app/shared/interfaces';
-import { StoreService } from 'src/app/core/services/store.service';
 import { AuthService } from 'src/app/auth/auth.service';
 import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from 'src/app/shared/modal/modal.component';
+import { QuestionsService } from 'src/app/admin/services/questions.service';
 @Component({
   selector: 'app-questions-and-answers',
   templateUrl: './questions-and-answers.component.html',
@@ -17,14 +17,14 @@ export class QuestionsAndAnswersComponent implements OnInit {
   isLoading: boolean = false
 
   constructor(
-    private storeService: StoreService,
+    private questionService: QuestionsService,
     private authService: AuthService,
     private matDialog: MatDialog
   ) { }
 
   ngOnInit(): void {
 
-    this.storeService.getQuestions().subscribe({
+    this.questionService.getQuestions().subscribe({
       next: (data: IQuestion[]) => {
         this.questions = data
       }
@@ -59,7 +59,7 @@ export class QuestionsAndAnswersComponent implements OnInit {
 
   deleteHandler(questionId: string, questionRow: HTMLElement): void {
     this.isLoading = true
-    this.storeService.deleteQuestion(questionId).subscribe({
+    this.questionService.deleteQuestion(questionId).subscribe({
       next: (data: IQuestion) => {
         this.isLoading = false
         questionRow.remove()

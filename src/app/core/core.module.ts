@@ -6,10 +6,10 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { SidenavigationComponent } from './sidenavigation/sidenavigation.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { FooterComponent } from './footer/footer.component';
-import { AuthGuard } from './guards/auth.guard';
+import { AuthGuard } from '../shared/guards/auth.guard';
 import { SharedModule } from '../shared/shared.module';
 import { NotFound404Component } from './not-found404/not-found404.component';
-import { AlertService } from './services/alert.service';
+import { AlertService } from '../shared/services/alert.service';
 
 
 

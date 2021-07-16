@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { IClaim } from '../../shared/interfaces';
 import { AuthService } from 'src/app/auth/auth.service';
-import { StoreService } from 'src/app/core/services/store.service';
 import { Router } from '@angular/router';
 import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from 'src/app/shared/modal/modal.component';
+import { ClaimService } from '../services/claim.service';
 
 
 @Component({
@@ -23,14 +23,14 @@ export class ClaimListComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private storeService: StoreService,
+    private claimService: ClaimService,
     private router: Router,
     private matDialog: MatDialog
   ) { }
 
   ngOnInit() {
     this.isLoading = true
-    this.storeService.getClaims().subscribe({
+    this.claimService.getClaims().subscribe({
       next: (data: IClaim[]) => {
         this.isLoading = false
         this.claims = data
@@ -64,7 +64,7 @@ export class ClaimListComponent implements OnInit {
 
   deleteHandler(claimId: string, claimRow: HTMLElement): void {
     this.isLoading = true
-    this.storeService.deleteClaim(claimId).subscribe({
+    this.claimService.deleteClaim(claimId).subscribe({
       next: (data: IClaim) => {
         this.isLoading = false
         claimRow.remove()

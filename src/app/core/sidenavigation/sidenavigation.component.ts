@@ -1,7 +1,7 @@
 import { Component, Output, EventEmitter, OnChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth/auth.service';
-import { StorageService } from '../services/storage.service';
+import { StorageService } from '../../shared/services/storage.service';
 
 @Component({
   selector: 'app-sidenavigation',

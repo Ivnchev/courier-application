@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { emailValidator, rePassCheckFn, genderValidator, imageValidator } from '../validators';
-import { StorageService } from 'src/app/core/services/storage.service';
+import { StorageService } from 'src/app/shared/services/storage.service';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
-import { AlertService } from 'src/app/core/services/alert.service';
+import { AlertService } from 'src/app/shared/services/alert.service';
 
 @Component({
   selector: 'app-register',

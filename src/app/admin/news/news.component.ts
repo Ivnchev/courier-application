@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { StoreService } from 'src/app/core/services/store.service';
 import { imageValidator } from 'src/app/auth/validators';
-import { AlertService } from 'src/app/core/services/alert.service';
+import { AlertService } from 'src/app/shared/services/alert.service';
+import { NewsService } from '../services/news.service';
 
 @Component({
   selector: 'app-news',
@@ -18,7 +18,7 @@ export class NewsComponent implements OnInit {
   constructor(
     private router: Router,
     private fb: FormBuilder,
-    private storeService: StoreService,
+    private newsService: NewsService,
     private alertService: AlertService
   ) {
     this.f = this.fb.group({
@@ -34,7 +34,7 @@ export class NewsComponent implements OnInit {
 
   newsHandler(formData: object): void {
     this.isLoading = true
-    this.storeService.postNews(formData).subscribe({
+    this.newsService.postNews(formData).subscribe({
       next: data => {
         this.isLoading = false
         this.router.navigateByUrl('/')

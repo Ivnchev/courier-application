@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { StoreService } from 'src/app/core/services/store.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { shipmentTypeValidator, shipmentSize, shipmentWeight } from 'src/app/shared/common-validators';
 import { first } from 'rxjs/operators';
 import { AuthService } from 'src/app/auth/auth.service';
-import { AlertService } from 'src/app/core/services/alert.service';
+import { AlertService } from 'src/app/shared/services/alert.service';
+import { ShipmentService } from '../services/shipment.service';
 
 @Component({
   selector: 'app-create-shipment',
@@ -23,7 +23,7 @@ export class CreateEditShipmentComponent implements OnInit {
 
 
   constructor(
-    private storeService: StoreService,
+    private shipmentService: ShipmentService,
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private router: Router,
@@ -44,7 +44,7 @@ export class CreateEditShipmentComponent implements OnInit {
     })
     this.hasError = false
     if (!this.isCreateMode) {
-      this.storeService.getShipment(this.id)
+      this.shipmentService.getShipment(this.id)
         .pipe(first())
         .subscribe(x => this.f.patchValue(x), err => {
           this.hasError = true
@@ -69,7 +69,7 @@ export class CreateEditShipmentComponent implements OnInit {
   }
 
   private createShipment(formData) {
-    this.storeService.postShipment(formData).subscribe({
+    this.shipmentService.postShipment(formData).subscribe({
       next: data => {
         this.isLoading = false
         this.router.navigateByUrl('/shipments')
@@ -83,7 +83,7 @@ export class CreateEditShipmentComponent implements OnInit {
   }
 
   private editShipment(formData) {
-    this.storeService.editShipment(this.id, formData).subscribe({
+    this.shipmentService.editShipment(this.id, formData).subscribe({
       next: data => {
         this.isLoading = false
         this.router.navigateByUrl('/shipments')

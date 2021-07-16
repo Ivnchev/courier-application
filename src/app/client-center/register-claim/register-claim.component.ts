@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { StoreService } from 'src/app/core/services/store.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
-import { AlertService } from 'src/app/core/services/alert.service';
+import { AlertService } from 'src/app/shared/services/alert.service';
+import { ClaimService } from '../services/claim.service';
 
 @Component({
   selector: 'app-register-claim',
@@ -18,7 +18,7 @@ export class RegisterClaimComponent implements OnInit {
   isLoading: boolean = false
   hasError: boolean
   constructor(
-    private storeService: StoreService,
+    private claimService: ClaimService,
     private route: ActivatedRoute,
     private fb: FormBuilder,
     private router: Router,
@@ -35,7 +35,7 @@ export class RegisterClaimComponent implements OnInit {
     })
 
     if (!this.isCreateMode) {
-      this.storeService.getClaim(this.id)
+      this.claimService.getClaim(this.id)
         .pipe(first())
         .subscribe(x => this.f.patchValue(x))
     }
@@ -54,7 +54,7 @@ export class RegisterClaimComponent implements OnInit {
   }
 
   private createClaim(formData) {
-    this.storeService.postClaim(formData).subscribe({
+    this.claimService.postClaim(formData).subscribe({
       next: data => {
         this.isLoading = false
         this.router.navigateByUrl('/client-center/claims')
@@ -68,7 +68,7 @@ export class RegisterClaimComponent implements OnInit {
   }
 
   private editClaim(formData) {
-    this.storeService.editClaim(this.id, formData).subscribe({
+    this.claimService.editClaim(this.id, formData).subscribe({
       next: data => {
         this.isLoading = false
         this.router.navigateByUrl('/client-center/claims')

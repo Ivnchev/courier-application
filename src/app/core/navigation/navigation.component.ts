@@ -1,9 +1,9 @@
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../auth/auth.service';
-import { StorageService } from '../services/storage.service';
+import { StorageService } from '../../shared/services/storage.service';
 import { Subscription } from 'rxjs';
-import { AlertService } from '../services/alert.service';
+import { AlertService } from '../../shared/services/alert.service';
 
 
 @Component({

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { StoreService } from 'src/app/core/services/store.service';
-import { AlertService } from 'src/app/core/services/alert.service';
+import { AlertService } from 'src/app/shared/services/alert.service';
+import { QuestionsService } from '../services/questions.service';
 
 @Component({
   selector: 'app-create-question',
@@ -17,7 +17,7 @@ export class CreateQuestionComponent implements OnInit {
   constructor(
     private router: Router,
     private fb: FormBuilder,
-    private storeService: StoreService,
+    private questionService: QuestionsService,
     private alertService: AlertService
   ) {
     this.f = this.fb.group({
@@ -32,7 +32,7 @@ export class CreateQuestionComponent implements OnInit {
 
   questionHandler(formData: object): void {
     this.isLoading = true
-    this.storeService.postQuestions(formData).subscribe({
+    this.questionService.postQuestions(formData).subscribe({
       next: data => {
         this.isLoading = false
         this.router.navigateByUrl('/client-center/q&a')
