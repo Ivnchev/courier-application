@@ -2,7 +2,7 @@ import { Component, OnInit, OnChanges } from '@angular/core';
 import { Location, LocationStrategy, PathLocationStrategy, PopStateEvent } from '@angular/common';
 import { INews } from '../shared/interfaces';
 import { StoreService } from '../core/services/store.service';
-import { AuthService } from '../core/services/auth.service';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-home',

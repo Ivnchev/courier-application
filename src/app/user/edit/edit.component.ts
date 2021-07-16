@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { UserService } from 'src/app/core/services/user.service';
+import { UserService } from 'src/app/user/user.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { emailValidator, genderValidator, imageValidator } from 'src/app/auth/validators';

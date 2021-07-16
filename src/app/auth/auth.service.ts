@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { IUser } from 'src/app/shared/interfaces';
 import { map, tap, catchError } from 'rxjs/operators';
-import { StorageService } from './storage.service';
+import { StorageService } from '../core/services/storage.service';
 import { constants } from 'src/app/shared/constants';
 
 

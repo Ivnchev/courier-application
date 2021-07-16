@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IQuestion } from 'src/app/shared/interfaces';
 import { StoreService } from 'src/app/core/services/store.service';
-import { AuthService } from 'src/app/core/services/auth.service';
+import { AuthService } from 'src/app/auth/auth.service';
 import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from 'src/app/shared/modal/modal.component';
 @Component({

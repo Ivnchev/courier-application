@@ -3,7 +3,7 @@ import { Component, OnInit, OnChanges } from '@angular/core';
 import { Ipackage } from 'src/app/shared/interfaces';
 import { StoreService } from 'src/app/core/services/store.service';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/core/services/auth.service';
+import { AuthService } from 'src/app/auth/auth.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ModalComponent } from 'src/app/shared/modal/modal.component';
 
@@ -34,6 +34,9 @@ export class ShipmentsComponent implements OnInit, OnChanges {
             next: (data: Ipackage[]) => {
                 this.isLoading = false
                 this.packages = data
+            },
+            error: err => {
+                this.isLoading = false
             }
         })
 
@@ -41,7 +44,10 @@ export class ShipmentsComponent implements OnInit, OnChanges {
 
     ngOnChanges(): void {
         this.storeService.getShipments().subscribe({
-            next: (data: Ipackage[]) => this.packages = data
+            next: (data: Ipackage[]) => this.packages = data,
+            error: err => {
+                this.isLoading = false
+            }
         })
     }
 
@@ -66,6 +72,9 @@ export class ShipmentsComponent implements OnInit, OnChanges {
                 if(result){
                     this.deleteHandler(shipmentId, shipmentRow)
                 }
+            },
+            error: err => {
+                this.isLoading = false
             }
         })
     }
@@ -76,6 +85,9 @@ export class ShipmentsComponent implements OnInit, OnChanges {
                 next: (data: Ipackage) => {
                     this.isLoading = false
                     shipmentRow.remove()
+                },
+                error: err => {
+                    this.isLoading = false
                 }
             })
     }

@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { shipmentTypeValidator, shipmentSize, shipmentWeight } from 'src/app/shared/common-validators';
 import { first } from 'rxjs/operators';
-import { AuthService } from 'src/app/core/services/auth.service';
+import { AuthService } from 'src/app/auth/auth.service';
 import { AlertService } from 'src/app/core/services/alert.service';
 
 @Component({

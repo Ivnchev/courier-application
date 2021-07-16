@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ControlViewDirective } from '../control-view.directive';
 
-import { UserService } from 'src/app/core/services/user.service';
+import { UserService } from 'src/app/user/user.service';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ModalComponent } from 'src/app/shared/modal/modal.component';

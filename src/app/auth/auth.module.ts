@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
 import { AuthRoutingModule } from './auth-routing.module';
 import { SharedModule } from '../shared/shared.module';
+import { AuthService } from './auth.service';
 
 
 
@@ -25,6 +26,9 @@ import { SharedModule } from '../shared/shared.module';
   exports: [
     LoginComponent,
     RegisterComponent,
+  ],
+  providers: [
+    AuthService
   ]
 })
 export class AuthModule { }

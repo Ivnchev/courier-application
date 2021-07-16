@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IClaim } from '../../shared/interfaces';
-import { AuthService } from 'src/app/core/services/auth.service';
+import { AuthService } from 'src/app/auth/auth.service';
 import { StoreService } from 'src/app/core/services/store.service';
 import { Router } from '@angular/router';
 import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
