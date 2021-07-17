@@ -10,6 +10,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchClaimPipe } from './search-claim.pipe';
 import { SearchQuestionPipe } from './search-question.pipe';
 import { ClientServicesComponent } from './client-services/client-services.component';
+import { ServicePricesComponent } from './service-prices/service-prices.component';
+import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { ClientServicesComponent } from './client-services/client-services.compo
     RegisterClaimComponent,
     SearchClaimPipe,
     SearchQuestionPipe,
-    ClientServicesComponent
+    ClientServicesComponent,
+    ServicePricesComponent,
+    ContactComponent
   ],
   imports: [
     CommonModule,

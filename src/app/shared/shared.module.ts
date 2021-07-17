@@ -5,6 +5,8 @@ import { TrimTextPipe } from './common-pipes/trim-text.pipe';
 import { LoaderComponent } from './loader/loader.component';
 import { ModalComponent } from './modal/modal.component';
 import { AlertMessageComponent } from './alert-message/alert-message.component';
+import { AuthGuard } from './guards/auth.guard';
+import { AlertService } from './services/alert.service';
 
 
 
@@ -24,6 +26,10 @@ import { AlertMessageComponent } from './alert-message/alert-message.component';
     LoaderComponent,
     AlertMessageComponent
   ],
-  entryComponents: [ModalComponent]
+  entryComponents: [ModalComponent],
+  providers: [
+    AuthGuard,
+    AlertService
+  ]
 })
 export class SharedModule { }
