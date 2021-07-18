@@ -10,11 +10,23 @@ export class NewsService {
 
   constructor(private http: HttpClient) { }
 
-  getNews(): Observable<any> {
+  getAll(): Observable<any> {
     return this.http.get(constants.baseUrl + 'news', { withCredentials: true })
   }
 
-  postNews(data: object): Observable<any> {
+  getOne(id: string): Observable<any> {
+    return this.http.get(constants.baseUrl + 'news/' + id, { withCredentials: true })
+  }
+
+  postOne(data: object): Observable<any> {
     return this.http.post(constants.baseUrl + 'news', data, { withCredentials: true })
+  }
+
+  updateOne(id: string, data: object): Observable<any> {
+    return this.http.put(constants.baseUrl + 'shipments/' + id, data, { withCredentials: true })
+  }
+
+  deleteOne(id: string): Observable<any> {
+    return this.http.delete(constants.baseUrl + 'shipments/' + id, { withCredentials: true })
   }
 }

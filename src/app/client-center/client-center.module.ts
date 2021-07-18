@@ -34,7 +34,8 @@ import { ContactComponent } from './contact/contact.component';
   ],
   exports: [
     ClaimListComponent,
-    RegisterClaimComponent
+    RegisterClaimComponent,
+    QuestionsAndAnswersComponent
   ]
 })
 export class ClientCenterModule { }

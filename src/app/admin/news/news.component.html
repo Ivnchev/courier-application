@@ -7,7 +7,16 @@
                 <mat-card-content>
                     <form [formGroup]="f" (ngSubmit)="newsHandler(f.value)" name="form" #form="ngForm">
                         <div class="label">
-                            <mat-label class="label-form">Create News</mat-label>
+                            <ng-container *ngIf="isCreateMode;then createMode else editMode"></ng-container>
+                            <ng-template #createMode>
+                                <mat-label class="label-form">Create News</mat-label>
+                            </ng-template>
+                            <ng-template #editMode>
+                                <mat-label class="label-form">Edit News</mat-label>
+                            </ng-template>
+                        </div>
+                        <div *ngIf="!isCreateMode">
+                            <img class="image-view" [src]="image.value" alt="">
                         </div>
                         <div>
                             <mat-label>Enter title</mat-label>
@@ -23,7 +32,7 @@
                         <div>
                             <mat-label>Enter Image</mat-label>
                             <mat-form-field appearance="fill">
-                                <input type="text" name="imageUrl" placeholder="http://pic.com/img.jpg"
+                                <input #image type="text" name="imageUrl" placeholder="http://pic.com/img.jpg"
                                     formControlName="imageUrl" matInput>
                                 <mat-hint *ngIf="f.get('imageUrl').touched && f.get('imageUrl').errors?.required">Image
                                     Url is required!</mat-hint>
@@ -43,9 +52,13 @@
                                     Description must be at least 20 characters!</mat-hint>
                             </mat-form-field>
                         </div>
-
-                        <div class="btn-submit">
-                            <button mat-raised-button type="submit">Submit</button>
+                        <div class="actions">
+                            <div class="btn-submit" *ngIf="!isCreateMode">
+                                <button mat-raised-button type="button" routerLink="/admin">Go back</button>
+                            </div>
+                            <div class="btn-submit">
+                                <button mat-raised-button type="submit">Submit</button>
+                            </div>
                         </div>
                     </form>
                 </mat-card-content>

@@ -1,0 +1,42 @@
+<div class="layout">
+    <app-loader *ngIf="isLoading"></app-loader>
+    <div class="content">
+
+        <ng-container *ngIf="news?.length > 0">
+            <div fxLayout fxLayoutAlign="center center">
+                <mat-form-field fxFlex="40%" fxFlex.xs="80%">
+                    <input matInput type="text" [(ngModel)]="searchValue" placeholder="Filter">
+                </mat-form-field>
+            </div>
+            <div class="table-content">
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Update</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+
+                    <tbody *ngFor="let data of news | newsSearch: searchValue">
+                        <tr #dataRow>
+                            <td #dataId [id]="data._id">{{data.title}}</td>
+                            <td>
+                                <button mat-icon-button color="accent" (click)="updateHandler($event, dataId?.id)">
+                                    <mat-icon class="mat-18">system_update</mat-icon>
+                                </button>
+                            </td>
+                            <td>
+                                <button mat-icon-button color="warn" (click)="openModal($event, dataId?.id, dataRow)">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </ng-container>
+    </div>
+</div>

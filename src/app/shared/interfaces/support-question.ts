@@ -1,7 +1,7 @@
-export interface INews {
+export interface ISupQuestion {
     _id: Number,
-    imageUrl: String,
     title: String,
+    email: String,
     description: String,
     showDetails: Boolean
 }

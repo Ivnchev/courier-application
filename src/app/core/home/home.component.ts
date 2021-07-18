@@ -30,14 +30,14 @@ export class HomeComponent implements OnChanges {
       const index = Number(value.url.substring(6)) || 0
       this.selectedIndex = value.url ? index : 0
     });
-    this.newsService.getNews().subscribe((result: INews[]) => {
+    this.newsService.getAll().subscribe((result: INews[]) => {
       result.map((x, i) => { x['link'] = i; return x })
       this.news = result
     })
   }
 
   ngOnChanges(): void {
-    this.newsService.getNews().subscribe((result: INews[]) => {
+    this.newsService.getAll().subscribe((result: INews[]) => {
       result.map((x, i) => { x['link'] = i; return x })
       this.news = result
     })

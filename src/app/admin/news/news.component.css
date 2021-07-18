@@ -73,3 +73,14 @@ mat-form-field {
 mat-hint {
     font-size: 15px;
 }
+
+.actions {
+    width: 80%;
+    margin: auto;
+    display: flex;
+}
+
+.image-view {
+    height: 200px;
+    width: 350px;
+}
