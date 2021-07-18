@@ -1,36 +1,39 @@
-<div class="container">
+<div class="layout">
     <app-loader *ngIf="isLoading"></app-loader>
-    <app-alert-message *ngIf="hasError"></app-alert-message>
-    <div class="frame">
-        <mat-card>
-            <mat-card-content>
-                <form [formGroup]="f" (ngSubmit)="questionHandler(f.value)">
-                    <div class="label">
-                        <mat-label class="edit-label">Create Q&A</mat-label>
-                    </div>
-                    <div>
-                        <mat-label>Enter title</mat-label>
-                        <mat-form-field appearance="fill">
-                            <input type="text" name="title" placeholder="question title" formControlName="title" matInput>
-                            <mat-hint *ngIf="f.get('title').touched && f.get('title').errors?.required">Title is required!</mat-hint>
-                            <mat-hint *ngIf="f.get('title').touched && f.get('title').errors?.minlength">Title must be at least 5 characters!</mat-hint>
-                        </mat-form-field>
-                    </div>
-                    <div>
-                        <mat-label>Enter Description</mat-label>
-                        <mat-form-field appearance="fill">
-                            <textarea name="description" placeholder="lorem ipsum" formControlName="description" matInput></textarea>
-                            <mat-hint *ngIf="f.get('description').touched && f.get('description').errors?.required">Description is required!</mat-hint>
-                            <mat-hint *ngIf="f.get('description').touched && f.get('description').errors?.minlength">Description must be at least 10 characters!</mat-hint>
-                        </mat-form-field>
-                    </div>
-
-                    <div class="btn-submit">
-                        <button mat-raised-button type="submit">Submit</button>
-                    </div>
-                </form>
-            </mat-card-content>
-        </mat-card>
+    <div class="container-form">
+        <app-alert-message *ngIf="hasError"></app-alert-message>
+        <div class="frame">
+            <mat-card>
+                <mat-card-content>
+                    <form [formGroup]="f" (ngSubmit)="questionHandler(f.value)"  name="form" #form="ngForm">
+                        <div class="label">
+                            <mat-label class="edit-label">Create Q&A</mat-label>
+                        </div>
+                        <div>
+                            <mat-label>Enter title</mat-label>
+                            <mat-form-field appearance="fill">
+                                <input type="text" name="title" placeholder="question title" formControlName="title" matInput>
+                                <mat-hint *ngIf="f.get('title').touched && f.get('title').errors?.required">Title is required!</mat-hint>
+                                <mat-hint *ngIf="f.get('title').touched && f.get('title').errors?.minlength">Title must be at least 5 characters!</mat-hint>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-label>Enter Description</mat-label>
+                            <mat-form-field appearance="fill">
+                                <textarea name="description" placeholder="lorem ipsum" formControlName="description" matInput></textarea>
+                                <mat-hint *ngIf="f.get('description').touched && f.get('description').errors?.required">Description is required!</mat-hint>
+                                <mat-hint *ngIf="f.get('description').touched && f.get('description').errors?.minlength">Description must be at least 10 characters!</mat-hint>
+                            </mat-form-field>
+                        </div>
+    
+                        <div class="btn-submit">
+                            <button mat-raised-button type="submit">Submit</button>
+                        </div>
+                    </form>
+                </mat-card-content>
+            </mat-card>
+        </div>
     </div>
+    
 </div>
 

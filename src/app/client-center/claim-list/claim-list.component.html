@@ -1,82 +1,83 @@
 <div class="layout">
     <app-loader *ngIf="isLoading"></app-loader>
+    <div class="content">
+        <h1>CLAIMS</h1>
 
-    <h1>CLAIMS</h1>
-
-    <div *ngIf="(isLogged$ | async);then logged else logout"></div>
-    <ng-template #logged>
-        <div class="register-content">
-            <a class="register-link" routerLink="/client-center/claims/register">
-                <h3>Register Claim</h3>
-            </a>
-        </div>
-
-        <ng-container *ngIf="claims">
-            <div fxLayout fxLayoutAlign="center center">
-                <mat-form-field fxFlex="40%" fxFlex.xs="80%">
-                    <input matInput type="text" [(ngModel)]="searchValue" placeholder="Filter">
-                </mat-form-field>
+        <div *ngIf="(isLogged$ | async);then logged else logout"></div>
+        <ng-template #logged>
+            <div class="register-content">
+                <a class="register-link" routerLink="/client-center/claims/register">
+                    <h3>Register Claim</h3>
+                </a>
             </div>
-            <div class="table-content">
-                <table>
-                    <thead>
-                        <tr>
-                            <th *ngIf="(isAdmin$ | async)">user</th>
-                            <th>Claim number</th>
-                            <th>Created At</th>
-                            <th>Title</th>
-                            <th>Package tracking number</th>
-                            <ng-container *ngIf="(isLogged$ | async)">
-                                <th>Description</th>
-                                <th>Update</th>
-                                <th>Delete</th>
-                            </ng-container>
-                        </tr>
-                    </thead>
-                    <tbody *ngFor="let claim of claims | searchClaim: searchValue">
-                        <tr [ngClass]="(claim?.creator?._id === (user$ | async)?._id) && (isAdmin$ | async) ? 'own-claims': ''" #claimRow>
-                            <td *ngIf="(isAdmin$ | async)">{{claim?.creator?.username}}</td>
-                            <td #claimId [id]="claim._id">{{claim._id}}</td>
-                            <td>{{(claim.createdAt | date)}}</td>
-                            <td>{{claim.title}}</td>
-                            <td>{{claim?.trackingNumber?._id}}</td>
-                            <ng-container *ngIf="((user$ | async)._id == claim.creator._id) || (isAdmin$ | async)">
-                                <td>
-                                    <button mat-icon-button color="accent" (click)="toogleInfo(claim)">
-                                        <mat-icon class="mat-18">info</mat-icon>
-                                    </button>
+    
+            <ng-container *ngIf="claims">
+                <div fxLayout fxLayoutAlign="center center">
+                    <mat-form-field fxFlex="40%" fxFlex.xs="80%">
+                        <input matInput type="text" [(ngModel)]="searchValue" placeholder="Filter">
+                    </mat-form-field>
+                </div>
+                <div class="table-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th *ngIf="(isAdmin$ | async)">user</th>
+                                <th>Claim number</th>
+                                <th>Created At</th>
+                                <th>Title</th>
+                                <th>Package tracking number</th>
+                                <ng-container *ngIf="(isLogged$ | async)">
+                                    <th>Description</th>
+                                    <th>Update</th>
+                                    <th>Delete</th>
+                                </ng-container>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let claim of claims | searchClaim: searchValue">
+                            <tr [ngClass]="(claim?.creator?._id === (user$ | async)?._id) && (isAdmin$ | async) ? 'own-claims': ''" #claimRow>
+                                <td *ngIf="(isAdmin$ | async)">{{claim?.creator?.username}}</td>
+                                <td #claimId [id]="claim._id">{{claim._id}}</td>
+                                <td>{{(claim.createdAt | date)}}</td>
+                                <td>{{claim.title}}</td>
+                                <td>{{claim?.trackingNumber?._id}}</td>
+                                <ng-container *ngIf="((user$ | async)._id == claim.creator._id) || (isAdmin$ | async)">
+                                    <td>
+                                        <button mat-icon-button color="accent" (click)="toogleInfo(claim)">
+                                            <mat-icon class="mat-18">info</mat-icon>
+                                        </button>
+                                    </td>
+    
+                                    <td>
+                                        <button mat-icon-button color="accent" (click)="updateHandler($event, claimId?.id)">
+                                            <mat-icon class="mat-18">system_update</mat-icon>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button mat-icon-button color="warn"
+                                            (click)="openModal($event, claimId?.id, claimRow)">
+                                            <mat-icon>delete</mat-icon>
+                                        </button>
+                                    </td>
+                                </ng-container>
+                            </tr>
+                            <tr *ngIf="claim.showDetails">
+                                <td colspan="6">
+                                    <span>
+                                        {{claim.description}}
+                                    </span>
                                 </td>
-
-                                <td>
-                                    <button mat-icon-button color="accent" (click)="updateHandler($event, claimId?.id)">
-                                        <mat-icon class="mat-18">system_update</mat-icon>
-                                    </button>
-                                </td>
-                                <td>
-                                    <button mat-icon-button color="warn"
-                                        (click)="openModal($event, claimId?.id, claimRow)">
-                                        <mat-icon>delete</mat-icon>
-                                    </button>
-                                </td>
-                            </ng-container>
-                        </tr>
-                        <tr *ngIf="claim.showDetails">
-                            <td colspan="6">
-                                <span>
-                                    {{claim.description}}
-                                </span>
-                            </td>
-                        </tr>
-                    </tbody>
-
-                </table>
+                            </tr>
+                        </tbody>
+    
+                    </table>
+                </div>
+            </ng-container>
+        </ng-template>
+    
+        <ng-template #logout>
+            <div>
+                <p>You are not logged in! Click here <a routerLink="/auth/login">LOGIN</a> !</p>
             </div>
-        </ng-container>
-    </ng-template>
-
-    <ng-template #logout>
-        <div>
-            <p>You are not logged in! Click here <a routerLink="/auth/login">LOGIN</a> !</p>
-        </div>
-    </ng-template>
+        </ng-template>
+    </div>    
 </div>

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { AlertService } from 'src/app/shared/services/alert.service';
@@ -11,7 +11,7 @@ import { ClaimService } from '../services/claim.service';
   styleUrls: ['./register-claim.component.css']
 })
 export class RegisterClaimComponent implements OnInit {
-
+  @ViewChild('form', {static: false}) form: NgForm;
   f: FormGroup
   id: string
   isCreateMode: boolean
@@ -57,6 +57,7 @@ export class RegisterClaimComponent implements OnInit {
     this.claimService.postClaim(formData).subscribe({
       next: data => {
         this.isLoading = false
+        this.form.resetForm()
         this.router.navigateByUrl('/client-center/claims')
       },
       error: err => {
@@ -71,6 +72,7 @@ export class RegisterClaimComponent implements OnInit {
     this.claimService.editClaim(this.id, formData).subscribe({
       next: data => {
         this.isLoading = false
+        this.form.resetForm()
         this.router.navigateByUrl('/client-center/claims')
       },
       error: err => {

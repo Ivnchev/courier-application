@@ -6,6 +6,14 @@
     align-items: center;
 }
 
+.container-form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 mat-label, .label {
     font-weight: bold;
     font-size: 12px;

@@ -1,63 +1,81 @@
-<div class="container">
+<div class="layout">
     <app-loader *ngIf="isLoading"></app-loader>
-    <app-alert-message *ngIf="hasError"></app-alert-message>
-    <div class="frame">
-        <mat-card>
-            <mat-card-content>
-                <form [formGroup]="f" (ngSubmit)="shipmentHandler(f.value)">
-                    <div class="label">
-                        <ng-container *ngIf="isCreateMode;then createMode else editMode"></ng-container>
-                        <ng-template #createMode><mat-label class="label-form">Create Shipment</mat-label></ng-template>
-                        <ng-template #editMode><mat-label class="label-form">Edit Shipment</mat-label></ng-template>
-                    </div>
-                    <div>
-                        <mat-form-field appearance="fill">
-                            <mat-label>Delivery address</mat-label>
-                            <mat-hint *ngIf="f.get('address').touched && f.get('address').errors?.required">Delivery address is required !</mat-hint>
-                            <mat-hint *ngIf="f.get('address').touched && f.get('address').errors?.minlength">Delivery address must be at least 10 characters !</mat-hint>
-                            <input type="text" name="address" placeholder="Sofia, Krasna Polyana, 47" formControlName="address" matInput >
+    <div class="container-form">
+        <app-alert-message *ngIf="hasError"></app-alert-message>
+        <div class="frame">
+            <mat-card>
+                <mat-card-content>
+                    <form [formGroup]="f" (ngSubmit)="shipmentHandler(f.value)" name="form" #form="ngForm">
+                        <div class="label">
+                            <ng-container *ngIf="isCreateMode;then createMode else editMode"></ng-container>
+                            <ng-template #createMode>
+                                <mat-label class="label-form">Create Shipment</mat-label>
+                            </ng-template>
+                            <ng-template #editMode>
+                                <mat-label class="label-form">Edit Shipment</mat-label>
+                            </ng-template>
+                        </div>
+                        <div>
+                            <mat-form-field appearance="fill">
+                                <mat-label>Delivery address</mat-label>
+                                <mat-hint *ngIf="f.get('address').touched && f.get('address').errors?.required">Delivery
+                                    address is required !</mat-hint>
+                                <mat-hint *ngIf="f.get('address').touched && f.get('address').errors?.minlength">
+                                    Delivery address must be at least 10 characters !</mat-hint>
+                                <input type="text" name="address" placeholder="Sofia, Krasna Polyana, 47"
+                                    formControlName="address" matInput>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field appearance="fill">
+                                <mat-label>Package size</mat-label>
+                                <mat-hint *ngIf="f.get('size').touched && f.get('size').errors?.required">Package size
+                                    is required !</mat-hint>
+                                <mat-hint *ngIf="f.get('size').touched && f.get('size').errors?.shipmentSize">Package
+                                    size should looks like 120/80/45 !</mat-hint>
+                                <input type="text" name="size" placeholder="120/80/45" formControlName="size" matInput>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field appearance="fill">
+                                <mat-label>Package weight</mat-label>
+                                <mat-hint *ngIf="f.get('weight').touched && f.get('weight').errors?.required">Package
+                                    weight is required !</mat-hint>
+                                <mat-hint *ngIf="f.get('weight').touched && f.get('weight').errors?.min">Package weight
+                                    must be at least 2 kg !</mat-hint>
+                                <mat-hint *ngIf="f.get('weight').touched && f.get('weight').errors?.shipmentWeight">
+                                    Package weight must be a number !</mat-hint>
+                                <input type="text" name="weight" placeholder="45kg" formControlName="weight" matInput>
+                            </mat-form-field>
+                        </div>
+                        <mat-form-field appearance="fill" *ngIf="(isAdmin$ | async) && !isCreateMode">
+                            <mat-label>Status</mat-label>
+                            <mat-select name="status" formControlName="status">
+                                <mat-option value="created">Created</mat-option>
+                                <mat-option value="transit">In Transit</mat-option>
+                                <mat-option value="completed">Completed</mat-option>
+                            </mat-select>
                         </mat-form-field>
-                    </div>
-                    <div>
-                        <mat-form-field appearance="fill">
-                            <mat-label>Package size</mat-label>
-                            <mat-hint *ngIf="f.get('size').touched && f.get('size').errors?.required">Package size is required !</mat-hint>
-                            <mat-hint *ngIf="f.get('size').touched && f.get('size').errors?.shipmentSize">Package size should looks like 120/80/45 !</mat-hint>
-                            <input type="text" name="size" placeholder="120/80/45" formControlName="size" matInput>
-                        </mat-form-field>
-                    </div>
-                    <div>
-                        <mat-form-field appearance="fill">
-                            <mat-label>Package weight</mat-label>
-                            <mat-hint *ngIf="f.get('weight').touched && f.get('weight').errors?.required">Package weight is required !</mat-hint>
-                            <mat-hint *ngIf="f.get('weight').touched && f.get('weight').errors?.min">Package weight must be at least 2 kg !</mat-hint>
-                            <mat-hint *ngIf="f.get('weight').touched && f.get('weight').errors?.shipmentWeight">Package weight must be a number !</mat-hint>
-                            <input type="text" name="weight" placeholder="45kg" formControlName="weight" matInput>
-                        </mat-form-field>
-                    </div>
-                    <mat-form-field appearance="fill" *ngIf="(isAdmin$ | async) && !isCreateMode">
-                        <mat-label>Status</mat-label>
-                        <mat-select name="status" formControlName="status">
-                          <mat-option value="created">Created</mat-option>
-                          <mat-option value="transit">In Transit</mat-option>
-                          <mat-option value="completed">Completed</mat-option>
-                        </mat-select>
-                      </mat-form-field>
-                    <div>
-                        <mat-label>Shipment Type: Economy cost: 20$ , Express cost: 40$ </mat-label>
-                        <mat-radio-group fxLayoutGap="20px" formControlName="shipmentType" name="shipmentType">
-                            <mat-radio-button value="economy">Economy</mat-radio-button>
-                            <mat-radio-button value="express">Express</mat-radio-button>
-                            <mat-hint *ngIf="f.get('shipmentType').touched && f.get('shipmentType').errors?.required">Shipment Type is required !</mat-hint>
-                            <mat-hint *ngIf="f.get('shipmentType').touched && f.get('shipmentType').errors?.shipmentTypeValidator">Shipment Type must be economy or express !</mat-hint>
-                        </mat-radio-group>
-                    </div>
-                    <br>     
-                    <div class="btn-submit">
-                        <button mat-raised-button type="submit">Submit</button>
-                    </div>
-                </form>
-            </mat-card-content>
-        </mat-card>
+                        <div>
+                            <mat-label>Shipment Type: Economy cost: 20$ , Express cost: 40$ </mat-label>
+                            <mat-radio-group fxLayoutGap="20px" formControlName="shipmentType" name="shipmentType">
+                                <mat-radio-button value="economy">Economy</mat-radio-button>
+                                <mat-radio-button value="express">Express</mat-radio-button>
+                                <mat-hint
+                                    *ngIf="f.get('shipmentType').touched && f.get('shipmentType').errors?.required">
+                                    Shipment Type is required !</mat-hint>
+                                <mat-hint
+                                    *ngIf="f.get('shipmentType').touched && f.get('shipmentType').errors?.shipmentTypeValidator">
+                                    Shipment Type must be economy or express !</mat-hint>
+                            </mat-radio-group>
+                        </div>
+                        <br>
+                        <div class="btn-submit">
+                            <button mat-raised-button type="submit">Submit</button>
+                        </div>
+                    </form>
+                </mat-card-content>
+            </mat-card>
+        </div>
     </div>
 </div>

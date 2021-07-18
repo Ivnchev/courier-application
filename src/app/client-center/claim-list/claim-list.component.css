@@ -1,4 +1,9 @@
 .layout {
+ height: 100%;
+ width: 100%;
+}
+
+.content {
     width: 90%;
     margin: auto;
 }

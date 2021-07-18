@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { emailValidator, rePassCheckFn, genderValidator, imageValidator } from '../validators';
 import { StorageService } from 'src/app/shared/services/storage.service';
 import { Router } from '@angular/router';
@@ -12,6 +12,7 @@ import { AlertService } from 'src/app/shared/services/alert.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  @ViewChild('form', {static: false}) form: NgForm;
 
   f: FormGroup
 
@@ -48,6 +49,7 @@ export class RegisterComponent implements OnInit {
       next: (data) => {
         this.isLoading = false
         this.storage.setItem('auth', data)
+        this.form.resetForm()
         this.router.navigateByUrl('/')
       },
       error: (err) => {

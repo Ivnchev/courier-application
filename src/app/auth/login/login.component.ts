@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Router } from '@angular/router';
 import { StorageService } from 'src/app/shared/services/storage.service';
@@ -11,6 +11,7 @@ import { AlertService } from 'src/app/shared/services/alert.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  @ViewChild('form', {static: false}) form: NgForm;
 
   f: FormGroup
   hide: boolean = true
@@ -39,6 +40,7 @@ export class LoginComponent implements OnInit {
       next: (data) => {
         this.isLoading = false
         this.storage.setItem('auth', data)
+        this.form.resetForm()
         this.router.navigateByUrl('/')
       },
       error: (err) => {

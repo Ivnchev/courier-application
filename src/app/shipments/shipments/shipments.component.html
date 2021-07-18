@@ -1,112 +1,110 @@
 <div class="layout">
+    <app-loader *ngIf="isLoading"></app-loader>
+    <div class="content">
+        <h1>Shipments</h1>
 
-<app-loader *ngIf="isLoading"></app-loader>
+        <ng-container *ngIf="packages?.length > 0;else noShipments">
+            <div fxLayout fxLayoutAlign="center center">
+                <mat-form-field fxFlex="40%" fxFlex.xs="80%">
+                    <input matInput type="text" [(ngModel)]="searchValue" placeholder="Filter">
+                </mat-form-field>
+            </div>
+            <div class="table-content">
 
-<h1>Shipments</h1>
+                <table>
+                    <thead>
+                        <tr>
+                            <th *ngIf="(isAdmin$ | async)">user</th>
+                            <th>Tracking Number</th>
+                            <th>Adress</th>
+                            <th>Package size</th>
+                            <th>Package Weight</th>
+                            <th>Package Cost</th>
+                            <th>Status</th>
+                            <th>Update</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
 
-<ng-container *ngIf="packages?.length > 0;else noShipments">
-    <div fxLayout fxLayoutAlign="center center">
-        <mat-form-field fxFlex="40%" fxFlex.xs="80%">
-            <input matInput type="text" [(ngModel)]="searchValue" placeholder="Filter">
-        </mat-form-field>
-    </div>
-    <div class="table-content">
+                    <ng-container *ngIf="(isAdmin$ | async);then isAdmin else isUser "></ng-container>
+                </table>
 
-        <table>
-            <thead>
-                <tr>
-                    <th *ngIf="(isAdmin$ | async)">user</th>
-                    <th>Tracking Number</th>
-                    <th>Adress</th>
-                    <th>Package size</th>
-                    <th>Package Weight</th>
-                    <th>Package Cost</th>
-                    <th>Status</th>
-                    <th>Update</th>
-                    <th>Delete</th>
+            </div>
+        </ng-container>
+
+
+        <ng-template #isAdmin>
+            <tbody *ngFor="let shipment of packages | searchFiler: searchValue">
+                <tr [ngClass]="shipment?.creator?._id === (user$ | async)?._id ? 'own-shipments': ''" #shipmentRow>
+                    <td>{{shipment?.creator?.username}}</td>
+                    <td #shipmentId [id]="shipment._id">{{shipment._id}}</td>
+                    <td>{{shipment.address}}</td>
+                    <td>{{shipment.size}}</td>
+                    <td>{{shipment.weight}} kg.</td>
+                    <td>{{shipment.cost}} $</td>
+                    <td>
+                        <button mat-icon-button color="accent" (click)="toogleInfo(shipment)">
+                            <mat-icon class="mat-18">info</mat-icon>
+                        </button>
+                    </td>
+                    <td>
+                        <button mat-icon-button color="accent" (click)="updateHandler($event, shipmentId?.id)">
+                            <mat-icon class="mat-18">system_update</mat-icon>
+                        </button>
+                    </td>
+                    <td>
+                        <button mat-icon-button color="warn" (click)="openModal($event, shipmentId?.id, shipmentRow)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </td>
                 </tr>
-            </thead>
+                <tr *ngIf="shipment.showDetails">
+                    <td colspan="6">
+                        <span>
+                            <app-status [status]="shipment.status"></app-status>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </ng-template>
+        <ng-template #isUser>
+            <tbody *ngFor="let shipment of packages | searchFiler: searchValue">
+                <tr #shipmentRow>
+                    <td #shipmentId [id]="shipment._id">{{shipment._id}}</td>
+                    <td>{{shipment.address}}</td>
+                    <td>{{shipment.size}}</td>
+                    <td>{{shipment.weight}} kg.</td>
+                    <td>{{shipment.cost}} $</td>
+                    <td>
+                        <button mat-icon-button color="accent" (click)="toogleInfo(shipment)">
+                            <mat-icon class="mat-18">info</mat-icon>
+                        </button>
+                    </td>
+                    <td>
+                        <button mat-icon-button color="accent" (click)="updateHandler($event, shipmentId?.id)">
+                            <mat-icon class="mat-18">system_update</mat-icon>
+                        </button>
+                    </td>
+                    <td>
+                        <button mat-icon-button color="warn" (click)="openModal($event, shipmentId?.id, shipmentRow)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </td>
+                </tr>
+                <tr *ngIf="shipment.showDetails">
+                    <td colspan="8">
+                        <span>
+                            <app-status [status]="shipment.status"></app-status>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </ng-template>
 
-            <ng-container *ngIf="(isAdmin$ | async);then isAdmin else isUser "></ng-container>
-        </table>
+        <ng-template #noShipments class="no-shipments">
 
+            <h3 class="no-shipments">No shipments yet! <a href="/shipments/create">Make your first shipment!</a></h3>
+
+        </ng-template>
     </div>
-</ng-container>
-
-
-<ng-template #isAdmin>
-    <tbody *ngFor="let shipment of packages | searchFiler: searchValue">
-        <tr [ngClass]="shipment?.creator?._id === (user$ | async)?._id ? 'own-shipments': ''" #shipmentRow>
-            <td>{{shipment?.creator?.username}}</td>
-            <td #shipmentId [id]="shipment._id">{{shipment._id}}</td>
-            <td>{{shipment.address}}</td>
-            <td>{{shipment.size}}</td>
-            <td>{{shipment.weight}} kg.</td>
-            <td>{{shipment.cost}} $</td>
-            <td>
-                <button mat-icon-button color="accent" (click)="toogleInfo(shipment)">
-                    <mat-icon class="mat-18">info</mat-icon>
-                </button>
-            </td>
-            <td>
-                <button mat-icon-button color="accent" (click)="updateHandler($event, shipmentId?.id)">
-                    <mat-icon class="mat-18">system_update</mat-icon>
-                </button>
-            </td>
-            <td>
-                <button mat-icon-button color="warn" (click)="openModal($event, shipmentId?.id, shipmentRow)">
-                    <mat-icon>delete</mat-icon>
-                </button>
-            </td>
-        </tr>
-        <tr *ngIf="shipment.showDetails">
-            <td colspan="6">
-                <span>
-                    <app-status [status]="shipment.status" ></app-status>
-                </span>
-            </td>
-        </tr>
-    </tbody>
-</ng-template>
-<ng-template #isUser>
-    <tbody *ngFor="let shipment of packages | searchFiler: searchValue">
-        <tr #shipmentRow>
-            <td #shipmentId [id]="shipment._id">{{shipment._id}}</td>
-            <td>{{shipment.address}}</td>
-            <td>{{shipment.size}}</td>
-            <td>{{shipment.weight}} kg.</td>
-            <td>{{shipment.cost}} $</td>
-            <td>
-                <button mat-icon-button color="accent" (click)="toogleInfo(shipment)">
-                    <mat-icon class="mat-18">info</mat-icon>
-                </button>
-            </td>
-            <td>
-                <button mat-icon-button color="accent" (click)="updateHandler($event, shipmentId?.id)">
-                    <mat-icon class="mat-18">system_update</mat-icon>
-                </button>
-            </td>
-            <td>
-                <button mat-icon-button color="warn" (click)="openModal($event, shipmentId?.id, shipmentRow)">
-                    <mat-icon>delete</mat-icon>
-                </button>
-            </td>
-        </tr>
-        <tr *ngIf="shipment.showDetails">
-            <td colspan="8">
-                <span>
-                    <app-status [status]="shipment.status" ></app-status>
-                </span>
-            </td>
-        </tr>
-    </tbody>
-</ng-template>
-
-<ng-template #noShipments class="no-shipments">
-
-    <h3 class="no-shipments">No shipments yet! <a href="/shipments/create">Make your first shipment!</a></h3>
-
-</ng-template>
-
-
 </div>

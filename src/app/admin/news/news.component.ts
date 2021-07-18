@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { imageValidator } from 'src/app/auth/validators';
 import { AlertService } from 'src/app/shared/services/alert.service';
@@ -11,9 +11,11 @@ import { NewsService } from '../services/news.service';
   styleUrls: ['./news.component.css']
 })
 export class NewsComponent implements OnInit {
-  isLoading: boolean = false
-  hasError: boolean
+  @ViewChild('form', {static: false}) form: NgForm;
+
   f: FormGroup
+  hasError: boolean
+  isLoading: boolean = false
 
   constructor(
     private router: Router,
@@ -37,6 +39,7 @@ export class NewsComponent implements OnInit {
     this.newsService.postNews(formData).subscribe({
       next: data => {
         this.isLoading = false
+        this.form.resetForm()
         this.router.navigateByUrl('/')
       },
       error: err => {

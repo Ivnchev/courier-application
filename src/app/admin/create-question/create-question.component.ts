@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 import { AlertService } from 'src/app/shared/services/alert.service';
 import { QuestionsService } from '../services/questions.service';
 
@@ -10,10 +10,12 @@ import { QuestionsService } from '../services/questions.service';
   styleUrls: ['./create-question.component.css']
 })
 export class CreateQuestionComponent implements OnInit {
-  isLoading: boolean = false
+  @ViewChild('form', {static: false}) form: NgForm;
+
   f: FormGroup
   hasError: boolean
-
+  isLoading: boolean = false
+  
   constructor(
     private router: Router,
     private fb: FormBuilder,
@@ -35,6 +37,7 @@ export class CreateQuestionComponent implements OnInit {
     this.questionService.postQuestions(formData).subscribe({
       next: data => {
         this.isLoading = false
+        this.form.resetForm()
         this.router.navigateByUrl('/client-center/q&a')
       },
       error: err => {

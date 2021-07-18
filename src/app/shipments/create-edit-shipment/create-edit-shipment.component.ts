@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder, NgForm } from '@angular/forms';
 import { shipmentTypeValidator, shipmentSize, shipmentWeight } from 'src/app/shared/common-validators';
 import { first } from 'rxjs/operators';
 import { AuthService } from 'src/app/auth/auth.service';
@@ -13,7 +13,7 @@ import { ShipmentService } from '../services/shipment.service';
   styleUrls: ['./create-edit-shipment.component.css']
 })
 export class CreateEditShipmentComponent implements OnInit {
-
+  @ViewChild('form', {static: false}) form: NgForm;
   f: FormGroup
   id: string
   isCreateMode: boolean
@@ -72,6 +72,7 @@ export class CreateEditShipmentComponent implements OnInit {
     this.shipmentService.postShipment(formData).subscribe({
       next: data => {
         this.isLoading = false
+        this.form.resetForm()
         this.router.navigateByUrl('/shipments')
       },
       error: err => {

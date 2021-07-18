@@ -2,3 +2,7 @@ h1 {
     text-align: center;
     position: relative;
 }
+
+mat-tab-group {
+    height: 100%;
+}

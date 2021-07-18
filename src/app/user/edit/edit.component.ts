@@ -1,7 +1,7 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserService } from 'src/app/user/user.service';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 import { emailValidator, genderValidator, imageValidator } from 'src/app/auth/validators';
 import { first } from 'rxjs/operators';
 import { AlertService } from 'src/app/shared/services/alert.service';
@@ -12,7 +12,7 @@ import { AlertService } from 'src/app/shared/services/alert.service';
   styleUrls: ['./edit.component.css']
 })
 export class EditComponent implements OnInit {
-
+  @ViewChild('form', { static: false }) form: NgForm;
   isLoading: boolean = false
   hide: boolean = true
   hideRepeat: boolean = true
@@ -51,6 +51,17 @@ export class EditComponent implements OnInit {
       next: (data) => {
         this.hasError = true
         this.isLoading = false
+        this.form.resetForm()
+        this.f.disable()
+        setTimeout(() => {
+          this.f.enable()
+          this.userService.getUser()
+            .pipe(first())
+            .subscribe(x => this.f.patchValue(x), err => {
+              this.hasError = true
+              this.alertService.create({ type: 'danger', message: err.error, time: 3000 })
+            })
+        }, 6000);
         this.alertService.create({ type: 'info', message: 'Successful updated!', time: 3000 })
       },
       error: (err) => {
