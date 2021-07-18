@@ -14,7 +14,11 @@ export class QuestionsService {
     return this.http.get(constants.baseUrl + 'question-and-answers', { withCredentials: true })
   }
 
-  postQuestions(data: object): Observable<any> {
+  getQuestion(id: string): Observable<any> {
+    return this.http.get(constants.baseUrl + 'question-and-answers/' + id, { withCredentials: true })
+  }
+
+  postQuestion(data: object): Observable<any> {
     return this.http.post(constants.baseUrl + 'question-and-answers', data, { withCredentials: true })
   }
 

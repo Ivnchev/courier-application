@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from 'src/app/shared/modal/modal.component';
 import { QuestionsService } from 'src/app/admin/services/questions.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-questions-and-answers',
   templateUrl: './questions-and-answers.component.html',
@@ -19,7 +20,8 @@ export class QuestionsAndAnswersComponent implements OnInit {
   constructor(
     private questionService: QuestionsService,
     private authService: AuthService,
-    private matDialog: MatDialog
+    private matDialog: MatDialog,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -67,5 +69,8 @@ export class QuestionsAndAnswersComponent implements OnInit {
     })
   }
 
+  updateHandler(event: HTMLElementEventMap, dataId: string): void {
+    this.router.navigateByUrl(`/admin/q&a/${dataId}/edit`)
+  }
 
 }

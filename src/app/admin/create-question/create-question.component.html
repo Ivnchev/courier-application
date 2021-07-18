@@ -7,7 +7,13 @@
                 <mat-card-content>
                     <form [formGroup]="f" (ngSubmit)="questionHandler(f.value)"  name="form" #form="ngForm">
                         <div class="label">
-                            <mat-label class="edit-label">Create Q&A</mat-label>
+                            <ng-container *ngIf="isCreateMode;then createMode else editMode"></ng-container>
+                            <ng-template #createMode>
+                                <mat-label class="edit-label">Create Q&A</mat-label>
+                            </ng-template>
+                            <ng-template #editMode>
+                                <mat-label class="label-form">Edit Q&A</mat-label>
+                            </ng-template>
                         </div>
                         <div>
                             <mat-label>Enter title</mat-label>

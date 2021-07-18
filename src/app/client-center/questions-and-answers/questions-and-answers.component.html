@@ -11,6 +11,7 @@
                 <tr>
                     <th>Title</th>
                     <th>View More</th>
+                    <th *ngIf="(isAdmin$ | async)">Update</th>
                     <th *ngIf="(isAdmin$ | async)">Delete</th>
                 </tr>
             </thead>
@@ -23,13 +24,18 @@
                         </button>
                     </td>
                     <td *ngIf="(isAdmin$ | async)">
+                        <button mat-icon-button color="accent" (click)="updateHandler($event, questionId?.id)">
+                            <mat-icon class="mat-18">system_update</mat-icon>
+                        </button>
+                    </td>
+                    <td *ngIf="(isAdmin$ | async)">
                         <button mat-icon-button color="warn" (click)="openModal($event, questionId?.id, questionRow)">
                             <mat-icon>delete</mat-icon>
                         </button>
                     </td>
                 </tr>
                 <tr *ngIf="question.showDetails">
-                    <td colspan="3">
+                    <td colspan="4">
                         <span>
                             {{question.description}}
                         </span>
