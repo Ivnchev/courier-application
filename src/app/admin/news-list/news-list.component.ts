@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { NewsService } from '../services/news.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { INews } from 'src/app/shared/interfaces';
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   templateUrl: './news-list.component.html',
   styleUrls: ['./news-list.component.css']
 })
-export class NewsListComponent implements OnInit {
+export class NewsListComponent implements OnInit, OnChanges {
   
   searchValue: string
   news: INews[]
@@ -34,6 +34,15 @@ export class NewsListComponent implements OnInit {
       }
     })
   }
+
+  ngOnChanges(): void {
+    this.newsService.getAll().subscribe({
+        next: (data: INews[]) => this.news = data,
+        error: err => {
+            this.isLoading = false
+        }
+    })
+}
 
   toogleInfo(data): void {
     data.showDetails = !data.showDetails

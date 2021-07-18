@@ -67,7 +67,7 @@ export class NewsComponent implements OnInit {
       next: data => {
         this.isLoading = false
         this.form.resetForm()
-        this.router.navigateByUrl('/admin')
+        this.router.navigateByUrl('/')
       },
       error: err => {
         this.hasError = true

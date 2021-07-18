@@ -23,10 +23,10 @@ export class NewsService {
   }
 
   updateOne(id: string, data: object): Observable<any> {
-    return this.http.put(constants.baseUrl + 'shipments/' + id, data, { withCredentials: true })
+    return this.http.put(constants.baseUrl + 'news/' + id, data, { withCredentials: true })
   }
 
   deleteOne(id: string): Observable<any> {
-    return this.http.delete(constants.baseUrl + 'shipments/' + id, { withCredentials: true })
+    return this.http.delete(constants.baseUrl + 'news/' + id, { withCredentials: true })
   }
 }
