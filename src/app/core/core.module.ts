@@ -8,6 +8,7 @@ import { CarouselComponent } from './carousel/carousel.component';
 import { FooterComponent } from './footer/footer.component';
 import { SharedModule } from '../shared/shared.module';
 import { NotFound404Component } from './not-found404/not-found404.component';
+import { HomeComponent } from './home/home.component';
 
 
 
@@ -15,6 +16,7 @@ import { NotFound404Component } from './not-found404/not-found404.component';
 
 @NgModule({
   declarations: [
+    HomeComponent,
     NavigationComponent,
     SidenavigationComponent,
     CarouselComponent,
@@ -28,14 +30,13 @@ import { NotFound404Component } from './not-found404/not-found404.component';
     SharedModule,
   ],
   exports: [
+    HomeComponent,
     NavigationComponent,
     SidenavigationComponent,
     CarouselComponent,
     FooterComponent,
     NotFound404Component
   ],
-  providers: [
-
-  ]
+  providers: [ ]
 })
 export class CoreModule { }

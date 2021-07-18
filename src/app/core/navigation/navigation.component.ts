@@ -1,9 +1,8 @@
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../auth/auth.service';
 import { StorageService } from '../../shared/services/storage.service';
-import { Subscription } from 'rxjs';
 import { AlertService } from '../../shared/services/alert.service';
+import { AuthService } from 'src/app/auth/auth.service';
 
 
 @Component({
@@ -14,8 +13,6 @@ import { AlertService } from '../../shared/services/alert.service';
 export class NavigationComponent implements OnInit {
 
   @Output() public sidenavToggle = new EventEmitter();
-
-  subscription: Subscription
 
   isLogged$ = this.authService.currentUser$
   isAdmin$ = this.authService.isAdmin$
@@ -52,9 +49,4 @@ export class NavigationComponent implements OnInit {
       }
     })
   }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe()
-  }
-
 }

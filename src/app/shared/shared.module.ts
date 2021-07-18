@@ -6,9 +6,6 @@ import { LoaderComponent } from './loader/loader.component';
 import { ModalComponent } from './modal/modal.component';
 import { AlertMessageComponent } from './alert-message/alert-message.component';
 import { AuthGuard } from './guards/auth.guard';
-import { AlertService } from './services/alert.service';
-
-
 
 @NgModule({
   declarations: [  
@@ -28,8 +25,7 @@ import { AlertService } from './services/alert.service';
   ],
   entryComponents: [ModalComponent],
   providers: [
-    AuthGuard,
-    AlertService
+    AuthGuard
   ]
 })
 export class SharedModule { }
