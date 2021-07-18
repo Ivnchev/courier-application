@@ -4,6 +4,8 @@ div.container {
     margin: auto;
     display: flex;
     padding-top: 5%;
+    align-items: center;
+    flex-direction: column;
 }
 
 app-loader {
@@ -28,13 +30,19 @@ mat-label.label-form {
 
 .frame {
     height: 100%;
-    display: block;
     width: 100%;
+    max-width: 600px;
+    max-height: 600px;
 }
 mat-card {
     margin: auto;
     border-radius: 10px;
     text-align: center;
+    background-color: rgba(193, 207, 219, 0.2);
+}
+
+button {
+    background-color: rgba(193, 207, 219);
 }
 
 .mat-card.mat-focus-indicator {
@@ -47,6 +55,7 @@ mat-form-field {
     display: block;
     position: relative;
     text-align: justify;
+    background-color: rgba(193, 207, 219, 0.5);
 }
 
 .edit-label {
