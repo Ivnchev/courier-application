@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AlertService, IAlert } from 'src/app/shared/services/alert.service';
-import { isArray } from 'util';
 
 @Component({
   selector: 'app-alert-message',
@@ -43,7 +42,7 @@ export class AlertMessageComponent implements OnInit, OnDestroy {
             break;
         }
 
-        if (isArray(this.message)) {
+        if (this.message instanceof Array) {
           this.errors = this.message.map(x => { return { type: this.type, message: x, time: this.time } })
           this.alerts = [...this.alerts, ...this.errors]
         } else {
@@ -54,7 +53,7 @@ export class AlertMessageComponent implements OnInit, OnDestroy {
 
         if (this.status === true) {
           setTimeout(() => {
-            if (isArray(this.message)) { return this.errors.forEach(x => { this.removeAlert(x) }); }
+            if (this.message instanceof Array) { return this.errors.forEach(x => { this.removeAlert(x) }); }
             this.removeAlert(data)
           }, this.time);
         }

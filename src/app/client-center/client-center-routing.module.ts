@@ -4,8 +4,7 @@ import { ClaimListComponent } from './claim-list/claim-list.component';
 import { QuestionsAndAnswersComponent } from './questions-and-answers/questions-and-answers.component';
 import { ClientServicesComponent } from './client-services/client-services.component';
 import { RegisterClaimComponent } from './register-claim/register-claim.component';
-
-
+import { AuthGuard } from '../shared/guards/auth.guard';
 
 
 const routes: Routes = [
@@ -16,6 +15,7 @@ const routes: Routes = [
     },
     {
         path: 'claims',
+        canActivateChild: [AuthGuard],
         children: [
             {
                 path: '',

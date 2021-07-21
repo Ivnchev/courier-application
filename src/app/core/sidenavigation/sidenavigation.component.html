@@ -2,13 +2,13 @@
     <a mat-list-item routerLink="/home" (click)="close()">
         <mat-icon>home</mat-icon> <span class="nav-caption">Home</span>
     </a>
-    <a mat-list-item *ngIf="isLogged$ | async">
+    <a mat-list-item >
         <mat-icon>supervised_user_circle</mat-icon>
         <mat-list-item [matMenuTriggerFor]="clientMenu">
             <span class="nav-caption">Client Center</span>
         </mat-list-item>
         <mat-menu #clientMenu="matMenu">
-            <a class="menu-items" mat-menu-item routerLink="/client-center/claims" (click)="close()">Claims</a>
+            <a class="menu-items" mat-menu-item routerLink="/client-center/claims" *ngIf="isLogged$ | async" (click)="close()">Claims</a>
             <a class="menu-items" mat-menu-item routerLink="/client-center/q&a" (click)="close()">Q&A</a>
             <a class="menu-items" mat-menu-item routerLink="/client-center/services" (click)="close()">Services</a>
         </mat-menu>

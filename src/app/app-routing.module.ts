@@ -7,7 +7,7 @@ import { NotFound404Component } from './core/not-found404/not-found404.component
 const routes: Routes = [
   {
     path: '',
-    canActivateChild: [AuthGuard],
+    canActivateChild: [AuthGuard],    
     children: [
       {
         path: '',
@@ -18,27 +18,31 @@ const routes: Routes = [
         path: 'home',
         component: HomeComponent,
       },
-      {
-        path: 'user',
-        loadChildren: () => import('./user/user.module').then(m => m.UserModule)
-      },
-      {
-        path: 'client-center',
-        loadChildren: () => import('./client-center/client-center.module').then(m => m.ClientCenterModule)
-      },
-      {
-        path: 'shipments',
-        loadChildren: () => import('./shipments/shipments.module').then(m => m.ShipmentsModule)
-      },
-      {
-        path: 'auth',
-        loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
-      },
-      {
-        path: 'admin',
-        loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
-      }
+      
     ]
+  },
+  {
+    path: 'user',
+    canActivateChild: [AuthGuard],
+    loadChildren: () => import('./user/user.module').then(m => m.UserModule)
+  },
+  {
+    path: 'client-center',
+    loadChildren: () => import('./client-center/client-center.module').then(m => m.ClientCenterModule)
+  },
+  {
+    path: 'shipments',
+    canActivateChild: [AuthGuard],
+    loadChildren: () => import('./shipments/shipments.module').then(m => m.ShipmentsModule)
+  },
+  {
+    path: 'admin',
+    canActivateChild: [AuthGuard],
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
+  },
+  {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
   {
     path: '404',
