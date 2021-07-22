@@ -9,19 +9,19 @@ div.container {
     height: 500px;
 }
 
-div.row {
+div.row-content {
     width: 100%;
-    display: grid;
-    background-color: lightgray;
-}
-
-ul {
+    display: flex;
+    flex-wrap: wrap;
     list-style-type: none;
-}
+    justify-content: space-around;
+    background-color: lightgray;
 
-li {
-    display:inline-block;
-    margin: 0 8%;    
+}
+.row {
+    display: inline-block;
+    list-style-type: none;
+    padding: 10px 30px;
 }
 
 a {
@@ -31,7 +31,7 @@ a {
     color: black;
 }
 
-li:hover {
+.row:hover {
     background-color: rgb(185, 185, 185);
 }
 

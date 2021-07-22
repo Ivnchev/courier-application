@@ -2,30 +2,34 @@
     <div class="caroucel">
         <app-carousel [banners]="news"></app-carousel>
     </div>
-    <div class="row">
-        <ul>
-            <li>
+    <div class="row-content">
+            <div class="row">
                 <a routerLink="/client-center/services">
                     <mat-icon>room</mat-icon>
                     Services
                 </a>
-            </li>
-            <li *ngIf="(isLogged$ | async)">
+            </div>
+            <div *ngIf="(isLogged$ | async)" class="row">
                 <a routerLink="/shipments">
                     <mat-icon>pageview</mat-icon> Find Shipment
                 </a>
-            </li>
-            <li *ngIf="(isLogged$ | async)">
+            </div>
+            <div *ngIf="(isLogged$ | async)" class="row">
                 <a routerLink="/shipments/create">
                     <mat-icon>local_shipping</mat-icon> Create Shipment
                 </a>
-            </li>
-            <li *ngIf="(isLogged$ | async)">
+            </div>
+            <div *ngIf="(isLogged$ | async)" class="row">
                 <a routerLink="/client-center/claims">
                     <mat-icon>content_paste</mat-icon> Report shipment
                 </a>
-            </li>
-        </ul>
+            </div>
+            <div class="row">
+                <a routerLink="/client-center/q&a">
+                    <mat-icon>help_outline</mat-icon>
+                    Question & Answers
+                </a>
+            </div>
     </div>
 
     <div class="news-title">
