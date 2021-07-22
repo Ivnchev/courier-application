@@ -44,7 +44,7 @@
                                 <mat-hint *ngIf="f.get('weight').touched && f.get('weight').errors?.min">Package weight
                                     must be at least 2 kg !</mat-hint>
                                 <mat-hint *ngIf="f.get('weight').touched && f.get('weight').errors?.shipmentWeight">
-                                    Package weight must be a number !</mat-hint>
+                                    Weight must be a number less than 100kg !</mat-hint>
                                 <input type="text" name="weight" placeholder="45kg" formControlName="weight" matInput>
                             </mat-form-field>
                         </div>

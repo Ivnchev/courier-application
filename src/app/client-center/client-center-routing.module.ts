@@ -20,16 +20,25 @@ const routes: Routes = [
             {
                 path: '',
                 pathMatch: 'full',
+                data: {
+                    isLogged : true
+                },
                 component: ClaimListComponent,
             },
             {
                 path: 'register',
                 pathMatch: 'full',
+                data: {
+                    isLogged : true
+                },
                 component: RegisterClaimComponent
             },
             {
                 path: ':id/edit',
                 pathMatch: 'full', 
+                data: {
+                    isLogged : true
+                },
                 component: RegisterClaimComponent
             },
         ]

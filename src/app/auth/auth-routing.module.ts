@@ -14,10 +14,16 @@ const routes: Routes = [
     },
     {
         path: 'login',
+        data: {
+            isLogged : false
+        },
         component: LoginComponent
     },
     {
         path: 'register',
+        data: {
+            isLogged : false
+        },
         component: RegisterComponent
     },
 ];

@@ -12,6 +12,9 @@ const routes: Routes = [
     },
     {
         path: 'profile',
+        data: {
+            isLogged: true
+        },
         component: ProfileComponent
     }
 ];

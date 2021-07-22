@@ -64,10 +64,10 @@
                                     <mat-icon>{{!hideRepeat ? 'visibility' : 'visibility_off'}}</mat-icon>
                                 </button>
                                 <mat-hint *ngIf="f.get('newPassword').touched && f.get('newPassword').errors?.required">
-                                    Enter new password is required!</mat-hint>
+                                    New password is required!</mat-hint>
                                 <mat-hint
-                                    *ngIf="f.get('newPassword').touched && f.get('newPassword').errors?.rePassCheck">
-                                    Enter new password must be the same as password!</mat-hint>
+                                    *ngIf="f.get('newPassword').touched && f.get('newPassword').errors?.minlength">
+                                    New password must be at least 4 characters!!</mat-hint>
                             </mat-form-field>
                         </div>
                         <div>

@@ -27,11 +27,17 @@ const routes: Routes = [
             {
                 path: 'create',
                 pathMatch: 'full',
+                data: {
+                    isLogged : true
+                },
                 component: NewsComponent
             },
             {
                 path: ':id/edit',
                 pathMatch: 'full',
+                data: {
+                    isLogged : true
+                },
                 component: NewsComponent
             }
         ]
@@ -43,11 +49,17 @@ const routes: Routes = [
             {
                 path: 'create',
                 pathMatch: 'full',
+                data: {
+                    isLogged : true
+                },
                 component: CreateQuestionComponent
             },
             {
                 path: ':id/edit',
                 pathMatch: 'full',
+                data: {
+                    isLogged : true
+                },
                 component: CreateQuestionComponent
             }
         ]

@@ -11,15 +11,24 @@ import { CreateEditShipmentComponent } from './create-edit-shipment/create-edit-
 const routes: Routes = [
     {
         path: '',
-        pathMatch: 'full',  
+        pathMatch: 'full', 
+        data: {
+            isLogged : true
+        },
         component: ShipmentsComponent
     },
     {
         path: 'create',
+        data: {
+            isLogged : true
+        },
         component: CreateEditShipmentComponent
     },
     {
-        path: ':id/edit',  
+        path: ':id/edit',
+        data: {
+            isLogged : true
+        },
         component: CreateEditShipmentComponent
     },
 ];
