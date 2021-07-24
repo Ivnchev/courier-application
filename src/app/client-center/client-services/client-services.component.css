@@ -86,8 +86,8 @@ h1.header {
 /* map container styles */
 
 .map-container {
-    max-width: 800px;
-    max-height: 480px;
+    max-width: 740px;
+    max-height: 520px;
     min-width: 375px;
     width: 100%;
     height: 100%;
