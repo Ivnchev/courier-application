@@ -1,8 +1,12 @@
 <div class="layout">
     <app-loader *ngIf="isLoading"></app-loader>
+    <header>
+        <img src="../../../assets/images/claims.jpg">
+        <div class="row">
+            <h1 class="header">CLAIMS</h1>
+        </div>
+    </header>
     <div class="content">
-        <h1>CLAIMS</h1>
-
         <div *ngIf="(isLogged$ | async);then logged else logout"></div>
         <ng-template #logged>
             <div class="register-content">

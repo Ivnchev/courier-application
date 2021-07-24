@@ -1,11 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; max-height: 3000px; }
+html, body { height: 100%; overflow: overlay; }
 body { 
     margin: 0; 
     font-family: Roboto, "Helvetica Neue", sans-serif; 
-    /* background-image: url("https://cdn.pixabay.com/photo/2018/05/11/23/45/highway-3392100_960_720.jpg");
-    background-position: center; 
-    background-repeat: no-repeat; 
-    background-size: cover;  */
 }

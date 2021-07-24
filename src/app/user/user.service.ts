@@ -19,15 +19,15 @@ export class UserService {
   constructor(private http: HttpClient, private store: StorageService, private authService: AuthService) { }
 
   getUser(): Observable<any> {
-    const { _id } = this.store.getItem('auth')
+    const id = this.store.getItem('auth')?._id
     // const headers = new HttpHeaders({ [constants.authHeaderName]: token })
-    return this.http.get(constants.baseUrl + 'users/' + _id, { withCredentials: true })
+    return this.http.get(constants.baseUrl + 'users/' + id, { withCredentials: true })
       .pipe(tap((u: IUser) => this._user.next(u)))
   }
 
   edit(data: object): Observable<any> {
-    const { _id } = this.store.getItem('auth')
-    return this.http.put(constants.baseUrl + 'users/' + _id, data, { withCredentials: true })
+    const id = this.store.getItem('auth')?._id
+    return this.http.put(constants.baseUrl + 'users/' + id, data, { withCredentials: true })
   }
 
   deleteUser(): Observable<any> {

@@ -4,6 +4,7 @@
     margin: auto;
     padding-top: 5%;
     display: block;
+    overflow: hidden;
 }
 
 .container-form {

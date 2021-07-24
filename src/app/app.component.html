@@ -1,17 +1,19 @@
-<mat-sidenav-container>
+
+<mat-sidenav-container fullscreen>
     <mat-sidenav #sidenav mode="push" role="navigation">
         <app-sidenavigation (sidenavClose)="sidenav.close()"></app-sidenavigation>
     </mat-sidenav>
     <mat-sidenav-content fxLayout="column">
-        <header role="navigation">
-            <app-navigation (sidenavToggle)="sidenav.toggle()"></app-navigation>
-        </header>
+        <mat-toolbar-row class="header">
+            <header role="navigation">
+                <app-navigation (sidenavToggle)="sidenav.toggle()"></app-navigation>
+            </header>
+        </mat-toolbar-row>
         <main>
             <router-outlet></router-outlet>
         </main>
-
+        <mat-toolbar-row class="footer">
+            <app-footer></app-footer>
+        </mat-toolbar-row>
     </mat-sidenav-content>
 </mat-sidenav-container>
-<footer>
-    <app-footer></app-footer>
-</footer>

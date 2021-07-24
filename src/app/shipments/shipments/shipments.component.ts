@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit, OnChanges, Input } from '@angular/core';
 
 import { Ipackage } from 'src/app/shared/interfaces';
 import { Router } from '@angular/router';
@@ -14,6 +14,7 @@ import { ShipmentService } from '../services/shipment.service';
 })
 export class ShipmentsComponent implements OnInit, OnChanges {
 
+    @Input() isProfile
 
     isAdmin$ = this.authService.isAdmin$
     user$ = this.authService.currentUser$

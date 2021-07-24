@@ -5,6 +5,8 @@ div.layout {
     padding: 0px;
     background-color: white;
     display: flex;
+    align-items: center;
+    overflow: hidden;
 }
 
 div.profile-layout{

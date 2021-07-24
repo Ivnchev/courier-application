@@ -12,6 +12,8 @@ import { NewsListComponent } from './news-list/news-list.component';
 import { NewsSearchPipe } from './pipes/news-search.pipe';
 import { SupportQuestionSearchPipe } from './pipes/support-question-search.pipe';
 import { SupportQuestionListComponent } from './support-question-list/support-question-list.component';
+import { CounterComponent } from './counter/counter.component';
+import { EntryCountService } from '../shared/services/entry-count.service';
 
 
 
@@ -23,7 +25,8 @@ import { SupportQuestionListComponent } from './support-question-list/support-qu
     NewsListComponent,
     NewsSearchPipe,
     SupportQuestionSearchPipe,
-    SupportQuestionListComponent
+    SupportQuestionListComponent,
+    CounterComponent
   ],
   imports: [
     CommonModule,
@@ -33,6 +36,9 @@ import { SupportQuestionListComponent } from './support-question-list/support-qu
     ReactiveFormsModule,
     AdminRoutingModule,
     SharedModule
+  ],
+  providers: [
+    EntryCountService
   ]
 })
 export class AdminModule { }

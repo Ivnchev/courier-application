@@ -1,8 +1,18 @@
 <div class="layout">
     <app-loader *ngIf="isLoading"></app-loader>
+    <ng-container *ngIf="isProfile;then profile else noProfile"></ng-container>
+    <ng-template #noProfile>
+        <header>
+            <img src="../../../assets/images/trucks.jpg">
+            <div class="row">
+                <h1 class="header">Shipments</h1>
+            </div>
+        </header>
+    </ng-template>
+    <ng-template #profile>
+        <h1 class="header-profile">Shipments</h1>
+    </ng-template>
     <div class="content">
-        <h1>Shipments</h1>
-
         <ng-container *ngIf="packages?.length > 0;else noShipments">
             <div fxLayout fxLayoutAlign="center center">
                 <mat-form-field fxFlex="40%" fxFlex.xs="80%">

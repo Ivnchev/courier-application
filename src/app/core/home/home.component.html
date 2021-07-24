@@ -3,33 +3,33 @@
         <app-carousel [banners]="news"></app-carousel>
     </div>
     <div class="row-content">
+        <a routerLink="/client-center/services">
             <div class="row">
-                <a routerLink="/client-center/services">
-                    <mat-icon>room</mat-icon>
-                    Services
-                </a>
+                <mat-icon>room</mat-icon>
+                Services
             </div>
+        </a>
+        <a routerLink="/shipments">
             <div *ngIf="(isLogged$ | async)" class="row">
-                <a routerLink="/shipments">
-                    <mat-icon>pageview</mat-icon> Find Shipment
-                </a>
+                <mat-icon>pageview</mat-icon> Find Shipment
             </div>
+        </a>
+        <a routerLink="/shipments/create">
             <div *ngIf="(isLogged$ | async)" class="row">
-                <a routerLink="/shipments/create">
-                    <mat-icon>local_shipping</mat-icon> Create Shipment
-                </a>
+                <mat-icon>local_shipping</mat-icon> Create Shipment
             </div>
+        </a>
+        <a routerLink="/client-center/claims">
             <div *ngIf="(isLogged$ | async)" class="row">
-                <a routerLink="/client-center/claims">
-                    <mat-icon>content_paste</mat-icon> Report shipment
-                </a>
+                <mat-icon>content_paste</mat-icon> Report shipment
             </div>
+        </a>
+        <a routerLink="/client-center/q&a">
             <div class="row">
-                <a routerLink="/client-center/q&a">
-                    <mat-icon>help_outline</mat-icon>
-                    Question & Answers
-                </a>
+                <mat-icon>help_outline</mat-icon>
+                Question & Answers
             </div>
+        </a>
     </div>
 
     <div class="news-title">
@@ -37,7 +37,7 @@
     </div>
 
     <div class="main-container">
-        <mat-tab-group [selectedIndex]="selectedIndex">
+        <mat-tab-group [selectedIndex]="selectedIndex" fxFlex>
             <ng-container *ngFor="let news of news">
                 <mat-tab class="news-label" [label]="news.title">
                     <div class="news-layout">
@@ -47,12 +47,8 @@
                             <p>{{news.description}}</p>
                         </div>
                     </div>
-
                 </mat-tab>
             </ng-container>
         </mat-tab-group>
-
     </div>
-
 </div>
-

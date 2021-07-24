@@ -45,10 +45,12 @@ const routes: Routes = [
     },    
     {
         path: 'q&a',
+        canActivate: [AuthGuard],
         component: QuestionsAndAnswersComponent
     },
     {
         path: 'services',
+        canActivate: [AuthGuard],
         component: ClientServicesComponent
     }
 ];
