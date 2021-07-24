@@ -102,3 +102,7 @@ div.table-content {
     width: 100%;
     display: grid
 }
+
+h3 {
+    text-align: center;
+}

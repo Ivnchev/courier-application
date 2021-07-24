@@ -7,7 +7,7 @@
         </div>
     </header>
     <div class="content">
-        <div *ngIf="(isLogged$ | async);then logged else logout"></div>
+        <div *ngIf="(isLogged$ | async);then logged"></div>
         <ng-template #logged>
             <div class="register-content">
                 <a class="register-link" routerLink="/client-center/claims/register">
@@ -15,7 +15,7 @@
                 </a>
             </div>
     
-            <ng-container *ngIf="claims">
+            <ng-container *ngIf="claims?.length > 0;else noClaims">
                 <div fxLayout fxLayoutAlign="center center">
                     <mat-form-field fxFlex="40%" fxFlex.xs="80%">
                         <input matInput type="text" [(ngModel)]="searchValue" placeholder="Filter">
@@ -78,9 +78,9 @@
             </ng-container>
         </ng-template>
     
-        <ng-template #logout>
+        <ng-template #noClaims >
             <div>
-                <p>You are not logged in! Click here <a routerLink="/auth/login">LOGIN</a> !</p>
+                <h3 class="no-shipments">No claims yet! Report your problem!</h3>
             </div>
         </ng-template>
     </div>    
