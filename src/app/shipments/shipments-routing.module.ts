@@ -2,6 +2,7 @@
 import { RouterModule, Routes } from '@angular/router';
 import { ShipmentsComponent } from './shipments/shipments.component';
 import { CreateEditShipmentComponent } from './create-edit-shipment/create-edit-shipment.component';
+import { OwnerGuard } from '../shared/guards/owner.guard';
 
 
 
@@ -26,6 +27,7 @@ const routes: Routes = [
     },
     {
         path: ':id/edit',
+        canActivate: [OwnerGuard],
         data: {
             isLogged : true
         },

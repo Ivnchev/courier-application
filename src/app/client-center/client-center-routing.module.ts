@@ -5,6 +5,7 @@ import { QuestionsAndAnswersComponent } from './questions-and-answers/questions-
 import { ClientServicesComponent } from './client-services/client-services.component';
 import { RegisterClaimComponent } from './register-claim/register-claim.component';
 import { AuthGuard } from '../shared/guards/auth.guard';
+import { OwnerGuard } from '../shared/guards/owner.guard';
 
 
 const routes: Routes = [
@@ -35,6 +36,7 @@ const routes: Routes = [
             },
             {
                 path: ':id/edit',
+                canActivate: [OwnerGuard],
                 pathMatch: 'full', 
                 data: {
                     isLogged : true
