@@ -52,3 +52,9 @@ mat-form-field {
 mat-hint {
     font-size: 15px;
 }
+
+app-alert-message::ng-deep #alert-layout {
+    position: absolute;
+    right: 0%;
+    top: 33%;
+}
