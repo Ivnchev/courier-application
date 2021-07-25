@@ -8,10 +8,24 @@ mat-list-item {
     cursor: pointer;
 }
 
+object {
+    width: 70px;
+    height: 70px;
+}
+
+span {
+    margin: 10px;
+}
+
 
 a{
     text-decoration: none;
     color: white;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+
 }
 a:hover, a:active{
     cursor: pointer;

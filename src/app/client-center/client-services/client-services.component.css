@@ -85,6 +85,12 @@ h1.header {
 
 /* map container styles */
 
+h4 {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
 .map-container {
     max-width: 740px;
     max-height: 520px;
