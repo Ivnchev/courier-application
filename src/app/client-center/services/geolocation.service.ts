@@ -13,8 +13,9 @@ export class GeolocationService {
   ) { }
 
 
-  getLocation(lat: string, long: string): Observable<any> {
-    return this.http.get(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${long}&localityLanguage=en`)
+  async getLocation (lat: string, long: string): Promise<any> {
+    const result = await this.http.get(`https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${long}&localityLanguage=en`).toPromise()
+    return result
   }
 
 }

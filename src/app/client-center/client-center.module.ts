@@ -12,6 +12,7 @@ import { SearchQuestionPipe } from './search-question.pipe';
 import { ClientServicesComponent } from './client-services/client-services.component';
 import { ServicePricesComponent } from './service-prices/service-prices.component';
 import { ContactComponent } from './contact/contact.component';
+import { MapComponent } from './map/map.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ContactComponent } from './contact/contact.component';
     SearchQuestionPipe,
     ClientServicesComponent,
     ServicePricesComponent,
-    ContactComponent
+    ContactComponent,
+    MapComponent
   ],
   imports: [
     CommonModule,

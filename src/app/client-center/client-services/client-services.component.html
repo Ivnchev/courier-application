@@ -9,12 +9,14 @@
         <div class="map-container">
             <h3 class="title">Offices</h3>
             <div *ngIf="location">
-                <h4>You are located in {{location?.city}}, {{location?.principalSubdivision}}, {{location?.countryName}}</h4>
+                <h4>You are located in {{location?.city}}, {{location?.principalSubdivision}}, {{location?.countryName}}
+                </h4>
             </div>
-            <div class="map">
+            <!-- <div class="map">
                 <iframe src="https://www.google.com/maps/d/embed?mid=1Ezm7fotbYGcxTgmzt8tHtVmmOWR41A6h" width="600"
                     height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-            </div>
+            </div> -->
+            <app-map></app-map>
         </div>
         <div class="container">
             <h3 class="title">About us:</h3>
@@ -44,7 +46,7 @@
             <h3 class="title">Service Information:</h3>
             <div class="wrapper">
                 <p class="text prices">
-                    Our shipments are only from office to office. 
+                    Our shipments are only from office to office.
                     The prices are in US dollars per one item. All fees included.
                 </p>
                 <app-service-prices></app-service-prices>

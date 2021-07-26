@@ -74,7 +74,7 @@ h1.header {
 .container {
     display: inline-block;
     max-width: 800px;
-    min-width: 375px;
+    min-height: 375px;
     text-align: center;
 }
 

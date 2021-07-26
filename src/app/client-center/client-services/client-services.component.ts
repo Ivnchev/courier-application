@@ -17,11 +17,7 @@ export class ClientServicesComponent implements OnInit {
   ngOnInit(): void {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position: any) => {
-        this.geoLocation.getLocation(position.coords.latitude, position.coords.longitude)
-          .subscribe(data => {
-            this.location = data
-          })
-
+      this.geoLocation.getLocation(position.coords.latitude, position.coords.longitude).then(data => this.location = data)
       })
     }
   }
