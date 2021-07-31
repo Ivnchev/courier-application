@@ -17,8 +17,8 @@ export class OwnerGuard implements CanActivate {
     return this.userService.getUser().pipe(
       map(data => {
         const id = childRoute.params['id']
-        const shipmentsCheck = data?.shipments.find(x => x === id)
-        const claimsCheck = data?.claims.find(x => x === id)
+        const shipmentsCheck = data?.shipments.find(x => x?._id === id)
+        const claimsCheck = data?.claims.find(x => x?._id === id)
         if (shipmentsCheck || claimsCheck || data.role === 'admin') {
           return true
         }
