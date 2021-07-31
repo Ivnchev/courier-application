@@ -1,20 +1,23 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit, OnChanges, OnDestroy, Input } from '@angular/core';
 import { NewsService } from '../services/news.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { INews } from 'src/app/shared/interfaces';
 import { ModalComponent } from 'src/app/shared/modal/modal.component';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-news-list',
   templateUrl: './news-list.component.html',
   styleUrls: ['./news-list.component.css']
 })
-export class NewsListComponent implements OnInit, OnChanges {
-  
+export class NewsListComponent implements OnInit, OnChanges, OnDestroy {
+
+  @Input() needRefresh
   searchValue: string
   news: INews[]
   isLoading: boolean = false
+  subscription: Subscription
 
   constructor(
     private newsService: NewsService,
@@ -24,7 +27,7 @@ export class NewsListComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.isLoading = true
-    this.newsService.getAll().subscribe({
+    this.subscription = this.newsService.getAll().subscribe({
       next: (data: INews[]) => {
         this.isLoading = false
         this.news = data
@@ -36,13 +39,23 @@ export class NewsListComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(): void {
-    this.newsService.getAll().subscribe({
-        next: (data: INews[]) => this.news = data,
+    if (!this.needRefresh) {
+      this.subscription = this.newsService.getAll().subscribe({
+        next: (data: INews[]) => {
+          this.news = []
+          this.news = data
+        },
         error: err => {
-            this.isLoading = false
+          this.isLoading = false
         }
-    })
-}
+      })
+    }
+
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe()
+  }
 
   toogleInfo(data): void {
     data.showDetails = !data.showDetails

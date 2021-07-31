@@ -14,6 +14,7 @@ import { SupportQuestionSearchPipe } from './pipes/support-question-search.pipe'
 import { SupportQuestionListComponent } from './support-question-list/support-question-list.component';
 import { CounterComponent } from './counter/counter.component';
 import { EntryCountService } from '../shared/services/entry-count.service';
+import { ControlPanelViewDirective } from './control-panel-view.directive';
 
 
 
@@ -26,7 +27,8 @@ import { EntryCountService } from '../shared/services/entry-count.service';
     NewsSearchPipe,
     SupportQuestionSearchPipe,
     SupportQuestionListComponent,
-    CounterComponent
+    CounterComponent,
+    ControlPanelViewDirective
   ],
   imports: [
     CommonModule,
@@ -39,6 +41,9 @@ import { EntryCountService } from '../shared/services/entry-count.service';
   ],
   providers: [
     EntryCountService
+  ],
+  exports: [
+    ControlPanelViewDirective,
   ]
 })
 export class AdminModule { }

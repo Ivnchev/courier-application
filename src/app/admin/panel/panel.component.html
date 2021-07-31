@@ -2,25 +2,32 @@
 
     <header>
         <img src="../../../assets/images/header-admin.jpg">
-        <div class="row">
+        <div class="row-header">
             <h1 class="header">Admin Panel</h1>
         </div>
     </header>
     <app-counter></app-counter>
     <div class="controllers">
-        <mat-tab-group>
-            <mat-tab label="List of News">
-                <app-news-list></app-news-list>
-            </mat-tab>
-            <mat-tab label="List of Support Questions">
-                <app-support-question-list></app-support-question-list>
-            </mat-tab>
-            <mat-tab label="Create News">
-                <app-news></app-news>
-            </mat-tab>
-            <mat-tab label="Create Question&Answers">
-                <app-create-question></app-create-question>
-            </mat-tab>
-        </mat-tab-group>
+        <div class="row-content">
+            <div class="row" (click)="toggleView(listOfNewsControl)">
+                <mat-icon color="primary">feed</mat-icon> List of News
+            </div>
+            <div class="row" (click)="toggleView(listOfQuestionsControl)">
+                <mat-icon color="primary">quiz</mat-icon> List of Support Questions
+            </div>
+            <div class="row" (click)="toggleView(createNewsControl)">
+                <mat-icon color="accent">add_circle</mat-icon> Create News
+            </div>
+            <div class="row" (click)="toggleView(createQuestionsControl)">
+                <mat-icon color="accent">add_circle</mat-icon> Create Question&Answers
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <app-news-list id="listOfNews" #listOfNewsControl="appControlPanelView" [appControlPanelView]="controls.listOfNews" [needRefresh]="controls.listOfNews"></app-news-list>
+        <app-support-question-list id="listOfQuestions" #listOfQuestionsControl="appControlPanelView" [appControlPanelView]="controls.listOfQuestions"></app-support-question-list>
+        <app-news id="createNews" #createNewsControl="appControlPanelView" [appControlPanelView]="controls.createNews" (isPosted)="isPosted($event)"></app-news>
+        <app-create-question id="createQuestions" #createQuestionsControl="appControlPanelView" [appControlPanelView]="controls.createQuestions"></app-create-question>
     </div>
 </div>

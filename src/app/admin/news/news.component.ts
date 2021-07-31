@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { imageValidator } from 'src/app/auth/validators';
@@ -12,7 +12,9 @@ import { first } from 'rxjs/operators';
   styleUrls: ['./news.component.css']
 })
 export class NewsComponent implements OnInit {
-  @ViewChild('form', {static: false}) form: NgForm;
+  @ViewChild('form', { static: false }) form: NgForm;
+
+  @Output() isPosted: EventEmitter<any> = new EventEmitter()
 
   f: FormGroup
   id: string
@@ -67,7 +69,7 @@ export class NewsComponent implements OnInit {
       next: data => {
         this.isLoading = false
         this.form.resetForm()
-        this.router.navigateByUrl('/')
+        this.isPosted.emit(true)
       },
       error: err => {
         this.hasError = true

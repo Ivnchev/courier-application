@@ -15,7 +15,7 @@ header {
 
 }
 
-div.row {
+div.row-header {
     position: absolute;
     display: flex;
     margin: auto;
@@ -34,4 +34,24 @@ h1.header {
 
 mat-tab-group {
     height: 100%;
+}
+
+.row-content {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+    justify-content: space-around;
+    background-color: lightgray;
+
+}
+.row {
+    display: inline-block;
+    list-style-type: none;
+    padding: 10px 30px;
+    cursor: pointer;
+}
+
+.row:hover {
+    background-color: rgb(148, 148, 148);
 }
