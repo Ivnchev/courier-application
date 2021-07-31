@@ -88,5 +88,12 @@ export class ProfileComponent implements OnInit {
     
   }
 
+  isEditProfile(done: boolean) {
+    if(done){
+      this.controls = this.resetControls()
+      this.controls.myShipments = false
+    }
+  }
+
 
 }

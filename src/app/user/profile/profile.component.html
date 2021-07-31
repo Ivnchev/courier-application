@@ -1,36 +1,27 @@
-<div class="layout" fxFlex fxLayout.xs="column" fxLayoutAlign.xs="space-around center" >
+<div class="layout" fxFlex fxLayout.xs="column" fxLayoutAlign.xs="space-around center">
     <app-loader *ngIf="isLoading"></app-loader>
     <div class="profile">
 
         <div class="profile-layout">
             <div class="profile-header">
-                <div class="profile-title">Welcome, 
+                <div class="profile-title">Welcome,
                     <ng-container *ngIf="userData?.gender === 'male';then isMale else isFemale "></ng-container>
-                    <span *ngIf="(isAdmin$ | async)">Admin </span>
                     {{(user$ | async)?.username}}
+                    <br>
+                    <span *ngIf="(isAdmin$ | async)">/ Admin /</span>
                 </div>
             </div>
             <div class="profile-content">
-                    <img mat-card-image [src]="(user$ | async)?.image">
-                    <p>You have {{(user$ | async)?.shipments?.length}} shipments in transit.</p>
+                <img mat-card-image [src]="(user$ | async)?.image">
+                <p>You have {{(user$ | async)?.shipments?.length}} shipments created.</p>
             </div>
             <div class="profile-actions">
                 <ul>
-                    <li>
-                        <button class="edit btn" mat-button (click)="toggleView(controlView)">Edit profile</button>
-                    </li>
-                    <li>
-                        <button class="create shipment btn" mat-button (click)="toggleView(controlCreateShipment)">Create shipment</button>
-                    </li>
-                    <li>
-                        <button class="my-shipments btn" mat-button (click)="toggleView(controlViewShipments)">My shipments</button>
-                    </li>
-                    <li>
-                        <button class="register claim btn" mat-button (click)="toggleView(controlViewClaim)">Register Claim</button>
-                    </li>
-                    <li>
-                        <button class="delete-user" mat-button (click)="openModal()">Delete Account</button>
-                    </li>
+                    <li [ngClass]="!controls.editMode ? 'is-clicked': ''" (click)="toggleView(controlView)">Edit profile </li>
+                    <li [ngClass]="!controls.myShipments  ? 'is-clicked': ''" (click)="toggleView(controlViewShipments)">My shipments</li>
+                    <li [ngClass]="!controls.createShipment  ? 'is-clicked': ''" (click)="toggleView(controlCreateShipment)">Create shipment</li>
+                    <li [ngClass]="!controls.claimMode  ? 'is-clicked': ''" (click)="toggleView(controlViewClaim)">Register Claim</li>
+                    <li class="delete-user" (click)="openModal()">Delete Account</li>
                 </ul>
             </div>
         </div>
@@ -38,10 +29,14 @@
     </div>
 
     <div class="container" fxFlex.xs="1">
-            <app-edit id="editMode" #controlView="appIsVisible" [appIsVisible]="controls.editMode"></app-edit>
-            <app-register-claim id="claimMode" #controlViewClaim="appIsVisible" [appIsVisible]="controls.claimMode"></app-register-claim>
-            <app-shipments id="myShipments" #controlViewShipments="appIsVisible" [appIsVisible]="controls.myShipments" [isProfile]="true"></app-shipments>
-            <app-create-shipment id="createShipment" #controlCreateShipment="appIsVisible" [appIsVisible]="controls.createShipment"></app-create-shipment>
+        <app-edit id="editMode" #controlView="appIsVisible" [appIsVisible]="controls.editMode"
+            (isEditProfile)="isEditProfile($event)"></app-edit>
+        <app-register-claim id="claimMode" #controlViewClaim="appIsVisible" [appIsVisible]="controls.claimMode">
+        </app-register-claim>
+        <app-shipments id="myShipments" #controlViewShipments="appIsVisible" [appIsVisible]="controls.myShipments"
+            [isProfile]="true"></app-shipments>
+        <app-create-shipment id="createShipment" #controlCreateShipment="appIsVisible"
+            [appIsVisible]="controls.createShipment"></app-create-shipment>
 
     </div>
 

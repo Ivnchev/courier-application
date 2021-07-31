@@ -9,16 +9,16 @@
     <app-counter></app-counter>
     <div class="controllers">
         <div class="row-content">
-            <div class="row" (click)="toggleView(listOfNewsControl)">
+            <div class="row" (click)="toggleView(listOfNewsControl)" [ngClass]="!controls.listOfNews ? 'is-clicked': ''">
                 <mat-icon color="primary">feed</mat-icon> List of News
             </div>
-            <div class="row" (click)="toggleView(listOfQuestionsControl)">
+            <div class="row" (click)="toggleView(listOfQuestionsControl)" [ngClass]="!controls.listOfQuestions ? 'is-clicked': ''">
                 <mat-icon color="primary">quiz</mat-icon> List of Support Questions
             </div>
-            <div class="row" (click)="toggleView(createNewsControl)">
+            <div class="row" (click)="toggleView(createNewsControl)" [ngClass]="!controls.createNews ? 'is-clicked': ''">
                 <mat-icon color="accent">add_circle</mat-icon> Create News
             </div>
-            <div class="row" (click)="toggleView(createQuestionsControl)">
+            <div class="row" (click)="toggleView(createQuestionsControl)" [ngClass]="!controls.createQuestions ? 'is-clicked': ''">
                 <mat-icon color="accent">add_circle</mat-icon> Create Question&Answers
             </div>
         </div>

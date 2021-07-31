@@ -83,7 +83,7 @@ export class NewsComponent implements OnInit {
     this.newsService.updateOne(this.id, formData).subscribe({
       next: data => {
         this.isLoading = false
-        this.router.navigateByUrl('/admin')
+        this.isPosted.emit(true)
       },
       error: err => {
         this.hasError = true

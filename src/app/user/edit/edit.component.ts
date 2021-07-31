@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, EventEmitter, Output } from '@angular/core';
 import { UserService } from 'src/app/user/user.service';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
@@ -13,6 +13,8 @@ import { AlertService } from 'src/app/shared/services/alert.service';
 })
 export class EditComponent implements OnInit {
   @ViewChild('form', { static: false }) form: NgForm;
+  @Output() isEditProfile: EventEmitter<any> = new EventEmitter()
+
   isLoading: boolean = false
   hide: boolean = true
   hideRepeat: boolean = true
@@ -61,7 +63,8 @@ export class EditComponent implements OnInit {
               this.hasError = true
               this.alertService.create({ type: 'danger', message: err.error, time: 3000 })
             })
-        }, 6000);
+        }, 4000);
+        this.isEditProfile.emit(true)
         this.alertService.create({ type: 'info', message: 'Successful updated!', time: 3000 })
       },
       error: (err) => {

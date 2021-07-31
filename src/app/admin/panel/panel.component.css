@@ -46,12 +46,17 @@ mat-tab-group {
 
 }
 .row {
+    width: 250px;
     display: inline-block;
     list-style-type: none;
-    padding: 10px 30px;
+    padding: 10px 10px;
     cursor: pointer;
 }
 
 .row:hover {
     background-color: rgb(148, 148, 148);
+}
+
+.is-clicked {
+    background-color: rgb(185, 185, 185);
 }
