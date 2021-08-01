@@ -49,7 +49,7 @@
                     <td>{{shipment?.creator?.username}}</td>
                     <td #shipmentId [id]="shipment._id">{{shipment._id}}</td>
                     <td>{{shipment.address}}</td>
-                    <td>{{shipment.size}}</td>
+                    <td>{{shipment?.sizes?.length}}/{{shipment?.sizes?.width}}/{{shipment?.sizes?.height}}</td>
                     <td>{{shipment.weight}} kg.</td>
                     <td>{{shipment.cost}} $</td>
                     <td>
@@ -82,7 +82,7 @@
                 <tr #shipmentRow>
                     <td #shipmentId [id]="shipment._id">{{shipment._id}}</td>
                     <td>{{shipment.address}}</td>
-                    <td>{{shipment.size}}</td>
+                    <td>{{shipment?.sizes?.length}}/{{shipment?.sizes?.width}}/{{shipment?.sizes?.height}}</td>
                     <td>{{shipment.weight}} kg.</td>
                     <td>{{shipment.cost}} $</td>
                     <td>

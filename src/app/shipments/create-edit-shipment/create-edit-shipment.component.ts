@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, Validators, FormBuilder, NgForm } from '@angular/forms';
-import { shipmentTypeValidator, shipmentSize, shipmentWeight } from 'src/app/shared/common-validators';
+import { shipmentTypeValidator, shipmentWeight } from 'src/app/shared/common-validators';
 import { first } from 'rxjs/operators';
 import { AuthService } from 'src/app/auth/auth.service';
 import { AlertService } from 'src/app/shared/services/alert.service';
@@ -15,12 +15,12 @@ import { ShipmentService } from '../services/shipment.service';
 export class CreateEditShipmentComponent implements OnInit {
   @ViewChild('form', {static: false}) form: NgForm;
   f: FormGroup
+  sizes
   id: string
   isCreateMode: boolean
   hasError: boolean
   isLoading: boolean = false
   isAdmin$ = this.authService.isAdmin$
-
 
   constructor(
     private shipmentService: ShipmentService,
@@ -28,20 +28,24 @@ export class CreateEditShipmentComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private authService: AuthService,
-    private alertService: AlertService
+    private alertService: AlertService,
   ) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id']
     this.isCreateMode = !this.id
-
     this.f = this.fb.group({
       address: ['', [Validators.required, Validators.minLength(10)]],
-      size: ['', [Validators.required, shipmentSize]],
+      sizes: this.fb.group({
+        height: ['', [Validators.required, Validators.min(5), Validators.max(200)]],
+        width: ['', [Validators.required, Validators.min(5), Validators.max(200)]],
+        length: ['', [Validators.required, Validators.min(5), Validators.max(200)]],
+      }),
       weight: ['', [Validators.required, Validators.min(2), shipmentWeight]],
       shipmentType: ['', [Validators.required, shipmentTypeValidator]],
       status: [undefined]
     })
+    this.sizes = this.f.get('sizes')
     this.hasError = false
     if (!this.isCreateMode) {
       this.shipmentService.getShipment(this.id)

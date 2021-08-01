@@ -26,15 +26,45 @@
                                     formControlName="address" matInput>
                             </mat-form-field>
                         </div>
-                        <div>
-                            <mat-form-field appearance="fill">
-                                <mat-label>Package size</mat-label>
-                                <mat-hint *ngIf="f.get('size').touched && f.get('size').errors?.required">Package size
-                                    is required !</mat-hint>
-                                <mat-hint *ngIf="f.get('size').touched && f.get('size').errors?.shipmentSize">Package
-                                    size should looks like 120/80/45 !</mat-hint>
-                                <input type="text" name="size" placeholder="120/80/45" formControlName="size" matInput>
-                            </mat-form-field>
+                        <div formGroupName="sizes">
+                            <div>
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Package length</mat-label>
+                                    <mat-hint
+                                        *ngIf="sizes.get('length').touched && sizes.get('length').errors?.required">
+                                        Package length is required !</mat-hint>
+                                    <mat-hint *ngIf="sizes.get('length').touched && sizes.get('length').errors?.min">
+                                        Package length must be at least 5cm!</mat-hint>
+                                    <mat-hint *ngIf="sizes.get('length').touched && sizes.get('length').errors?.max">
+                                        Package length should be less than 200cm!</mat-hint>
+                                    <input type="number" name="length" placeholder="120cm" formControlName="length"
+                                        matInput>
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Package width</mat-label>
+                                    <mat-hint *ngIf="sizes.get('width').touched && sizes.get('width').errors?.required">
+                                        Package width is required !</mat-hint>
+                                    <mat-hint *ngIf="sizes.get('width').touched && sizes.get('width').errors?.min">
+                                        Package width must be at least 5cm!</mat-hint>
+                                    <mat-hint *ngIf="sizes.get('width').touched && sizes.get('width').errors?.max">
+                                        Package width should be less than 200cm!</mat-hint>
+                                    <input type="number" name="width" placeholder="80cm" formControlName="width" matInput>
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Package height</mat-label>
+                                    <mat-hint *ngIf="sizes.get('height').touched && sizes.get('height').errors?.required">
+                                        Package height is required !</mat-hint>
+                                    <mat-hint *ngIf="sizes.get('height').touched && sizes.get('height').errors?.min">
+                                        Package height must be at least 5cm!</mat-hint>
+                                    <mat-hint *ngIf="sizes.get('height').touched && sizes.get('height').errors?.max">
+                                        Package height should be less than 200cm!</mat-hint>
+                                    <input type="number" name="height" placeholder="45cm" formControlName="height" matInput>
+                                </mat-form-field>
+                            </div>
                         </div>
                         <div>
                             <mat-form-field appearance="fill">
@@ -45,7 +75,7 @@
                                     must be at least 2 kg !</mat-hint>
                                 <mat-hint *ngIf="f.get('weight').touched && f.get('weight').errors?.shipmentWeight">
                                     Weight must be a number less than 100kg !</mat-hint>
-                                <input type="text" name="weight" placeholder="45kg" formControlName="weight" matInput>
+                                <input type="number" name="weight" placeholder="45kg" formControlName="weight" matInput>
                             </mat-form-field>
                         </div>
                         <mat-form-field appearance="fill" *ngIf="(isAdmin$ | async) && !isCreateMode">
