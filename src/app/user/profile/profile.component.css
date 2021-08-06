@@ -59,6 +59,7 @@ li {
 
 li:hover {
     background-color: lightgray;
+    cursor: pointer;
 }
 
 .is-clicked {

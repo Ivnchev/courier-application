@@ -2,13 +2,13 @@ import { IUser } from './user';
 import { IPackageSize } from './package-sizes';
 
 export interface Ipackage {
-    _id: Number,
-    shipmentType: String,
-    address: String,
+    _id: number,
+    shipmentType: string,
+    address: string,
     sizes: IPackageSize,
-    weight: Number,
-    cost: Number,
+    weight: number,
+    cost: number,
     creator: IUser,
-    status: String,
+    status: string,
     showDetails: Boolean
 }

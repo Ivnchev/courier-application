@@ -91,12 +91,12 @@
                         </button>
                     </td>
                     <td>
-                        <button mat-icon-button color="accent" (click)="updateHandler($event, shipmentId?.id)">
+                        <button [disabled]="shipment.status !== 'created'" mat-icon-button color="accent" (click)="updateHandler($event, shipmentId?.id)">
                             <mat-icon class="mat-18">system_update</mat-icon>
                         </button>
                     </td>
                     <td>
-                        <button mat-icon-button color="warn" (click)="openModal($event, shipmentId?.id, shipmentRow)">
+                        <button [disabled]="shipment.status !== 'created'"  mat-icon-button color="warn" (click)="openModal($event, shipmentId?.id, shipmentRow)">
                             <mat-icon>delete</mat-icon>
                         </button>
                     </td>
