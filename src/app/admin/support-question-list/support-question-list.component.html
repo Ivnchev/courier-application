@@ -1,5 +1,6 @@
 <div class="layout">
     <app-loader *ngIf="isLoading"></app-loader>
+    <app-alert-message *ngIf="hasError"></app-alert-message>
     <div class="content">
 
         <ng-container *ngIf="questions?.length > 0">

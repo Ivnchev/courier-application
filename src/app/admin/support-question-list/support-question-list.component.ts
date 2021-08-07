@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ISupQuestion } from 'src/app/shared/interfaces';
 import { SupportQuestionsService } from '../services/support-questions.service';
-import { Router } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ModalComponent } from 'src/app/shared/modal/modal.component';
+import { AlertService } from 'src/app/shared/services/alert.service';
 
 @Component({
   selector: 'app-support-question-list',
@@ -15,22 +15,26 @@ export class SupportQuestionListComponent implements OnInit {
   searchValue: string
   questions: ISupQuestion[]
   isLoading: boolean = false
+  hasError: boolean = false
 
   constructor(
     private questionService: SupportQuestionsService,
-    private router: Router,
-    private matDialog: MatDialog
+    private matDialog: MatDialog,
+    private alertService: AlertService
   ) { }
 
   ngOnInit(): void {
     this.isLoading = true
+    this.hasError = false
     this.questionService.getAll().subscribe({
       next: (data: ISupQuestion[]) => {
         this.isLoading = false
         this.questions = data
       },
       error: err => {
+        this.hasError = true
         this.isLoading = false
+        this.alertService.create({ type: 'danger', message: err.error, time: 3000 })
       }
     })
   }
@@ -40,6 +44,7 @@ export class SupportQuestionListComponent implements OnInit {
   }
 
   openModal(event: HTMLElementEventMap, dataId: string, dataRow: HTMLElement): void {
+    this.hasError = false
     const dialogCfg = new MatDialogConfig()
 
     dialogCfg.disableClose = true;
@@ -57,20 +62,25 @@ export class SupportQuestionListComponent implements OnInit {
         }
       },
       error: err => {
+        this.hasError = true
         this.isLoading = false
+        this.alertService.create({ type: 'danger', message: err.error, time: 3000 })
       }
     })
   }
 
   deleteHandler(dataId: string, dataRow: HTMLElement): void {
     this.isLoading = true
+    this.hasError = false
     this.questionService.deleteOne(dataId).subscribe({
       next: (data: ISupQuestion) => {
         this.isLoading = false
         dataRow.remove()
       },
       error: err => {
+        this.hasError = true
         this.isLoading = false
+        this.alertService.create({ type: 'danger', message: err.error, time: 3000 })
       }
     })
   }

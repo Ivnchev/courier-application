@@ -1,5 +1,6 @@
 <div class="layout">
     <app-loader *ngIf="isLoading"></app-loader>
+    <app-alert-message *ngIf="hasError"></app-alert-message>
     <ng-container *ngIf="isProfile;then profile else noProfile"></ng-container>
     <ng-template #noProfile>
         <header>

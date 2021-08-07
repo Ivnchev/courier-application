@@ -1,11 +1,11 @@
 <div>
-
     <header>
         <img src="../../../assets/images/question.jpg">
         <div class="row">
             <h1 class="header">Qusetions & Answers</h1>
         </div>
     </header>
+    <app-alert-message *ngIf="hasError"></app-alert-message>
     <div fxLayout fxLayoutAlign="center center">
         <mat-form-field fxFlex="40%">
             <input matInput type="text" [(ngModel)]="searchValue" placeholder="Filter">

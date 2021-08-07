@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from 'src/app/shared/modal/modal.component';
 import { ClaimService } from '../services/claim.service';
+import { AlertService } from 'src/app/shared/services/alert.service';
 
 
 @Component({
@@ -20,20 +21,28 @@ export class ClaimListComponent implements OnInit {
   searchValue: string
   claims: IClaim[]
   isLoading: boolean = false
+  hasError: boolean = false
 
   constructor(
     private authService: AuthService,
     private claimService: ClaimService,
     private router: Router,
-    private matDialog: MatDialog
+    private matDialog: MatDialog,
+    private alertService: AlertService
   ) { }
 
   ngOnInit() {
     this.isLoading = true
+    this.hasError = false
     this.claimService.getClaims().subscribe({
       next: (data: IClaim[]) => {
         this.isLoading = false
         this.claims = data
+      },
+      error: err => {
+        this.hasError = true
+        this.isLoading = false
+        this.alertService.create({ type: 'danger', message: err.error, time: 3000 })
       }
     })
   }
@@ -43,6 +52,7 @@ export class ClaimListComponent implements OnInit {
   }
 
   openModal(event: HTMLElementEventMap, claimId: string, claimRow: HTMLElement): void {
+    this.hasError = false
     const dialogCfg = new MatDialogConfig()
 
     dialogCfg.disableClose = true;
@@ -58,16 +68,27 @@ export class ClaimListComponent implements OnInit {
         if (result) {
           this.deleteHandler(claimId, claimRow)
         }
+      },
+      error: err => {
+        this.hasError = true
+        this.alertService.create({ type: 'danger', message: err.error, time: 3000 })
       }
     })
   }
 
   deleteHandler(claimId: string, claimRow: HTMLElement): void {
     this.isLoading = true
+    this.hasError = false
+
     this.claimService.deleteClaim(claimId).subscribe({
       next: (data: IClaim) => {
         this.isLoading = false
         claimRow.remove()
+      },
+      error: err => {
+        this.hasError = true
+        this.isLoading = false
+        this.alertService.create({ type: 'danger', message: err.error, time: 3000 })
       }
     })
   }

@@ -5,6 +5,7 @@ import { MatDialogConfig, MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from 'src/app/shared/modal/modal.component';
 import { QuestionsService } from 'src/app/admin/services/questions.service';
 import { Router } from '@angular/router';
+import { AlertService } from 'src/app/shared/services/alert.service';
 @Component({
   selector: 'app-questions-and-answers',
   templateUrl: './questions-and-answers.component.html',
@@ -16,19 +17,26 @@ export class QuestionsAndAnswersComponent implements OnInit {
   searchValue: string
   questions: IQuestion[]
   isLoading: boolean = false
+  hasError: boolean = false
+
 
   constructor(
     private questionService: QuestionsService,
     private authService: AuthService,
     private matDialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private alertService: AlertService
   ) { }
 
   ngOnInit(): void {
-
+    this.hasError = false
     this.questionService.getQuestions().subscribe({
       next: (data: IQuestion[]) => {
         this.questions = data
+      },
+      error: err => {
+        this.hasError = true
+        this.alertService.create({ type: 'danger', message: err.error, time: 3000 })
       }
     })
 
@@ -40,6 +48,7 @@ export class QuestionsAndAnswersComponent implements OnInit {
   }
 
   openModal(event: HTMLElementEventMap, questionId: string, questionRow: HTMLElement): void {
+    this.hasError = false
     const dialogCfg = new MatDialogConfig()
 
     dialogCfg.disableClose = true;
@@ -55,16 +64,25 @@ export class QuestionsAndAnswersComponent implements OnInit {
         if (result) {
           this.deleteHandler(questionId, questionRow)
         }
+      },
+      error: err => {
+        this.hasError = true
+        this.alertService.create({ type: 'danger', message: err.error, time: 3000 })
       }
     })
   }
 
   deleteHandler(questionId: string, questionRow: HTMLElement): void {
     this.isLoading = true
+    this.hasError = false
     this.questionService.deleteQuestion(questionId).subscribe({
       next: (data: IQuestion) => {
         this.isLoading = false
         questionRow.remove()
+      },
+      error: err => {
+        this.hasError = true
+        this.alertService.create({ type: 'danger', message: err.error, time: 3000 })
       }
     })
   }

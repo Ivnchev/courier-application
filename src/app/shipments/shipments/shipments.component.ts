@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ModalComponent } from 'src/app/shared/modal/modal.component';
 import { ShipmentService } from '../services/shipment.service';
+import { AlertService } from 'src/app/shared/services/alert.service';
 
 @Component({
     selector: 'app-shipments',
@@ -20,17 +21,20 @@ export class ShipmentsComponent implements OnInit, OnChanges {
     user$ = this.authService.currentUser$
     searchValue: string
     packages: Ipackage[]
+    hasError: boolean = false
     isLoading: boolean = false
 
     constructor(
         private shipmentService: ShipmentService,
         private authService: AuthService,
         private router: Router,
-        private matDialog: MatDialog
+        private matDialog: MatDialog,
+        private alertService: AlertService
     ) { }
 
     ngOnInit(): void {
         this.isLoading = true
+        this.hasError = false
         this.shipmentService.getShipments().subscribe({
             next: (data: Ipackage[]) => {
                 this.isLoading = false
@@ -38,16 +42,22 @@ export class ShipmentsComponent implements OnInit, OnChanges {
             },
             error: err => {
                 this.isLoading = false
+                this.hasError = true
+                this.alertService.create({ type: 'danger', message: err.error, time: 3000 })
             }
         })
 
     }
 
     ngOnChanges(): void {
+        this.hasError = false
+
         this.shipmentService.getShipments().subscribe({
             next: (data: Ipackage[]) => this.packages = data,
             error: err => {
+                this.hasError = true
                 this.isLoading = false
+                this.alertService.create({ type: 'danger', message: err.error, time: 3000 })
             }
         })
     }
@@ -58,6 +68,7 @@ export class ShipmentsComponent implements OnInit, OnChanges {
 
 
     openModal(event: HTMLElementEventMap, shipmentId: string, shipmentRow: HTMLElement): void {
+        this.hasError = false
         const dialogCfg = new MatDialogConfig()
 
         dialogCfg.disableClose = true;
@@ -70,27 +81,32 @@ export class ShipmentsComponent implements OnInit, OnChanges {
 
         modalDialog.afterClosed().subscribe({
             next: result => {
-                if(result){
+                if (result) {
                     this.deleteHandler(shipmentId, shipmentRow)
                 }
             },
             error: err => {
                 this.isLoading = false
+                this.hasError = true
+                this.alertService.create({ type: 'danger', message: err.error, time: 3000 })
             }
         })
     }
 
     deleteHandler(shipmentId: string, shipmentRow: HTMLElement): void {
-            this.isLoading = true
-            this.shipmentService.deleteShipment(shipmentId).subscribe({
-                next: (data: Ipackage) => {
-                    this.isLoading = false
-                    shipmentRow.remove()
-                },
-                error: err => {
-                    this.isLoading = false
-                }
-            })
+        this.isLoading = true
+        this.hasError = false
+        this.shipmentService.deleteShipment(shipmentId).subscribe({
+            next: (data: Ipackage) => {
+                this.isLoading = false
+                shipmentRow.remove()
+            },
+            error: err => {
+                this.isLoading = false
+                this.hasError = true
+                this.alertService.create({ type: 'danger', message: err.error, time: 3000 })
+            }
+        })
     }
 
 
