@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { IUser } from 'src/app/shared/interfaces';
-import { constants } from 'src/app/shared/constants';
 import { StorageService } from '../shared/services/storage.service';
 import { tap, map } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
@@ -21,13 +20,13 @@ export class UserService {
   getUser(): Observable<any> {
     const id = this.store.getItem('auth')?._id
     // const headers = new HttpHeaders({ [constants.authHeaderName]: token })
-    return this.http.get(constants.baseUrl + 'users/' + id, { withCredentials: true })
+    return this.http.get('users/' + id)
       .pipe(tap((u: IUser) => this._user.next(u)))
   }
 
   edit(data: object): Observable<any> {
     const id = this.store.getItem('auth')?._id
-    return this.http.put(constants.baseUrl + 'users/' + id, data, { withCredentials: true })
+    return this.http.put('users/' + id, data)
   }
 
   deleteUser(): Observable<any> {

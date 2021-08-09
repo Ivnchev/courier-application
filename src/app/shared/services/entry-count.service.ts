@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { constants } from '../constants';
 import { HttpClient } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 
@@ -19,11 +18,11 @@ export class EntryCountService {
   constructor(private http: HttpClient) { }
 
   post(): Observable<any> {
-    return this.http.post(constants.baseUrl + 'counter', {}, { withCredentials: true })
+    return this.http.post('counter', {})
   }
 
   get(): Observable<any> {
-    return this.http.get(constants.baseUrl + 'counter', { withCredentials: true })
+    return this.http.get('counter')
       .pipe(tap((u: ICount) => this._count.next(u)))
   }
 
